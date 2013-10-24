@@ -19,6 +19,15 @@
     under the License.
 -->
 
+
+<!-- 
+Considerations for the Application: 
+
+    1. Convert from Bootstrap 2.3 -> 3.0 on the basis that 3.0 is built as a mobile first technology. 
+    2. Consider removing the requirement for local storage. As it stands having local storage included in the application seem redundant and unnecessary. 
+-->
+
+
 <html>
 
     <head>
@@ -36,6 +45,8 @@
     </head>
    
     <body>
+
+      <!-- Nav Area -->
       <script type="text/x-handlebars">
           <div class="navbar">
             <div class="navbar-inner">
@@ -43,27 +54,47 @@
               <ul class="nav">
                 <li>{{#link-to 'fingertip'}}FingerTip Facts{{/link-to}}</li>
                 <li>{{#link-to 'search'}}Search{{/link-to}}</li>
-                <li>{{#link-to 'saved'}}Saved{{/link-to}}</li>
               </ul>
             </div>
           </div>
           {{outlet}}
       </script>
 
+      <!--This is the view for the fingertip guide. 
+      
+      The main purpose of this section will be to show information that is currently provided through the print version of the San Bernardino County Superintendent of Schools Fingertip Facts. 
+
+      The way that the information is going to be handled is by splitting it up into separate smaller views to create a more viewable solution on a mobile platform.
+
+      The main views will be: 
+
+      1. Superintendents
+      2. School Districts
+
+      The extra views that will be provided for basic background and data will be: 
+
+      3. General Information 
+      4. County Superintendent & Board 
+      5. County & school district information 
+      6. Teacher information 
+      7. Enrollment in other programs
+
+      In total there will be 7 views as stated above.
+       -->
       <script type="text/x-handlebars" id="fingertip">
           <div class="container-fluid">
             <div class="row-fluid">
-              <div class="span3">
+              <div class="span9">
                 <table class ="table">
                   <thead>
                     <tr><th>School Districts</tr></th>
                   </thead>
-                  {{#each}}
+                  {{#each}} //Each loop to run through a json file that provides information about the superintedents and which school district they represent. 
                   <tr><td>
                       {{district_name}} <br /> 
                       Superintendent: {{sups_name_title}}
                   </td></tr>
-                  {{/each}}
+                  {{/each}} // end of each loop. 
                 </table>
               </div>
               <div class = "span9">
@@ -73,6 +104,28 @@
           </div>
       </script>
 
+      <!--This is the view for the search feature
+
+      The main purpose of this section will be to search through all of the 
+      information provided to the application and return matches to the search criteria. 
+
+       -->
+      <script type="text/x-handlebars" id="search">
+          <div class="container-fluid">
+            <div class="row-fluid">
+              <div class="span9">
+                <h1>Search</h1>
+                <input type="text" id="text" /> <br /> 
+                <button id="search">Search</button>
+              </div>
+            </div>
+            <div class="span9">
+              {{outlet}}
+            </div>            
+          </div>   
+      </script> 
+
+      <!-- This area is used for declairing all of the dependencies used by ember as well as bootstrap. It also houses the main call for the application section of the program.-->
       <script src="js/libs/jquery-1.9.1.js"></script>
       <script src="js/libs/handlebars-1.0.0.js"></script>
       <script src="js/libs/ember-1.0.0.js"></script>
