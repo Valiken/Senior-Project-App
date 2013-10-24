@@ -26,80 +26,58 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <link rel="stylesheet" href="css/index.css" />
-        <link rel="stylesheet" href="css/style.css" />
-
-        <script src="js/app.js"></script>
-        <script src="js/iscroll-lite.js"></script>
-
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+       
         <title>Fingertip Facts Booklet</title>
 
     </head>
    
     <body>
-   
-        <header id="header">
-            <h1><a href="#home">Fingertip Facts</a></h1>
-        </header>
-   
-        <div id="wrapper">
-            <div id="main-content">
-                <div id="pages">
-                    <div id="home" class="current">
-                        <p>This is the welcome page.</p>
-                    </div>
-                    <div id="brochure">
-                        <p>This will be the brochure page.</p>
-                    </div>
-                    <div id="search">
-                        <p>This will be the search page.</p>
-                    </div>
-                    <div id="favorites">
-                        <p>This will contain book marked items. </p>
-                    </div>
-                </div>
+      <script type="text/x-handlebars">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <a class="brand" href="#">img goes here</a>
+              <ul class="nav">
+                <li>{{#link-to 'fingertip'}}FingerTip Facts{{/link-to}}</li>
+                <li>{{#link-to 'search'}}Search{{/link-to}}</li>
+                <li>{{#link-to 'saved'}}Saved{{/link-to}}</li>
+              </ul>
             </div>
-        </div>
-   
-        <footer>
-            <ul id="tab-bar">
-                <li>
-                    <a href="#brochure">Brochure</a>
-                </li>
-                <li>
-                    <a href="#search">Search</a>
-                </li>
-                <li>
-                    <a href="#favorites">Favorites</a>
-                </li>
-            </ul>
-        </footer>
+          </div>
+          {{outlet}}
+      </script>
 
-        <script src="js/index.js"></script>
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+      <script type="text/x-handlebars" id="fingertip">
+          <div class="container-fluid">
+            <div class="row-fluid">
+              <div class="span3">
+                <table class ="table">
+                  <thead>
+                    <tr><th>School Districts</tr></th>
+                  </thead>
+                  {{#each}}
+                  <tr><td>
+                      {{district_name}} <br /> 
+                      Superintendent: {{sups_name_title}}
+                  </td></tr>
+                  {{/each}}
+                </table>
+              </div>
+              <div class = "span9">
+                {{outlet}}
+              </div>
+            </div>
+          </div>
+      </script>
 
-        <script type="text/javascript">
-            $('#tab-bar a').on('click', function(e){
-            e.preventDefault();
-            var nextPage = $(e.target.hash);
-            $("#pages .current").removeClass("current");
-            nextPage.addClass("current");
-            }); 
-        </script>
-        <script type="text/javascript">
-            $('#header a').on('click', function(e){
-            e.preventDefault();
-            var nextPage = $(e.target.hash);
-            $("#pages .current").removeClass("current");
-            nextPage.addClass("current");
-            }); 
-        </script>
-   
+      <script src="js/libs/jquery-1.9.1.js"></script>
+      <script src="js/libs/handlebars-1.0.0.js"></script>
+      <script src="js/libs/ember-1.0.0.js"></script>
+      <stript src="js/libs/bootstrap.min.js"></stript>
+      <script src="js/app.js"></script>
     </body>
 
 </html>
