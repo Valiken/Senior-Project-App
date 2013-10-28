@@ -48,78 +48,86 @@ Considerations for the Application:
 
       <!-- Nav Area -->
       <script type="text/x-handlebars">
-          <div class="navbar">
-            <div class="navbar-inner">
-              <a class="brand" href="#">img goes here</a>
-              <ul class="nav">
-                <li>{{#link-to 'fingertip'}}FingerTip Facts{{/link-to}}</li>
-                <li>{{#link-to 'search'}}Search{{/link-to}}</li>
-              </ul>
+          <div class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          		</button>
+              <a class="navbar-brand" href="#">Fingertip Facts</a>
+            </div>
+            <div class="collapse navbar-collapse">
+              	<ul class="nav navbar-nav">
+                	<li>{{#link-to 'booklet'}}Booklet{{/link-to}}</li>	
+               		<li>{{#link-to 'search'}}Search{{/link-to}}</li>
+                	<li>{{#link-to 'about'}}About{{/link-to}}</li>
+              	</ul>
             </div>
           </div>
           {{outlet}}
       </script>
 
-      <!--This is the view for the fingertip guide. 
-      
-      The main purpose of this section will be to show information that is currently provided through the print version of the San Bernardino County Superintendent of Schools Fingertip Facts. 
+      <script type="text/x-handlebars" id="index">
+      	<div class="container">
+      		<div class="row">
+				<div class="col-md-9">	
+      				<h1>Welcome!</h1>
+      			</div>
+      		</div>
+      	</div>		
+      </script>
 
-      The way that the information is going to be handled is by splitting it up into separate smaller views to create a more viewable solution on a mobile platform.
-
-      The main views will be: 
-
-      1. Superintendents
-      2. School Districts
-
-      The extra views that will be provided for basic background and data will be: 
-
-      3. General Information 
-      4. County Superintendent & Board 
-      5. County & school district information 
-      6. Teacher information 
-      7. Enrollment in other programs
-
-      In total there will be 7 views as stated above.
-       -->
-      <script type="text/x-handlebars" id="fingertip">
-          <div class="container-fluid">
-            <div class="row-fluid">
-              <div class="span9">
+      <script type="text/x-handlebars" id="booklet">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9">
                 <table class ="table">
-                  <thead>
-                    <tr><th>School Districts</tr></th>
-                  </thead>
-                  {{#each}} //Each loop to run through a json file that provides information about the superintedents and which school district they represent. 
-                  <tr><td>
-                      {{district_name}} <br /> 
-                      Superintendent: {{sups_name_title}}
-                  </td></tr>
-                  {{/each}} // end of each loop. 
+                    <thead>
+                    	<tr>
+                    		<th>Booklet Sections</th>
+                    	</tr>
+                  	</thead>
+                  	{{#each}}
+	                  	<tr>
+	                  	   	<td>
+	                    		{{#link-to }} {{district_name}} {{/link-to}}
+	                  		</td>
+	                	</tr>
+                  	{{/each}}
                 </table>
               </div>
-              <div class = "span9">
-                {{outlet}}
+              <div class = "col-md-9">
+            	{{outlet}}
               </div>
             </div>
           </div>
       </script>
 
-      <!--This is the view for the search feature
-
-      The main purpose of this section will be to search through all of the 
-      information provided to the application and return matches to the search criteria. 
-
-       -->
       <script type="text/x-handlebars" id="search">
-          <div class="container-fluid">
-            <div class="row-fluid">
-              <div class="span9">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9">
                 <h1>Search</h1>
                 <input type="text" id="text" /> <br /> 
                 <button id="search">Search</button>
               </div>
             </div>
-            <div class="span9">
+            <div class="col-md-9">
+              {{outlet}}
+            </div>            
+          </div>   
+      </script> 
+
+      <script type="text/x-handlebars" id="about">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9">
+                <h1>About</h1>
+                <p>This is the digital version of the San Bernardino County Superintendent of Schools Fingertip Facts booklet.</p>
+              </div>
+            </div>
+            <div class="col-md-9">
               {{outlet}}
             </div>            
           </div>   
@@ -129,7 +137,7 @@ Considerations for the Application:
       <script src="js/libs/jquery-1.9.1.js"></script>
       <script src="js/libs/handlebars-1.0.0.js"></script>
       <script src="js/libs/ember-1.0.0.js"></script>
-      <stript src="js/libs/bootstrap.min.js"></stript>
+      <script src="js/libs/bootstrap.min.js"></script>
       <script src="js/app.js"></script>
     </body>
 

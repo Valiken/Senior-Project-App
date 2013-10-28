@@ -1,13 +1,21 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-	this.resource('home');
-	this.resource('fingertip');
+	this.resource('booklet');
 	this.resource('search');
-	this.resource('saved');
+	this.resource('about');
 });
 
-App.FingertipRoute = Ember.Route.extend({
+App.ApplicationView = Ember.View.extend({
+  currentPathDidChange: function() {
+    Ember.run.next( this, function() {
+      this.$("ul.nav li:has(>a.active)").addClass('active');
+      this.$("ul.nav li:not(:has(>a.active))").removeClass('active');
+    });
+  }.observes('controller.currentPath')
+});
+
+App.BookletRoute = Ember.Route.extend({
 	model: function() {
 		return sups;
 	}
