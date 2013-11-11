@@ -74,14 +74,14 @@ Considerations for the Application:
 				<h1>Fingertip Facts Brochure</h1>
 				<img src="img/logo.png" height="200" width="200">
 				<p><h2>
-					San Bernadino County<BR>
+					San Bernadino County<br />
 					Superintendent of Schools
 				</p>
-				<br>
+				<br />
 				<p>
 					Transforming lives through education		
 				</p>
-				<br><br><br>
+				<br /><br /><br />
 				<p>
 				2013-2014</h2>
 				</p>
@@ -96,14 +96,10 @@ Considerations for the Application:
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="d">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents <br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#booklet" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
@@ -119,31 +115,109 @@ Considerations for the Application:
             <!-- /header -->                    
             
             <!-- content -->
-                <div data-role="content">
+                <!--General Information -->
+                    <div data-role="content" id="generalInfo">
+                        <p>
+    					<center>
+            				<h1>General Information</h1>
+            				
+            				<p>
+            					San Bernadino County Superintendent of Schools<br />
+            					601 North E. Street San Bernadino CA 92415-0020
+            				</p>
+            				<p>
+                				General Information <br />(909)888-3228 <br />FAX (909) 386=2478<br />
+                				http://www.sbcss.k12.ca.us
+            				</p>
+        				</center>
+        				<p>
+            				San Bernardino County Superintendent of Schools (SBCSS) acts as 
+            				an intermediate service agency between the state and local school 
+            				districts to help meet the educational needs of all children countywide.
+            				Besides the main office in downtown San Bernardino, SBCSS has 
+            				business offices in Colton and northern San Bernardino, plus service 
+            				centers in Rancho Cucamonga and Apple Valley
+        				</p>
+                    </div>
+                <!--End General Information -->
+
+                <!-- County Superintendent And Board-->
+                  <div data-role="content" id="countySups">
+                        <p><center>
+                    <h1>County Superintendent &#38; Board</h1>
+                    </center>
                     <p>
-					<center>
-				<h1>General Information</h1>
-				
-				<p>
-					San Bernadino County Superintendent of Schools<BR>
-					601 North E. Street San Bernadino CA 92415-0020
-				</p>
-				<p>
-				General Information <BR>(909)888-3228 <BR>FAX (909) 386=2478<br>
-				http://www.sbcss.k12.ca.us
-				</p>
-				</center>
-				<p>
-				San Bernardino County Superintendent of Schools (SBCSS) acts as 
-				an intermediate service agency between the state and local school 
-				districts to help meet the educational needs of all children countywide.
-				Besides the main office in downtown San Bernardino, SBCSS has 
-				business offices in Colton and northern San Bernardino, plus service 
-				centers in Rancho Cucamonga and Apple Valley
-				</p>
-			
-				</p>
-                </div>
+                        <h2>COUNTY SUPERINTENDENT &#38; EXECUTIVE STAFF</h2><br /><br />
+                        Gary S. Thomas,Ed.D. .....Superintendent<br />
+                        Ted Alejandre .....Asst. Superintendent, Business Services<br />
+                        Randy Elphic ......Asst. Superintendent, Student Services<br />
+                        Beth Higbee, Ph.D. .....Asst. Superintendent, Education Support Services<br />
+                        Lisa Norman, Ed.D. .....Asst. Superintendent, Human Resources<br /><br />
+                        <h2>COUNTY BOARD OF EDUCATION</h2><br /><br />
+                        Mark Sumpter .....Trustee Area A<br />
+                        Bette Harrison .....Trustee Area B<br />
+                        Laura Abernathy Mancha .....Trustee Area C<br />
+                        Gil Navarro .....Trustee Area D<br />
+                        Alen Ritchie .....Trustee Area E<br /><br />
+                        Regular County Board of Education meetings are held on the first Monday of each month.
+                        </p></p>
+                    </div>
+                <!-- End County Sups -->
+
+                <!-- Superintendents-->
+                    <div data-role="content" id="supsCont">
+                        <h2>SUPERINTENDENTS</h2><br />
+                            <script id="superintendents" type="text/x-handlebars-template"> 
+                            <p>
+                                {{#each supsData}}
+                                    {{district_name}} <br />
+                                    {{sups_name_title}}
+                                {{/each}}
+                            </p> 
+                            </script>
+                           
+                    </div>
+                <!--End Superintendents-->
+
+                <!-- Teacher Information-->
+                    <div data-role="content" id="teacherInfo">
+                        <p>
+                        <h2>Teacher Information</h2>
+                        Total Number of Teachers Countywide: 17,718<br />
+                        Source: CBEDS (2010-11)<br />
+                        Average Teacher Salary Range (2010-11)<br />
+                        Source: 2010-11 Teacher Salary Survey<br />
+                        Elementary Districts $33,290 - $90,000<br />
+                        High School Districts $39,416 - $94,719<br />
+                        Unified School Districts $32,095 - $88,340<br />
+                        <h2>Teacher Ethnic/Racial Distribution</h2><br />
+                        White (not Hispanic): 70.6%<br />
+                        Hispanic: 18.3%<br />
+                        African American: 5.2%<br />
+                        Other: 5.9%<br />
+                        </p>
+                    </div>
+                <!-- End Teacher Information-->
+
+                <!--Community Colleges-->
+                    <div data-role="content">
+                        <h2>Community Colleges</h2>
+                        <p>
+                        BARSTOW COMMUNITY COLLEGE<br /> 
+                        Enrollment: 7,936<br />
+                        2700 Barstow Road, Barstow 92311-6699<br />
+                        (760) 252-2411<br />FAX [760] 252=1875<br />www.barstow.edu<br /><br />
+                        CHAFFEY COMMUNITY COLLEGE<br />
+                        Enrollment: 19,432<br />
+                        5885 Haven Avenue, Rancho Cucamonga 91737-3002<br />
+                        (909) 652-6000<br />FAX [909] 652=6104<br />www.chaffey.edu<br /><br />
+                        COPPER MOUNTAIN COMMUNITY COLLEGE<br />Enrollment: 2,500<br />
+                        6162 Rotary Way Mail: P.O. Box 1398, Joshua Tree 92252<br />
+                        (760) 366-3791<br />FAX [760] 366=5255<br />www.cmccd.edu
+                        
+                        </p>
+                    </div>
+                <!--End Community Colleges-->
             <!-- /content -->    
 
             <!-- footer -->
@@ -152,207 +226,15 @@ Considerations for the Application:
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="d">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#booklet" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                </ul>
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->        
         <!-- THIS IS THE END OF THE GENERAL INFORMATION PAGE -->
-
-		 <!-- THIS IS THE COUNTY SUPERINTENDENTS & BOARD PAGE -->
-        <div data-role="page" id="countysb">
-            <!-- header -->
-                <div data-role="header">
-                        <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="a" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
-                    <h1>Fingertip Facts</h1>
-                </div>
-            <!-- /header -->                    
-            
-            <!-- content -->
-                <div data-role="content">
-                    <p><center>
-				<h1>County Superintendent & Board</h1>
-				</center>
-				<p>
-					<h2>COUNTY SUPERINTENDENT & EXECUTIVE STAFF</h2><BR><BR>
-					Gary S. Thomas,Ed.D. .....Superintendent<BR>
-					Ted Alejandre .....Asst. Superintendent, Business Services<BR>
-					Randy Elphic ......Asst. Superintendent, Student Services<BR>
-					Beth Higbee, Ph.D. .....Asst. Superintendent, Education Support Services<BR>
-					Lisa Norman, Ed.D. .....Asst. Superintendent, Human Resources<BR><BR>
-					<h2>COUNTY BOARD OF EDUCATION</h2><BR><BR>
-					Mark Sumpter .....Trustee Area A<BR>
-					Bette Harrison .....Trustee Area B<BR>
-					Laura Abernathy Mancha .....Trustee Area C<BR>
-					Gil Navarro .....Trustee Area D<BR>
-					Alen Ritchie .....Trustee Area E<BR><BR>
-					Regular County Board of Education meetings are held on the first Monday of each month.
-					</p></p>
-                </div>
-            <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
-         <!-- panel -->
-         <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
-                <ul data-role="listview" data-theme="d">
-                    <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
-                </ul>
-            </div><!-- /panel -->    
-        </div><!-- page -->
-        <!-- THIS IS THE END OF THE COUNTY SUPERINTENDENTS & BOARD PAGE -->
-
-<!-- THIS IS THE SUPERINTENDENTS PAGE -->
-        <div data-role="page" id="superintendent">
-            <!-- header -->
-                <div data-role="header">
-                        <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="a" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
-                    <h1>Superintendents</h1>
-                </div>
-            <!-- /header -->                    
-            
-            <!-- content -->
-                <div data-role="content" id="supsCont">
-                    <p>
-                        <script id="superintendents" type="text/x-handlebars-template"> 
-                        
-                        {{#each supsData}}
-                            {{district_name}} <br />
-                            {{sups_name_title}}
-                        {{/each}}
-
-                        </script>
-                    </p>    
-                </div>
-            <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
-         <!-- panel -->
-         <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
-                <ul data-role="listview" data-theme="d">
-                    <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
-                </ul>
-            </div><!-- /panel -->    
-        </div><!-- page -->
-        <!-- THIS IS THE END OF THE SUPERINTENDENTS PAGE -->
-
-<!-- THIS IS THE TEACHERINFO PAGE -->
-        <div data-role="page" id="teacherinfo">
-            <!-- header -->
-                <div data-role="header">
-                        <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="a" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
-                    <h1>Teacher Information</h1>
-                </div>
-            <!-- /header -->                    
-            
-            <!-- content -->
-                <div data-role="content">
-                    <p>
-					<h2>Teacher Information</h2>
-					Total Number of Teachers Countywide: 17,718<br>
-					Source: CBEDS (2010-11)<br>
-					Average Teacher Salary Range (2010-11)<br>
-					Source: 2010-11 Teacher Salary Survey<br>
-					Elementary Districts $33,290 - $90,000<br>
-					High School Districts $39,416 - $94,719<br>
-					Unified School Districts $32,095 - $88,340<br>
-					<h2>Teacher Ethnic/Racial Distribution</h2><br>
-					White (not Hispanic): 70.6%<br>
-					Hispanic: 18.3%<br>
-					African American: 5.2%<br>
-					Other: 5.9%<br>
-					</p>
-                </div>
-            <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
-         <!-- panel -->
-         <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
-                <ul data-role="listview" data-theme="d">
-                    <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
-                </ul>
-            </div><!-- /panel -->    
-        </div><!-- page -->
-        <!-- THIS IS THE END OF THE TEACHERINFO PAGE -->
-
-<!-- THIS IS THE COMMUNITY COLLEGE DISTRICT PAGE -->
-        <div data-role="page" id="ccdistrict">
-            <!-- header -->
-                <div data-role="header">
-                        <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="a" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
-                    <h1>Community College District</h1>
-                </div>
-            <!-- /header -->                    
-            
-            <!-- content -->
-                <div data-role="content">
-                    <p>
-					BARSTOW COMMUNITY COLLEGE<br> 
-					Enrollment: 7,936<br>
-					2700 Barstow Road, Barstow 92311-6699<br>
-					(760) 252-2411<br>FAX [760] 252=1875<br>www.barstow.edu<br><br>
-					CHAFFEY COMMUNITY COLLEGE<br>
-					Enrollment: 19,432<br>
-					5885 Haven Avenue, Rancho Cucamonga 91737-3002<br>
-					(909) 652-6000<br>FAX [909] 652=6104<br>www.chaffey.edu<br><br>
-					COPPER MOUNTAIN COMMUNITY COLLEGE<br>Enrollment: 2,500<br>
-					6162 Rotary Way Mail: P.O. Box 1398, Joshua Tree 92252<br>
-					(760) 366-3791<br>FAX [760] 366=5255<br>www.cmccd.edu
-					
-					</p>
-                </div>
-            <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
-         <!-- panel -->
-         <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
-                <ul data-role="listview" data-theme="d">
-                    <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
-                </ul>
-            </div><!-- /panel -->    
-        </div><!-- page -->
-        <!-- THIS IS THE END OF THE COMMUNITY COLLEGE DISTRICT PAGE -->
 
         <!-- THIS IS THE SEARCH PAGE -->
         <div data-role="page" id="search">
@@ -375,14 +257,11 @@ Considerations for the Application:
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="d">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#booklet" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                </ul>
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
@@ -409,14 +288,11 @@ Considerations for the Application:
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="d">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li><a href="#index" data-transition="flip">Home</a></li>
-                        <li ><a href="#booklet" data-transition="flip">General Information</a></li>
-						<li><a href="#countysb" data-transition="flip">County Superintendents<br>& Board</a></li>
-						<li><a href="#superintendent" data-transition="flip">Superintendents</a></li>
-						<li><a href="#teacherinfo" data-transition="flip">Teacher<br>Information</a></li>
-						<li><a href="#ccdistrict" data-transition="flip">Community College<br>District</a></li>
-                        <li><a href="#search" data-transition="flip">Search</a></li>
-                        <li><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#booklet" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                </ul>
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
