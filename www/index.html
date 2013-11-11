@@ -167,15 +167,9 @@ Considerations for the Application:
                 <!-- Superintendents-->
                     <div data-role="content" id="supsCont">
                         <h2>SUPERINTENDENTS</h2><br />
-                            <script id="superintendents" type="text/x-handlebars-template"> 
-                            <p>
-                                {{#each supsData}}
-                                    {{district_name}} <br />
-                                    {{sups_name_title}}
-                                {{/each}}
-                            </p> 
-                            </script>
-                           
+                        <ul id="supsUL" data-role="listview">
+
+                        </ul>           
                     </div>
                 <!--End Superintendents-->
 
@@ -231,7 +225,6 @@ Considerations for the Application:
                         <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
                         <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                 </ul>
-                </ul>
             </div><!-- /panel -->    
         </div><!-- page -->        
         <!-- THIS IS THE END OF THE GENERAL INFORMATION PAGE -->
@@ -262,7 +255,6 @@ Considerations for the Application:
                         <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
                         <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                 </ul>
-                </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
         <!-- THIS IS THE END OF THE SEARCH PAGE -->
@@ -292,7 +284,6 @@ Considerations for the Application:
                         <li data-icon="false"><a href="#booklet" data-transition="flip">Booklet</a></li>
                         <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
                         <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
-                </ul>
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
