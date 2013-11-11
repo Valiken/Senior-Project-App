@@ -41,18 +41,17 @@ Considerations for the Application:
         <!-- META STUFF ENDS HERE-->
         <!-- JS AND CSS STUFF GOES HERE-->
 
-       <!-- <link rel="stylesheet" href="css/index.css" /> -->
-        <script src="js/jquery-1.9.1.js"></script>
+        <!-- <link rel="stylesheet" href="css/index.css" /> -->
+        <script src="js/libs/jquery-1.9.1.js"></script>
         <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
-        <script src="js/pageSwipe.js"></script>
-        <script src="js/jquery.mobile-1.3.2.min.js"></script>
-        <script src="js/handlebars-1.0.0.js"></script>
+        <script src="js/libs/jquery.mobile-1.3.2.min.js"></script>
+        <script src="js/libs/handlebars-1.0.0.js"></script>
         <script type="text/javascript">
         $.support.cors = true; 
         $.mobile.allowCrossDomainPages = true; 
         </script>
         <script src="js/app.js"></script>
-        <script src="js/sups.js"></script>
+        <script src="js/dataRetrieval.js"></script>
         <!-- JS AND CSS STUFF ENDS HERE-->
 
         <title>Fingertip Facts Booklet</title>
@@ -60,7 +59,7 @@ Considerations for the Application:
     </head>
     <body>
 
-        <!-- THIS IS THE INDEX PAGE-->
+        <!-- Index Page-->
         <div data-role="page" id="index">
             <!-- header -->
                 <div data-role="header">
@@ -104,9 +103,9 @@ Considerations for the Application:
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
-        <!-- THIS IS THE END OF THE INDEX PAGE -->
+        <!-- End of Index Page -->
 
-        <!-- THIS IS THE GENERAL INFORMATION PAGE -->
+        <!-- General Information Page -->
         <div data-role="page" id="bookletPageOne">
             <!-- header -->
                 <div data-role="header">
@@ -138,6 +137,9 @@ Considerations for the Application:
             				centers in Rancho Cucamonga and Apple Valley
         				</p>
                     </p>
+                    <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageTwo" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                    </div>
                 </div>
             <!-- content -->
             <!-- panel -->    
@@ -183,6 +185,10 @@ Considerations for the Application:
                         Regular County Board of Education meetings are held on the first Monday of each month.
                     </p>
                 </p>
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageOne" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                    <a href="#bookletPageThree" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                </div>
             </div>
             <!-- /content -->
             <!-- panel -->
@@ -208,11 +214,15 @@ Considerations for the Application:
             <!-- /header -->
             <!-- content -->        
             <div data-role="content">
-                <h2>SUPERINTENDENTS</h2><br />
+                <h2>Superintendents</h2><br />
 
                 <ul id="supsUL" data-role="listview">
 
-                </ul>           
+                </ul><br />
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageTwo" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                </div>           
             </div>
             <!-- /content -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
@@ -252,6 +262,10 @@ Considerations for the Application:
                     African American: 5.2%<br />
                     Other: 5.9%<br />
                 </p>
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageThree" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                    <a href="#bookletPageFive" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                </div>                
             </div>
             <!-- /content -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
@@ -290,6 +304,9 @@ Considerations for the Application:
                     6162 Rotary Way Mail: P.O. Box 1398, Joshua Tree 92252<br />
                     (760) 366-3791<br />FAX [760] 366=5255<br />www.cmccd.edu
                 </p>
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                </div>                
             </div>
             <!-- /content -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
@@ -305,7 +322,7 @@ Considerations for the Application:
         <!--End Community Colleges-->  
         <!-- panel -->
 
-        <!-- THIS IS THE SEARCH PAGE -->
+        <!-- Search Page -->
         <div data-role="page" id="search">
             <!-- header -->
                 <div data-role="header">
@@ -316,7 +333,13 @@ Considerations for the Application:
             
             <!-- content -->
                 <div data-role="content">
-                    <p>search</p>
+                    <center>
+                        <h2>Search</h2>
+                    </center>
+                    
+                    <label for="search">Search Input:</label>
+                    <input type="search" name="password" id="search" value="" placeholder="Placeholder text...">
+                    <a href="#" data-role="button">Search</a>
                 </div>
             <!-- /content -->    
 
@@ -333,9 +356,9 @@ Considerations for the Application:
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
-        <!-- THIS IS THE END OF THE SEARCH PAGE -->
+        <!-- End Search Page -->
 
-        <!-- THIS IS THE ABOUT PAGE -->
+        <!-- About Page -->
         <div data-role="page" id="about">
             <!-- header -->
                 <div data-role="header">
@@ -363,7 +386,7 @@ Considerations for the Application:
                 </ul>
             </div><!-- /panel -->    
         </div><!-- page -->
-        <!-- THIS IS THE END OF THE ABOUT PAGE -->
+        <!-- End About Page -->
     </body>
 
 </html>
