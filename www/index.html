@@ -115,6 +115,7 @@ Considerations for the Application:
             <!-- header -->
                 <div data-role="header" data-theme="b" >
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
+						 <a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
                     <h1>Fingertip Facts</h1>
                 </div>
             <!-- /header -->                    
@@ -129,7 +130,7 @@ Considerations for the Application:
             					601 North E. Street San Bernadino CA 92415-0020
             				</p>
             				<p>
-                				General Information <br />(909)888-3228 <br />FAX (909) 386=2478<br />
+                				General Information <br /><a href="tel:+19098883228">(909)888-3228</a><br />FAX (909) 386=2478<br />
                 				http://www.sbcss.k12.ca.us
             				</p>
         				</center>
@@ -156,7 +157,20 @@ Considerations for the Application:
                             <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
                             <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
-            </div><!-- /panel -->               
+            </div>
+			<!-- /panel -->
+			 <!-- panel -->    
+            <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
+                    <ul data-role="listview" data-theme="e">
+                        <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                    </ul>
+            </div>
+			<!-- /panel -->  
+
         </div>            
         <!--End General Information -->
 
