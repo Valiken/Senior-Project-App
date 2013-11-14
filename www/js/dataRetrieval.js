@@ -16,3 +16,15 @@ $.ajax({
    		$('#supsUL').listview('refresh');
     }
 })
+
+$.ajax({
+          url: 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("schooldistrictsjson"));
+
+              
+          }
+      })

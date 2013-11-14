@@ -10,66 +10,44 @@
     // device APIs are available
     //
     function onDeviceReady() {
+    	
 		alert("device ready");
 		if(isOnline) {
-			//make the database
-			db = window.openDatabase("Database", "1.0", "Local Database", 200000);
-			db.transaction(populateDB, errorCB, successCB);
+			//do json call and storage
+			//ajax call for superintendents
+			$.ajax({
+			    url: 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?', 
+			    contentType: "application/json",
+			    dataType: 'jsonp',
+			    success: function(json){
+			        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
+			       // console.log(window.localStorage.getItem("jsontest"));
+
+			        
+			    }
+			})
+
+
 		}
 		else {
 			if(checkDB()) {
-				//alert user that they are using the local database
+				//alert user that they are using the local storage
 			
 			
 			}
 			else {
-				//alert user no data has been loaded because no connection and no local db created
-			
+				//alert user no data has been loaded because no connection and no local storage
+				//Option 1: Redirect to error/positive feedback page
+				//Option 2: Update button for user to continue checking or exit app
+				//
 			}
 		
 		}
     }
 
-    // Populate the database, and record date that database was made
-    //
-    function populateDB(tx) {
-		//drop all tables then create all tables
-		
-		
-		//use data from json call to make sql statements to add data into db
-		//need some way to deal with failure to connect to server
-		
-		
-		//write into local storage date of db created
-		
-		
-		//change checkdb local storage variable to true
-		
-		
-		
-		
-		
-		//code example to create tables and insert data
-        /*tx.executeSql('DROP TABLE IF EXISTS DEMO');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-		*/
-    }
-
-    // Transaction error callback
-    //
-    function errorCB(tx, err) {
-        alert("Error processing SQL: "+err);
-    }
-
-    // Transaction success callback
-    // 
-    function successCB() {
-        alert("success!");
-    }
-	
-	//check if a db exists by checking associated key
+    
+	//check if json has been stored
+	//TODO change to checking for json
 	function checkDB(){
 		var a= window.localStorage.getItem("dbexists");
 		if(a == "true") return true;
