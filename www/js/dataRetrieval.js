@@ -1,8 +1,34 @@
 var supsData = []; 
-var url = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 
+// just to make the ajax calls look a little more neat. 
+var generalUrl = '';
+var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
+var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
+var countysuperintendentUrl = '';
+var countyandschooldistrictUrl = '';
+var teacherinformationUrl = '';
+var enrollmentUrl = '';
+var communitycollegeUrl = '';
+var ropUrl = '';
+//all dem links. 
+
+
+//general information ajax call
 $.ajax({
-	url: url, 
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("generalinformationjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("generalinformationjson"));
+
+              
+          }
+      })
+
+//superintendents ajax call 
+$.ajax({
+	url: supsUrl, 
 	contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -14,16 +40,98 @@ $.ajax({
    		$('#supsUL').append( items.join('') );
    		$('#supsUL').trigger("create");
    		$('#supsUL').listview('refresh');
+
+        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
+        console.log(window.localStorage.getItem("superintendentjson"));   		
     }
 })
 
+//school distrcits ajax call
 $.ajax({
-          url: 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?', 
+          url: schooldistrictsUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("schooldistrictsjson"));
+
+              
+          }
+      })
+
+//county superintendents ajax call
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("countysuperintendentjson"));
+
+              
+          }
+      })
+
+//county and school districts ajax call 
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("countyandschooldistrictjson"));
+
+              
+          }
+      })
+
+//teacher information ajax call
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("teacherinformationjson"));
+
+              
+          }
+      })
+
+//enrollment ajax call
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("enrollmentjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("enrollmentjson"));
+
+              
+          }
+      })
+
+//community college ajax call 
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("communitycollegejson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("communitycollegejson"));
+
+              
+          }
+      })
+
+//rop ajax call
+$.ajax({
+          url: '', 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("ropjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("ropjson"));
 
               
           }
