@@ -1,6 +1,6 @@
 var supsData = []; 
 
-// just to make the ajax calls look a little more neat. 
+// just to make the ajax calls look a little neater. 
 var generalUrl = '';
 var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
@@ -15,7 +15,7 @@ var ropUrl = '';
 
 //general information ajax call
 $.ajax({
-          url: '', 
+          url: generalUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -61,7 +61,7 @@ $.ajax({
 
 //county superintendents ajax call
 $.ajax({
-          url: '', 
+          url: countysuperintendentUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -74,7 +74,7 @@ $.ajax({
 
 //county and school districts ajax call 
 $.ajax({
-          url: '', 
+          url: countyandschooldistrictUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -87,7 +87,7 @@ $.ajax({
 
 //teacher information ajax call
 $.ajax({
-          url: '', 
+          url: teacherinformationUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -100,7 +100,7 @@ $.ajax({
 
 //enrollment ajax call
 $.ajax({
-          url: '', 
+          url: enrollmentUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -113,7 +113,7 @@ $.ajax({
 
 //community college ajax call 
 $.ajax({
-          url: '', 
+          url: communitycollegeUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
@@ -126,7 +126,7 @@ $.ajax({
 
 //rop ajax call
 $.ajax({
-          url: '', 
+          url: ropUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){
