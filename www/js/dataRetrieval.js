@@ -45,7 +45,6 @@ $.ajax({
           items.push('<li data-role="list-divider">' + supsData.district_name + '</li>' + '<li>' + supsData.sups_name_title + '</li>');
    		});  // close each()
    		$('#supsUL').append( items.join('') );
-   		$('#supsUL').trigger("create");
    		$('#supsUL').listview('refresh');	
     },
     error: function(){
