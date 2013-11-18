@@ -23,6 +23,9 @@ $.ajax({
              console.log(window.localStorage.getItem("generalinformationjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -43,7 +46,11 @@ $.ajax({
 
         window.localStorage.setItem("superintendentjson",JSON.stringify(json));
         console.log(window.localStorage.getItem("superintendentjson"));   		
+    },
+    error: function(){
+    	console.log("sorry data could not be located");
     }
+
 })
 
 //school distrcits ajax call
@@ -56,6 +63,9 @@ $.ajax({
              console.log(window.localStorage.getItem("schooldistrictsjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -69,6 +79,9 @@ $.ajax({
              console.log(window.localStorage.getItem("countysuperintendentjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -82,6 +95,9 @@ $.ajax({
              console.log(window.localStorage.getItem("countyandschooldistrictjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -95,6 +111,9 @@ $.ajax({
              console.log(window.localStorage.getItem("teacherinformationjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -108,6 +127,9 @@ $.ajax({
              console.log(window.localStorage.getItem("enrollmentjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -121,6 +143,9 @@ $.ajax({
              console.log(window.localStorage.getItem("communitycollegejson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
@@ -134,5 +159,8 @@ $.ajax({
              console.log(window.localStorage.getItem("ropjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
