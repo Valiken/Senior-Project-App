@@ -4,6 +4,7 @@ var supsData = [];
 var generalUrl = '';
 var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
+var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
 var countysuperintendentUrl = '';
 var countyandschooldistrictUrl = '';
 var teacherinformationUrl = '';
@@ -66,6 +67,19 @@ $.ajax({
           },
           error: function(){
           	console.log("sorry data could not be located");
+          }
+      })
+	  
+//community college distrcits ajax call
+$.ajax({
+          url: ccschooldistrictsUrl, 
+          contentType: "application/json",
+          dataType: 'jsonp',
+          success: function(json){
+             window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
+             console.log(window.localStorage.getItem("ccschooldistrictsjson"));
+
+              
           }
       })
 
