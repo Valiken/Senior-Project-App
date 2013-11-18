@@ -80,6 +80,9 @@ $.ajax({
              console.log(window.localStorage.getItem("ccschooldistrictsjson"));
 
               
+          },
+          error: function(){
+          	console.log("sorry data could not be located");
           }
       })
 
