@@ -26,7 +26,7 @@ $.ajax({
               
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry generalUrl data could not be located");
           }
       })
 
@@ -36,6 +36,9 @@ $.ajax({
 	contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
+        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
+        console.log(window.localStorage.getItem("superintendentjson"));   	
+
     	supsData = json; 
 		var items = [];
 		$.each(json, function(i, supsData) {
@@ -43,13 +46,10 @@ $.ajax({
    		});  // close each()
    		$('#supsUL').append( items.join('') );
    		$('#supsUL').trigger("create");
-   		$('#supsUL').listview('refresh');
-
-        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
-        console.log(window.localStorage.getItem("superintendentjson"));   		
+   		$('#supsUL').listview('refresh');	
     },
     error: function(){
-    	console.log("sorry data could not be located");
+    	console.log("sorry supsUrl data could not be located");
     }
 
 })
@@ -61,12 +61,10 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("schooldistrictsjson"));
-
-              
+             console.log(window.localStorage.getItem("schooldistrictsjson"));              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry schooldistrictsUrl data could not be located");
           }
       })
 	  
@@ -78,11 +76,9 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("ccschooldistrictsjson"));
-
-              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry ccschooldistrictsUrl data could not be located");
           }
       })
 
@@ -93,12 +89,10 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("countysuperintendentjson"));
-
-              
+             console.log(window.localStorage.getItem("countysuperintendentjson"));              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry countysuperintendentUrl data could not be located");
           }
       })
 
@@ -109,12 +103,10 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-
-              
+             console.log(window.localStorage.getItem("countyandschooldistrictjson"));              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry countyandschooldistrictUrl data could not be located");
           }
       })
 
@@ -125,12 +117,10 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("teacherinformationjson"));
-
-              
+             console.log(window.localStorage.getItem("teacherinformationjson"));             
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry teacherinformationUrl data could not be located");
           }
       })
 
@@ -142,11 +132,9 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("enrollmentjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("enrollmentjson"));
-
-              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry enrollmentUrl data could not be located");
           }
       })
 
@@ -158,11 +146,9 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("communitycollegejson",JSON.stringify(json));
              console.log(window.localStorage.getItem("communitycollegejson"));
-
-              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry communitycollegeUrl data could not be located");
           }
       })
 
@@ -174,10 +160,8 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("ropjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("ropjson"));
-
-              
           },
           error: function(){
-          	console.log("sorry data could not be located");
+          	console.log("sorry ropUrl data could not be located");
           }
       })
