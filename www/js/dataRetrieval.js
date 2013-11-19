@@ -10,7 +10,7 @@ var enrollmentUrl = '';
 var communitycollegeUrl = '';
 var ropUrl = '';
 //all dem links. 
-var failedCalls[];
+var failedCalls=[];
 var timeoutTime = 10000;
 //general information ajax call
 $.ajax({
