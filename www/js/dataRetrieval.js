@@ -230,7 +230,38 @@ function supsDataFill(json){
 }
 
 function schoolDistDataFill(json){
-  //fill
+  var items = [];
+  $.each(json, function(i, schoolDistData){
+    items.push('<tr><th>'
+      + schoolDistData.district_name 
+      + '</th>' 
+      + '<td>'
+      + schoolDistData.district_address + ' '
+      + schoolDistData.district_city + ' '
+      + schoolDistData.district_state + ' '
+      + schoolDistData.district_zip_code 
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_phone 
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_fax 
+      + '</td>'
+      + '<td>'
+      + '<a href="' + schoolDistData.district_website + '" data-rel="external">' + schoolDistData.district_website + '</a>'
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_enrollment
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_grades
+      + '</td>'
+      + '<td>' 
+      + schoolDistData.district_square_miles
+      + '</td></tr>');
+  });
+  $('#school-districts-body').append( items.join('') );
+  $('#school-districts').table('refresh'); 
 }
 
 function commCollegeDataFill(json){
