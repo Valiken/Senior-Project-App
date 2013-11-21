@@ -7,7 +7,6 @@ var countysuperintendentUrl = '';
 var countyandschooldistrictUrl = '';
 var teacherinformationUrl = '';
 var enrollmentUrl = '';
-var communitycollegeUrl = '';
 var ropUrl = '';
 //all dem links. 
 var failedCalls=[];
@@ -39,7 +38,6 @@ $.ajax({
 	contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
-      console.log("success");
         window.localStorage.setItem("superintendentjson",JSON.stringify(json));
         console.log(window.localStorage.getItem("superintendentjson")); 
         supsDataFill(json);

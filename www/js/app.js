@@ -14,7 +14,7 @@
 		alert("device ready");
 		if(isOnline) {
 			//do json call and storage
-
+			console.log("things are here");
 		}
 		else {
 			if(checkDB()) {
