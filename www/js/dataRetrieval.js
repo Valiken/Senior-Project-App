@@ -73,8 +73,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("schooldistrictsjson");
+              console.log("sorry schooldistrictsUrl data could not be located");
             }
-            console.log("sorry schooldistrictsUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -95,8 +96,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("ccschooldistrictsjson");
+              console.log("sorry ccschooldistrictsUrl data could not be located");
             }
-            console.log("sorry ccschooldistrictsUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -117,8 +119,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("countysuperintendentjson");
+              console.log("sorry countysuperintendentUrl data could not be located");
             }
-            console.log("sorry countysuperintendentUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -139,8 +142,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("countyandschooldistrictjson");
+              console.log("sorry countyandschooldistrictUrl data could not be located");
             }
-            console.log("sorry countyandschooldistrictUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -161,8 +165,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("teacherinformationjson");
+              console.log("sorry teacherinformationUrl data could not be located");
             }
-            console.log("sorry teacherinformationUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -183,8 +188,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("enrollmentjson");
+              console.log("sorry enrollmentUrl data could not be located");
             }
-            console.log("sorry enrollmentUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -205,8 +211,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("ropjson");
+              console.log("sorry ropUrl data could not be located");
             }
-            console.log("sorry ropUrl data could not be located");
+           
           },
           timeout: timeoutTime
       })
