@@ -244,7 +244,7 @@ function schoolDistDataFill(json){
       + schoolDistData.district_zip_code 
       + '</td>'
       + '<td>'
-      + '<a href="' + '+1' + schoolDistData.district_phone.replace(/[^0-9]/g, '') + '" data-rel="external">' + schoolDistData.district_phone + '</a>'
+      + '<a href="' + '+1' + schoolDistData.district_phone.replace(/[^0-9]/g, '') + '">' + schoolDistData.district_phone + '</a>'
       + '</td>'
       + '<td>'
       + schoolDistData.district_fax 
