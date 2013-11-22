@@ -42,19 +42,16 @@ Considerations for the Application:
         <!-- JS AND CSS STUFF GOES HERE-->
 
         <!-- <link rel="stylesheet" href="css/index.css" /> -->
-        <script src="js/libs/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>
 		 <link rel="stylesheet" href="css/header.css" />
         <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
-        <script src="js/libs/jquery.mobile-1.3.2.min.js"></script>
-        <script src="js/libs/handlebars-1.0.0.js"></script>
-     <!--    <script type="text/javascript">
-        $.support.cors = true; 
-        $.mobile.allowCrossDomainPages = true; 
-        </script> -->
+        <script type="text/javascript" src="js/libs/jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript" src="js/libs/handlebars-1.0.0.js"></script>
 
         <style type="text/css">
 			.ui-title {
-			    margin: 0.6em 10% 0.8em !important;
+			    margin: 0.6em 5% 0.6em 5% !important;
+                text-align: center; 
 			}
         </style>
         <!-- JS AND CSS STUFF ENDS HERE-->
@@ -69,29 +66,36 @@ Considerations for the Application:
             <!-- header -->
                 <div data-role="header" data-theme="b" >
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
-                    <h1>Fingertip Facts Brochure</h1>
+                    <h1>Fingertip Facts</h1>
                 </div>
             <!-- /header -->                    
             
             <!-- content -->
                 <div data-role="content">
-                    <p><center>
-				<img src="img/logo.png" height="200" width="200">
-				<p><h2>
-					San Bernadino County<br />
-					Superintendent of Schools
+                    <p>
+                    	<center>
+							<img src="img/logo.png" height="200" width="200">
+							<p>
+								<h2>
+									San Bernadino County<br />
+									Superintendent of Schools 
+								</h2>
+							</p>
+
+							<br />
+							
+							<p>
+								<h2>Transforming lives through education</h2>		
+							</p>
+							
+							<br /><br />
+							
+							<p>
+								<h2>2013-2014</h2>
+							</p>
+					</center>
 				</p>
-				<br />
-				<p>
-					Transforming lives through education		
-				</p>
-				<br /><br />
-				<p>
-				2013-2014</h2>
-				</p>
-				
-			</center></p>
-                </div>
+            	</div>
             <!-- /content -->    
 
             <!-- footer -->
@@ -123,24 +127,7 @@ Considerations for the Application:
                     <p>
     					<center>
             				<h1>General Information</h1>
-            				
-            				<p>
-            					San Bernadino County Superintendent of Schools<br />
-            					601 North E. Street San Bernadino CA 92415-0020
-            				</p>
-            				<p>
-                				General Information <br /><a href="tel:+19098883228">(909)888-3228</a><br />FAX (909) 386=2478<br />
-                				http://www.sbcss.k12.ca.us
-            				</p>
         				</center>
-        				<p>
-            				San Bernardino County Superintendent of Schools (SBCSS) acts as 
-            				an intermediate service agency between the state and local school 
-            				districts to help meet the educational needs of all children countywide.
-            				Besides the main office in downtown San Bernardino, SBCSS has 
-            				business offices in Colton and northern San Bernardino, plus service 
-            				centers in Rancho Cucamonga and Apple Valley
-        				</p>
                     </p>
                     <div data-role="controlgroup" data-type="horizontal">
                     <a href="#bookletPageTwo" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
@@ -151,10 +138,10 @@ Considerations for the Application:
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
             </div>
 			<!-- /panel -->
@@ -162,17 +149,15 @@ Considerations for the Application:
             <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
-                            <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
-                            <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">Community Colleges</a></li>
-                            
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>
                     </ul>
             </div>
 			<!-- /panel -->  
-
         </div>            
         <!--End General Information -->
 
@@ -191,21 +176,6 @@ Considerations for the Application:
                     <center>
                         <h1>County Superintendent &#38; Board</h1>
                     </center>
-                    <p>
-                        <h2>COUNTY SUPERINTENDENT &#38; EXECUTIVE STAFF</h2><br /><br />
-                        Gary S. Thomas,Ed.D. .....Superintendent<br />
-                        Ted Alejandre .....Asst. Superintendent, Business Services<br />
-                        Randy Elphic ......Asst. Superintendent, Student Services<br />
-                        Beth Higbee, Ph.D. .....Asst. Superintendent, Education Support Services<br />
-                        Lisa Norman, Ed.D. .....Asst. Superintendent, Human Resources<br /><br />
-                        <h2>COUNTY BOARD OF EDUCATION</h2><br /><br />
-                        Mark Sumpter .....Trustee Area A<br />
-                        Bette Harrison .....Trustee Area B<br />
-                        Laura Abernathy Mancha .....Trustee Area C<br />
-                        Gil Navarro .....Trustee Area D<br />
-                        Alen Ritchie .....Trustee Area E<br /><br />
-                        Regular County Board of Education meetings are held on the first Monday of each month.
-                    </p>
                 </p>
                 <div data-role="controlgroup" data-type="horizontal">
                     <a href="#bookletPageOne" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
@@ -218,23 +188,22 @@ Considerations for the Application:
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
             </div><!-- /panel -->   
-<!-- panel -->    
+			<!-- panel -->    
             <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
-                            <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
-                            <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">Community Colleges</a></li>
-                            
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>
                     </ul>
             </div>
 			<!-- /panel -->  
@@ -257,39 +226,34 @@ Considerations for the Application:
                 <ul id="supsUL" data-role="listview">
 
                 </ul><br />
-       
+
+                <div data-role="controlgroup" data-type="horizontal">                    
+	                <a href="#bookletPageTwo" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+	                <a href="#bookletPageFour" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                </div>                     
+            
             </div>
             <!-- /content -->
-            <!-- footer-->
-            <div data-role="footer" data-theme="b" >
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageTwo" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
-                    
-                </div>    
-            </div>
-            <!-- /footer -->
             <!-- panel -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
             </div><!-- /panel -->   
 			<!-- panel -->    
             <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
-                            <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
-                            <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">Community Colleges</a></li>
-                            
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>
                     </ul>
             </div>
 			<!-- /panel -->  
@@ -307,21 +271,9 @@ Considerations for the Application:
             <!-- /header -->
             <!-- content -->                  
             <div data-role="content">
-                <p>
-                    <h2>Teacher Information</h2>
-                    Total Number of Teachers Countywide: 17,718<br />
-                    Source: CBEDS (2010-11)<br />
-                    Average Teacher Salary Range (2010-11)<br />
-                    Source: 2010-11 Teacher Salary Survey<br />
-                    Elementary Districts $33,290 - $90,000<br />
-                    High School Districts $39,416 - $94,719<br />
-                    Unified School Districts $32,095 - $88,340<br />
-                    <h2>Teacher Ethnic/Racial Distribution</h2><br />
-                    White (not Hispanic): 70.6%<br />
-                    Hispanic: 18.3%<br />
-                    African American: 5.2%<br />
-                    Other: 5.9%<br />
-                </p>
+                <center> 
+	                    <h2>Teacher Information</h2>
+                </center>
                 <div data-role="controlgroup" data-type="horizontal">
                     <a href="#bookletPageThree" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
                     <a href="#bookletPageFive" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
@@ -329,34 +281,119 @@ Considerations for the Application:
                 </div>                
             </div>
             <!-- /content -->
+            <!-- panel -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
             </div><!-- /panel -->   
 			<!-- panel -->    
             <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
-                            <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
-                            <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">Community Colleges</a></li>
-                            
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>  
                     </ul>
             </div>
 			<!-- /panel -->  
         </div>
         <!-- End Teacher Information-->
 
+        <!--School Districts Information-->
+        <div data-role="page" id="bookletPageFive">
+        <!--header-->
+            <div data-role="header" data-theme="b" >
+                <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
+                <h1>Fingertip Facts</h1>
+				<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
+            </div>        
+        <!--/header-->
+        <!--content-->
+            <div data-role="content">
+                <center> 
+	                    <h2>School Districts</h2><br /><br />
+	                    <div id="schoolDist">
+	                   		<table data-role="table" id="school-districts" data-mode="reflow" class="ui-responsive table-stroke"> 
+      							<thead> 
+      								<tr>
+      									<th data-priority="persist">Name</th>
+      									<th data-priority="2">Address</th>
+      									<th data-priority="3">Phone</th>
+      									<th data-priority="4">Fax</th>
+      									<th data-priority="5">Website</th>
+      									<th data-priority="6">Enrollment</th>
+      									<th data-priority="7">Grades</th>
+										<th data-priority="8">Sq Miles</th>
+      								</tr>
+      							</thead> 
+      							<tbody id="school-districts-body">
+      							
+      							</tbody>
+      						</table>
+	                    </div><br />
+	                    <h2>Community College Districts</h2><br /><br />
+	                    <div id="communCollege">
+	                   		<table data-role="table" id="community-college-districts-table" data-mode="reflow" class="ui-responsive table-stroke"> 
+      							<thead> 
+      								<tr>
+      									<th data-priority="1">District Name</th>
+      									<th data-priority="2">District Address</th>
+      									<th data-priority="3">District Phone</th>
+      									<th data-priority="4">District Fax</th>
+      									<th data-priority="5">District Website</th>
+      									<th data-priority="6">District Enrollment</th>
+      								</tr>
+      							</thead> 
+      							<tbody>
+      							
+      							</tbody>
+      						</table>	                    	
+	                    </div>
+                </center>
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                    <a href="#bookletPageSix" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+					
+                </div>                
+            </div>        
+        <!--/content-->
+        <!--panel-->
+            <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
+                    <ul data-role="listview" data-theme="e">
+                        <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                    </ul>
+            </div>        
+        <!--/panel-->
+        <!--subpanel-->
+            <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
+                    <ul data-role="listview" data-theme="e">
+                        <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li> 
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>
+                    </ul>
+            </div>
+        <!--/subpanel-->
+        </div>
+        <!--End School Districts Information-->
+
         <!--Community Colleges-->
-        <div data-role="page" id="bookletPageFive">             
+        <div data-role="page" id="bookletPageSix">             
             <!-- header -->
             <div data-role="header" data-theme="b" >
             	<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
@@ -366,52 +403,40 @@ Considerations for the Application:
             <!-- /header -->
             <!-- content -->                    
             <div data-role="content">
-                <h2>Community Colleges</h2>
-                <p>
-                    BARSTOW COMMUNITY COLLEGE<br /> 
-                    Enrollment: 7,936<br />
-                    2700 Barstow Road, Barstow 92311-6699<br />
-                    (760) 252-2411<br />FAX [760] 252=1875<br />www.barstow.edu<br /><br />
-                    CHAFFEY COMMUNITY COLLEGE<br />
-                    Enrollment: 19,432<br />
-                    5885 Haven Avenue, Rancho Cucamonga 91737-3002<br />
-                    (909) 652-6000<br />FAX [909] 652=6104<br />www.chaffey.edu<br /><br />
-                    COPPER MOUNTAIN COMMUNITY COLLEGE<br />Enrollment: 2,500<br />
-                    6162 Rotary Way Mail: P.O. Box 1398, Joshua Tree 92252<br />
-                    (760) 366-3791<br />FAX [760] 366=5255<br />www.cmccd.edu
-                </p>
+            	<center>
+                	<h2>Community Colleges</h2>
+              	</center>
                 <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
+                    <a href="#bookletPageFive" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
 					
                 </div>                
             </div>
             <!-- /content -->
+            <!-- panel -->
             <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                            <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                            <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                     </ul>
             </div><!-- /panel -->  
 			<!-- panel -->    
             <div data-role="panel" data-display="push" data-position="left" id="subnav-panel">
                     <ul data-role="listview" data-theme="e">
                         <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                            
-                            <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
-                            <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
-                            <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
-                            <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">Community Colleges</a></li>
-                            
+                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">General Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageTwo" data-transition="flip">County Superintendent</a></li>
+                        <li data-icon="false"><a href="#bookletPageThree" data-transition="flip">Superintendents</a></li>
+                        <li data-icon="false"><a href="#bookletPageFour" data-transition="flip">Teacher Information</a></li>
+                        <li data-icon="false"><a href="#bookletPageFive" data-transition="flip">School Districts</a></li>
+                        <li data-icon="false"><a href="#bookletPageSix" data-transition="flip">Community Colleges</a></li>
                     </ul>
             </div>
 			<!-- /panel -->  
         </div>
         <!--End Community Colleges-->  
-        <!-- panel -->
 
         <!-- Search Page -->
         <div data-role="page" id="search">
@@ -433,20 +458,17 @@ Considerations for the Application:
                     <a href="#" data-role="button">Search</a>
                 </div>
             <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
          <!-- panel -->
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="e">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                    <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                    <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                    <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                    <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                 </ul>
             </div><!-- /panel -->    
-        </div><!-- page -->
+        </div>
         <!-- End Search Page -->
 
         <!-- About Page -->
@@ -461,27 +483,26 @@ Considerations for the Application:
             
             <!-- content -->
                 <div data-role="content">
-                    <p>about</p>
+                	<center>
+                    	<h2>about</h2>
+                    </center>
                 </div>
             <!-- /content -->    
-
-            <!-- footer -->
-            <!-- /footer -->
          <!-- panel -->
          <div data-role="panel" data-display="push" data-position="right" id="nav-panel">
                 <ul data-role="listview" data-theme="e">
                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-                        <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
-                        <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
-                        <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
-                        <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
+                    <li data-icon="false"><a href="#index" data-transition="flip">Home</a></li>
+                    <li data-icon="false"><a href="#bookletPageOne" data-transition="flip">Booklet</a></li>
+                    <li data-icon="false"><a href="#search" data-transition="flip">Search</a></li>
+                    <li data-icon="false"><a href="#about" data-transition="flip">About</a></li>
                 </ul>
             </div><!-- /panel -->    
-        </div><!-- page -->
+        </div>
         <!-- End About Page -->
 
-        <script src="js/app.js"></script>
-        <script src="js/dataRetrieval.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/dataRetrieval.js"></script>
     </body>
 
 </html>

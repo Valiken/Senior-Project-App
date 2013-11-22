@@ -14,20 +14,7 @@
 		alert("device ready");
 		if(isOnline) {
 			//do json call and storage
-			//ajax call for superintendents
-			$.ajax({
-			    url: 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?', 
-			    contentType: "application/json",
-			    dataType: 'jsonp',
-			    success: function(json){
-			        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
-			       // console.log(window.localStorage.getItem("jsontest"));
-
-			        
-			    }
-			})
-
-
+			console.log("things are here");
 		}
 		else {
 			if(checkDB()) {

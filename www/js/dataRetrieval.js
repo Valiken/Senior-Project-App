@@ -7,7 +7,6 @@ var countysuperintendentUrl = '';
 var countyandschooldistrictUrl = '';
 var teacherinformationUrl = '';
 var enrollmentUrl = '';
-var communitycollegeUrl = '';
 var ropUrl = '';
 //all dem links. 
 var failedCalls=[];
@@ -39,7 +38,6 @@ $.ajax({
 	contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
-      console.log("success");
         window.localStorage.setItem("superintendentjson",JSON.stringify(json));
         console.log(window.localStorage.getItem("superintendentjson")); 
         supsDataFill(json);
@@ -73,8 +71,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("schooldistrictsjson");
+              console.log("sorry schooldistrictsUrl data could not be located");
             }
-            console.log("sorry schooldistrictsUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -95,8 +94,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("ccschooldistrictsjson");
+              console.log("sorry ccschooldistrictsUrl data could not be located");
             }
-            console.log("sorry ccschooldistrictsUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -117,8 +117,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("countysuperintendentjson");
+              console.log("sorry countysuperintendentUrl data could not be located");
             }
-            console.log("sorry countysuperintendentUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -139,8 +140,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("countyandschooldistrictjson");
+              console.log("sorry countyandschooldistrictUrl data could not be located");
             }
-            console.log("sorry countyandschooldistrictUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -161,8 +163,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("teacherinformationjson");
+              console.log("sorry teacherinformationUrl data could not be located");
             }
-            console.log("sorry teacherinformationUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -183,8 +186,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("enrollmentjson");
+              console.log("sorry enrollmentUrl data could not be located");
             }
-            console.log("sorry enrollmentUrl data could not be located");
+            
           },
           timeout: timeoutTime
       })
@@ -205,8 +209,9 @@ $.ajax({
             }
             catch(e){
               noLocalData("ropjson");
+              console.log("sorry ropUrl data could not be located");
             }
-            console.log("sorry ropUrl data could not be located");
+           
           },
           timeout: timeoutTime
       })
@@ -225,7 +230,40 @@ function supsDataFill(json){
 }
 
 function schoolDistDataFill(json){
-  //fill
+  var items = [];
+  var re = /^[0-9 ]$/i;
+
+  $.each(json, function(i, schoolDistData){
+    items.push('<tr><th>'
+      + schoolDistData.district_name 
+      + '</th>' 
+      + '<td>'
+      + '<addres>' + schoolDistData.district_address + '</addres>' + ' '
+      + schoolDistData.district_city + ' '
+      + schoolDistData.district_state + ' '
+      + schoolDistData.district_zip_code 
+      + '</td>'
+      + '<td>'
+      + '<a href="tel:1'+ schoolDistData.district_phone.replace(/[^0-9]/g, '') + '">' + schoolDistData.district_phone + '</a>'
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_fax 
+      + '</td>'
+      + '<td>'
+      + '<a href="' + schoolDistData.district_website + '" data-rel="external">' + schoolDistData.district_website + '</a>'
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_enrollment
+      + '</td>'
+      + '<td>'
+      + schoolDistData.district_grades
+      + '</td>'
+      + '<td>' 
+      + schoolDistData.district_square_miles
+      + '</td></tr>');
+  });
+  $('#school-districts-body').append( items.join('') );
+  $('#school-districts').table('refresh'); 
 }
 
 function commCollegeDataFill(json){
