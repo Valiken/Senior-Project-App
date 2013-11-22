@@ -231,18 +231,20 @@ function supsDataFill(json){
 
 function schoolDistDataFill(json){
   var items = [];
+  var re = /^[0-9 ]$/i;
+
   $.each(json, function(i, schoolDistData){
     items.push('<tr><th>'
       + schoolDistData.district_name 
       + '</th>' 
       + '<td>'
-      + schoolDistData.district_address + ' '
+      + '<addres>' + schoolDistData.district_address + '</addres>' + ' '
       + schoolDistData.district_city + ' '
       + schoolDistData.district_state + ' '
       + schoolDistData.district_zip_code 
       + '</td>'
       + '<td>'
-      + schoolDistData.district_phone 
+      + '<a href="' + '+1' + schoolDistData.district_phone.replace(/[^0-9]/g, '') + '" data-rel="external">' + schoolDistData.district_phone + '</a>'
       + '</td>'
       + '<td>'
       + schoolDistData.district_fax 
