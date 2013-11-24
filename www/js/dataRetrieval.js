@@ -22,7 +22,7 @@ $.ajax({
           },
           error: function(){
           	try{
-              generalDataFill(JSON.parse(window.localStorage.getItem("generalinformationjson")));
+              jsonFill(JSON.parse(window.localStorage.getItem("generalinformationjson")));
             }
             catch(e){
               noLocalData("generalinformationjson");
@@ -216,58 +216,93 @@ $.ajax({
           timeout: timeoutTime
       })
 
-function generalDataFill(json){
-  //folllow pattern for sups, do this so filling out local storage is not copy pasta of the success function
+function jsonFill(json){
+  var items = [];
+
+    items.push('<center>' 
+      + '<h2>' + json.gen_title + '</h2>'
+      + '<br />' 
+      + '' + json.address + ' ' + json.city + ' ' + json.state + ' ' + json.zip_code 
+      + '<br />General Information'
+      + json.phone + ' Fax ' + json.fax 
+      + '<br />'
+      + '<a href="' + json.website + '" data-rel="external">' + json.website + '</a>'
+      + '<br />'
+      + json.gen_description 
+      + '</center>'
+      );
+
+  $('#generalContent').append( items.join('') );
+  $('#generalContent').div('refresh'); 
 }
 
 function supsDataFill(json){
   var items = [];
     $.each(json, function(i, supsData) {
-          items.push('<li data-role="list-divider">' + supsData.district_name + '</li>' + '<li>' + supsData.sups_name_title + '</li>');
-      });  // close each()
-      $('#supsUL').append( items.join('') );
-      $('#supsUL').listview('refresh'); 
+          items.push('<li data-role="list-divider">' 
+            + supsData.district_name 
+            + '</li><li>' 
+            + supsData.sups_name_title 
+            + '</li>'
+          );
+    });  // close each()
+    
+    $('#supsUL').append( items.join('') );
+    $('#supsUL').listview('refresh'); 
 }
 
 function schoolDistDataFill(json){
   var items = [];
-  var re = /^[0-9 ]$/i;
-
   $.each(json, function(i, schoolDistData){
-    items.push('<tr><th>'
+    items.push('<li data-role="list-divider">'
       + schoolDistData.district_name 
-      + '</th>' 
-      + '<td>'
-      + '<addres>' + schoolDistData.district_address + '</addres>' + ' '
+      + '</li><li>'
+      + schoolDistData.district_address + ' '
       + schoolDistData.district_city + ' '
       + schoolDistData.district_state + ' '
       + schoolDistData.district_zip_code 
-      + '</td>'
-      + '<td>'
-      + '<a href="tel:1'+ schoolDistData.district_phone.replace(/[^0-9]/g, '') + '">' + schoolDistData.district_phone + '</a>'
-      + '</td>'
-      + '<td>'
+      + '</li><li>'
+      + '<a href="tel:1'+ schoolDistData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + schoolDistData.district_phone + '</a>'
+      + '</li><li>Fax: '
       + schoolDistData.district_fax 
-      + '</td>'
-      + '<td>'
-      + '<a href="' + schoolDistData.district_website + '" data-rel="external">' + schoolDistData.district_website + '</a>'
-      + '</td>'
-      + '<td>'
+      + '</li><li>'
+      + '<a href="' + schoolDistData.district_website + '" data-rel="external">' + 'Website: ' + schoolDistData.district_website + '</a>'
+      + '</li><li>Enrollment: '
       + schoolDistData.district_enrollment
-      + '</td>'
-      + '<td>'
+      + '</li><li>Grades: '
       + schoolDistData.district_grades
-      + '</td>'
-      + '<td>' 
+      + '</li><li>Squre Miles: '
       + schoolDistData.district_square_miles
-      + '</td></tr>');
+      +'</li>'
+    );
   });
-  $('#school-districts-body').append( items.join('') );
-  $('#school-districts').table('refresh'); 
+  $('#schoolDistUl').append( items.join('') );
+  $('#schoolDistUl').listview('refresh'); 
 }
 
 function commCollegeDataFill(json){
-  //more and more
+ var items = [];
+  $.each(json, function(i, commcollData){
+    items.push('<li data-role="list-divider">'
+      + commcollData.district_name 
+      + '</li><li>'
+      + commcollData.district_address + ' '
+      + commcollData.district_city + ' '
+      + commcollData.district_state + ' '
+      + commcollData.district_zip_code 
+      + '</li><li>'
+      + '<a href="tel:1'+ commcollData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + commcollData.district_phone + '</a>'
+      + '</li><li>Fax: '
+      + commcollData.district_fax 
+      + '</li><li>'
+      + '<a href="' + commcollData.district_website + '" data-rel="external">' + 'Website: ' + commcollData.district_website + '</a>'
+      + '</li><li>Enrollment: '
+      + commcollData.district_enrollment
+      + '</li>'
+    );
+  });
+  $('#communCollegeUl').append( items.join('') );
+  $('#communCollegeUl').listview('refresh'); 
 }
 
 function countySupsDataFill(json){

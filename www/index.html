@@ -64,7 +64,7 @@ Considerations for the Application:
         <!-- Index Page-->
         <div data-role="page" id="index">
             <!-- header -->
-                <div data-role="header" data-theme="b" >
+                <div data-role="header" data-theme="b" data-position="fixed">
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                     <h1>Fingertip Facts</h1>
                 </div>
@@ -116,7 +116,7 @@ Considerations for the Application:
         <!-- General Information Page -->
         <div data-role="page" id="bookletPageOne">
             <!-- header -->
-                <div data-role="header" data-theme="b" >
+                <div data-role="header" data-theme="b" data-position="fixed">
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
 						 <a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
                     <h1>Fingertip Facts</h1>
@@ -129,8 +129,8 @@ Considerations for the Application:
             				<h1>General Information</h1>
         				</center>
                     </p>
-                    <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageTwo" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
+                    <div id="generalContent">
+
                     </div>
                 </div>
             <!-- content -->
@@ -164,7 +164,7 @@ Considerations for the Application:
         <!-- County Superintendent And Board-->
         <div data-role="page" id="bookletPageTwo">
             <!-- header -->
-            <div data-role="header" data-theme="b" >
+            <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                 <h1>Fingertip Facts</h1>
 				<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
@@ -177,11 +177,7 @@ Considerations for the Application:
                         <h1>County Superintendent &#38; Board</h1>
                     </center>
                 </p>
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageOne" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-                    <a href="#bookletPageThree" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
-					
-                </div>
+
             </div>
             <!-- /content -->
             <!-- panel -->
@@ -213,7 +209,7 @@ Considerations for the Application:
         <!-- Superintendents-->
         <div data-role="page" id="bookletPageThree">
             <!-- header -->
-            <div data-role="header" data-theme="b" >
+            <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                 <h1>Fingertip Facts</h1>
 				<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
@@ -221,17 +217,13 @@ Considerations for the Application:
             <!-- /header -->
             <!-- content -->        
             <div data-role="content">
-                <h2>Superintendents</h2><br />
+                <h2>Superintendents</h2>
+
+                <br />
 
                 <ul id="supsUL" data-role="listview">
 
-                </ul><br />
-
-                <div data-role="controlgroup" data-type="horizontal">                    
-	                <a href="#bookletPageTwo" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-	                <a href="#bookletPageFour" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
-                </div>                     
-            
+                </ul>  
             </div>
             <!-- /content -->
             <!-- panel -->
@@ -263,7 +255,7 @@ Considerations for the Application:
         <!-- Teacher Information-->
         <div data-role="page" id="bookletPageFour"> 
             <!-- header -->
-            <div data-role="header" data-theme="b" >
+            <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                 <h1>Fingertip Facts</h1>
 				<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
@@ -274,11 +266,6 @@ Considerations for the Application:
                 <center> 
 	                    <h2>Teacher Information</h2>
                 </center>
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageThree" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-                    <a href="#bookletPageFive" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
-					
-                </div>                
             </div>
             <!-- /content -->
             <!-- panel -->
@@ -310,7 +297,7 @@ Considerations for the Application:
         <!--School Districts Information-->
         <div data-role="page" id="bookletPageFive">
         <!--header-->
-            <div data-role="header" data-theme="b" >
+            <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                 <h1>Fingertip Facts</h1>
 				<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
@@ -318,51 +305,23 @@ Considerations for the Application:
         <!--/header-->
         <!--content-->
             <div data-role="content">
-                <center> 
-	                    <h2>School Districts</h2><br /><br />
-	                    <div id="schoolDist">
-	                   		<table data-role="table" id="school-districts" data-mode="reflow" class="ui-responsive table-stroke"> 
-      							<thead> 
-      								<tr>
-      									<th data-priority="persist">Name</th>
-      									<th data-priority="2">Address</th>
-      									<th data-priority="3">Phone</th>
-      									<th data-priority="4">Fax</th>
-      									<th data-priority="5">Website</th>
-      									<th data-priority="6">Enrollment</th>
-      									<th data-priority="7">Grades</th>
-										<th data-priority="8">Sq Miles</th>
-      								</tr>
-      							</thead> 
-      							<tbody id="school-districts-body">
-      							
-      							</tbody>
-      						</table>
-	                    </div><br />
-	                    <h2>Community College Districts</h2><br /><br />
-	                    <div id="communCollege">
-	                   		<table data-role="table" id="community-college-districts-table" data-mode="reflow" class="ui-responsive table-stroke"> 
-      							<thead> 
-      								<tr>
-      									<th data-priority="1">District Name</th>
-      									<th data-priority="2">District Address</th>
-      									<th data-priority="3">District Phone</th>
-      									<th data-priority="4">District Fax</th>
-      									<th data-priority="5">District Website</th>
-      									<th data-priority="6">District Enrollment</th>
-      								</tr>
-      							</thead> 
-      							<tbody>
-      							
-      							</tbody>
-      						</table>	                    	
-	                    </div>
-                </center>
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageFour" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-                    <a href="#bookletPageSix" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide">Arrow right</a>
-					
-                </div>                
+	            <h2>School Districts</h2>
+
+	            <br /><br />
+	                    
+	            <ul id="schoolDistUl" data-role="listview">
+	                    
+	            </ul>
+	                    
+	            <br />
+	                    
+	            <h2>Community College Districts</h2>
+
+	            <br /><br />
+	                    
+	            <ul id="communCollegeUl" data-role="listview">
+	                    
+	            </ul>     
             </div>        
         <!--/content-->
         <!--panel-->
@@ -395,7 +354,7 @@ Considerations for the Application:
         <!--Community Colleges-->
         <div data-role="page" id="bookletPageSix">             
             <!-- header -->
-            <div data-role="header" data-theme="b" >
+            <div data-role="header" data-theme="b" data-position="fixed">
             	<a href="#subnav-panel" class="ui-btn-left" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Contents</a>
                 <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                 <h1>Fingertip Facts</h1>
@@ -405,11 +364,7 @@ Considerations for the Application:
             <div data-role="content">
             	<center>
                 	<h2>Community Colleges</h2>
-              	</center>
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#bookletPageFive" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="c" data-inline="true" data-transition="slide" data-direction="reverse">Arrow left</a>
-					
-                </div>                
+              	</center>         
             </div>
             <!-- /content -->
             <!-- panel -->
@@ -441,7 +396,7 @@ Considerations for the Application:
         <!-- Search Page -->
         <div data-role="page" id="search">
             <!-- header -->
-                <div data-role="header" data-theme="b" >
+                <div data-role="header" data-theme="b" data-position="fixed">
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
                     <h1>Fingertip Facts</h1>
                 </div>
@@ -474,7 +429,7 @@ Considerations for the Application:
         <!-- About Page -->
         <div data-role="page" id="about">
             <!-- header -->
-                <div data-role="header" data-theme="b" >
+                <div data-role="header" data-theme="b" data-position="fixed">
                         <a href="#nav-panel" class="ui-btn-right" data-role="button" data-theme="b" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true">Menu</a>
 
                     <h1>Fingertip Facts</h1>
