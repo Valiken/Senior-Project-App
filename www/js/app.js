@@ -1,5 +1,5 @@
 // just to make the ajax calls look a little neater. 
-var generalUrl = '';
+var generalUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
 var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
 var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
@@ -218,20 +218,20 @@ $.ajax({
 
 function jsonFill(json){
   var items = [];
-
+  $.each(json, function(i, generalData) {
     items.push('<center>' 
-      + '<h2>' + json.gen_title + '</h2>'
+      + '<h2>' + json.gen_title[0] + '</h2>'
       + '<br />' 
-      + '' + json.address + ' ' + json.city + ' ' + json.state + ' ' + json.zip_code 
+      + '' + json[0].address + ' ' + json[0].city + ' ' + json[0].state + ' ' + json[0].zip_code 
       + '<br />General Information'
-      + json.phone + ' Fax ' + json.fax 
+      + json[0].phone + ' Fax ' + json[0].fax 
       + '<br />'
-      + '<a href="' + json.website + '" data-rel="external">' + json.website + '</a>'
+      + '<a href="' + json[0].website + '" data-rel="external">' + json[0].website + '</a>'
       + '<br />'
-      + json.gen_description 
+      + json[0].gen_description 
       + '</center>'
       );
-
+  });  // close each()
   $('#generalContent').append( items.join('') );
   $('#generalContent').div('refresh'); 
 }
