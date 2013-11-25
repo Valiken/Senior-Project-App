@@ -18,7 +18,8 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("generalinformationjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("generalinformationjson")); 
+             //console.log(window.localStorage.getItem("generalinformationjson")); 
+             generalInfoFill(json);
           },
           error: function(){
           	try{
@@ -220,21 +221,20 @@ function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
     items.push('<center>' 
-      + '<h2>' + generalData.gen_title + '</h2>'
-      + '<br />' 
+      + generalData.gen_title 
+      + '<br /><br />' 
       + '' + generalData.address + ' ' + generalData.city + ' ' + generalData.state + ' ' + generalData.zipcode 
-      + '<br />General Information'
+      + '<br /><br />General Information'
       + generalData.phone + ' Fax ' + generalData.fax 
-      + '<br />'
+      + '<br /><br />'
       + '<a href="' + generalData.website + '" data-rel="external">' + generalData.website + '</a>'
-      + '<br />'
+      + '<br /><br />'
       + generalData.gen_description 
       + '</center>'
       );
   });  // close each()
-  
   $('#general_info').append( items.join('') );
-  $('#general_info').div('refresh');
+  $('#general_info').page('create');
 }
 
 function supsDataFill(json){
