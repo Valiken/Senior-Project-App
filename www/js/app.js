@@ -3,7 +3,7 @@ var generalUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts
 var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
 var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
-var countysuperintendentUrl = '';
+var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
 var countyandschooldistrictUrl = '';
 var teacherinformationUrl = '';
 var enrollmentUrl = '';
