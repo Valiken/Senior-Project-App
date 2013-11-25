@@ -22,7 +22,7 @@ $.ajax({
           },
           error: function(){
           	try{
-              jsonFill(JSON.parse(window.localStorage.getItem("generalinformationjson")));
+              generalInfoFill(JSON.parse(window.localStorage.getItem("generalinformationjson")));
             }
             catch(e){
               noLocalData("generalinformationjson");
@@ -39,7 +39,7 @@ $.ajax({
     dataType: 'jsonp',
     success: function(json){
         window.localStorage.setItem("superintendentjson",JSON.stringify(json));
-        console.log(window.localStorage.getItem("superintendentjson")); 
+        //console.log(window.localStorage.getItem("superintendentjson")); 
         supsDataFill(json);
     },
     error: function(){
@@ -62,7 +62,7 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("schooldistrictsjson"));    
+             //console.log(window.localStorage.getItem("schooldistrictsjson"));    
              schoolDistDataFill(json);          
           },
           error: function(){
@@ -85,7 +85,7 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("ccschooldistrictsjson"));
+           //  console.log(window.localStorage.getItem("ccschooldistrictsjson"));
              commCollegeDataFill(json);
           },
           error: function(){
@@ -216,24 +216,25 @@ $.ajax({
           timeout: timeoutTime
       })
 
-function jsonFill(json){
+function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
     items.push('<center>' 
-      + '<h2>' + json.gen_title[0] + '</h2>'
+      + '<h2>' + generalData.gen_title + '</h2>'
       + '<br />' 
-      + '' + json[0].address + ' ' + json[0].city + ' ' + json[0].state + ' ' + json[0].zip_code 
+      + '' + generalData.address + ' ' + generalData.city + ' ' + generalData.state + ' ' + generalData.zipcode 
       + '<br />General Information'
-      + json[0].phone + ' Fax ' + json[0].fax 
+      + generalData.phone + ' Fax ' + generalData.fax 
       + '<br />'
-      + '<a href="' + json[0].website + '" data-rel="external">' + json[0].website + '</a>'
+      + '<a href="' + generalData.website + '" data-rel="external">' + generalData.website + '</a>'
       + '<br />'
-      + json[0].gen_description 
+      + generalData.gen_description 
       + '</center>'
       );
   });  // close each()
-  $('#generalContent').append( items.join('') );
-  $('#generalContent').div('refresh'); 
+  
+  $('#general_info').append( items.join('') );
+  $('#general_info').div('refresh');
 }
 
 function supsDataFill(json){
