@@ -224,8 +224,8 @@ function generalInfoFill(json){
       + generalData.gen_title 
       + '<br /><br />' 
       + '' + generalData.address + ' ' + generalData.city + ' ' + generalData.state + ' ' + generalData.zipcode 
-      + '<br /><br />General Information'
-      + generalData.phone + ' Fax ' + generalData.fax 
+      + '<br /><br />Phone: ' 
+      + '<a href="tel:1'+ generalData.phone.replace(/[^0-9]/g, '') + '">' + generalData.phone + '</a> |' + ' Fax ' + generalData.fax 
       + '<br /><br />'
       + '<a href="' + generalData.website + '" data-rel="external">' + generalData.website + '</a>'
       + '<br /><br />'
