@@ -307,7 +307,21 @@ function commCollegeDataFill(json){
 }
 
 function countySupsDataFill(json){
-  //keep filling
+  var count_sups_items = [];
+  $.each(json.countysups, function(i, countData){
+    count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+  }); 
+
+
+  var count_board_items = [];
+  $.each(json.countyboard, function(i, boardData){
+    count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+  });
+
+  $('#countySupsContent').append(count_sups_items.join(''));
+  $('#countySupsContent').append(count_board_items.join(''));
+
+  $('#general_info').page('create');
 }
 
 function countySchoolInfoDataFill(json){
