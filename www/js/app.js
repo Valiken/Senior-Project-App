@@ -7,10 +7,10 @@ var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/sup
 var countyandschooldistrictUrl = '';
 var teacherinformationUrl = '';
 var enrollmentUrl = '';
-var ropUrl = '';
-//all dem links. 
+
 var failedCalls=[];
 var timeoutTime = 10000;
+
 //general information ajax call
 $.ajax({
           url: generalUrl, 
@@ -194,29 +194,6 @@ $.ajax({
           timeout: timeoutTime
       })
 
-//rop ajax call
-$.ajax({
-          url: ropUrl, 
-          contentType: "application/json",
-          dataType: 'jsonp',
-          success: function(json){
-             window.localStorage.setItem("ropjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("ropjson"));
-             ropDataFill(json);
-          },
-          error: function(){
-            try{
-              ropDataFill(JSON.parse(window.localStorage.getItem("ropjson")));
-            }
-            catch(e){
-              noLocalData("ropjson");
-              console.log("sorry ropUrl data could not be located");
-            }
-           
-          },
-          timeout: timeoutTime
-      })
-
 function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
@@ -306,12 +283,12 @@ function commCollegeDataFill(json){
   $('#communCollegeUl').listview('refresh'); 
 }
 
+//add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
 function countySupsDataFill(json){
   var count_sups_items = [];
   $.each(json.countysups, function(i, countData){
     count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
   }); 
-
 
   var count_board_items = [];
   $.each(json.countyboard, function(i, boardData){
@@ -334,10 +311,6 @@ function teacherDataFill(json){
 
 function otherEnrollDataFill(json){
   //other stuff
-}
-
-function ropDataFill(json){
-  //do stuffff
 }
 
 function noLocalData(failedajax){
