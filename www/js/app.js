@@ -5,7 +5,7 @@ var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_
 var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
 var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
 var countyandschooldistrictUrl = '';
-var teacherinformationUrl = '';
+var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
 
 var failedCalls=[];
@@ -109,7 +109,7 @@ $.ajax({
           dataType: 'jsonp',
           success: function(json){
              window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("countysuperintendentjson"));       
+             //console.log(window.localStorage.getItem("countysuperintendentjson"));       
              countySupsDataFill(json);       
           },
           error: function(){
@@ -153,10 +153,12 @@ $.ajax({
           url: teacherinformationUrl, 
           contentType: "application/json",
           dataType: 'jsonp',
-          success: function(json){
+          success: function(json){ 
+            
              window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("teacherinformationjson"));      
-             teacherDataFill(json);       
+             teacherDataFill(json); 
+
           },
           error: function(){
             try{
