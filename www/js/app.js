@@ -150,7 +150,7 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-             countySchoolInfoDataFill(json);      
+             countySchoolInfoDataFill(json);              
           },
           error: function(){
             try{
@@ -216,7 +216,6 @@ $.ajax({
           timeout: timeoutTime
       })
 
-//data generation functions. 
 function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
@@ -337,11 +336,10 @@ function countySupsDataFill(json, imagesAllowed){
 			count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
 		});
 
-		$('#countySupsContent').append(count_sups_items.join(''));
-		$('#countySupsContent').append(count_board_items.join(''));
+  $('#countySupsContent').append(count_sups_items.join(''));
+  $('#countySupsContent').append(count_board_items.join(''));
 
-		$('#general_info').page('create');		
-	}
+  $('#general_info').page('create');
 }
 
 function countySchoolInfoDataFill(json){
