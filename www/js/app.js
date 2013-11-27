@@ -154,7 +154,7 @@ $.ajax({
           contentType: "application/json",
           dataType: 'jsonp',
           success: function(json){ 
-            
+            alert(json);
              window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("teacherinformationjson"));      
              teacherDataFill(json); 
@@ -309,6 +309,7 @@ function countySchoolInfoDataFill(json){
 
 function teacherDataFill(json){
   //more stuffff
+  console.log(json);
 }
 
 function otherEnrollDataFill(json){
