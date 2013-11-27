@@ -302,7 +302,6 @@ function countySupsDataFill(json){
 
   $('#general_info').page('create');
 }
-}
 
 function countySchoolInfoDataFill(json){
   //fill out
