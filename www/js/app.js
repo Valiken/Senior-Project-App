@@ -8,11 +8,14 @@ var countyandschooldistrictUrl = '';
 var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
 
+var initialfillGeneral = ""
+
 var failedCalls=[];
 var timeoutTime = 10000;
 
 //checking to see if image downloads are possible. This is used for the County Superintendents & Board page. 
 var imagesAllowed = false; 
+var ifNotInitialized = false;  
 
 //general information ajax call
 $.ajax({
@@ -30,6 +33,7 @@ $.ajax({
             }
             catch(e){
               noLocalData("generalinformationjson");
+              generalInfoFill(JSON.parse(generalinfo.json));
               console.log("sorry generalUrl data could not be located");
             }
           },
@@ -52,6 +56,7 @@ $.ajax({
       }
       catch(e){
         noLocalData("superintendentjson");
+        supsDataFill(JSON.parse(superintendents.json));
         console.log("sorry supsUrl data could not be located");
       }
     },
@@ -75,6 +80,7 @@ $.ajax({
             }
             catch(e){
               noLocalData("schooldistrictsjson");
+              schoolDistDataFill(JSON.parse(js/SchoolDistricts.json));
               console.log("sorry schooldistrictsUrl data could not be located");
             }
             
@@ -98,6 +104,7 @@ $.ajax({
             }
             catch(e){
               noLocalData("ccschooldistrictsjson");
+              commCollegeDataFill(JSON.parse(js/CCDistricts.json));
               console.log("sorry ccschooldistrictsUrl data could not be located");
             }
             
@@ -113,15 +120,22 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
              //console.log(window.localStorage.getItem("countysuperintendentjson"));       
-             countySupsDataFill(json);       
+             imagesAllowed = true; 
+             countySupsDataFill(json, imagesAllowed);       
+                 
           },
           error: function(){
             try{
-              countySupsDataFill(JSON.parse(window.localStorage.getItem("countysuperintendentjson")));
+              imagesAllowed = false;
+              countySupsDataFill(JSON.parse(window.localStorage.getItem("countysuperintendentjson")), imagesAllowed);
+              
             }
             catch(e){
+              imagesAllowed = false; 	
               noLocalData("countysuperintendentjson");
+              countySupsDataFill(JSON.parse(js/countysupsandboard.json), imagesAllowed);
               console.log("sorry countysuperintendentUrl data could not be located");
+              
             }
             
           },
@@ -136,15 +150,15 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-             countySchoolInfoDataFill(json);
-             imagesAllowed = true;               
+             countySchoolInfoDataFill(json);      
           },
           error: function(){
             try{
-              countySchoolInfoDataFill(JSON.parse(window.localStorage.getItem("countyandschooldistrictjson")));
+              	countySchoolInfoDataFill(JSON.parse(window.localStorage.getItem("countyandschooldistrictjson")));
             }
             catch(e){
               noLocalData("countyandschooldistrictjson");
+              countySchoolInfoDataFill(JSON.parse(  ));
               console.log("sorry countyandschooldistrictUrl data could not be located");
             }
             
@@ -170,6 +184,7 @@ $.ajax({
             }
             catch(e){
               noLocalData("teacherinformationjson");
+              teacherDataFill(JSON.parse(js/teacherinfo.json));
               console.log("sorry teacherinformationUrl data could not be located");
             }
             
@@ -193,6 +208,7 @@ $.ajax({
             }
             catch(e){
               noLocalData("enrollmentjson");
+              otherEnrollDataFill(JSON.parse(  ));
               console.log("sorry enrollmentUrl data could not be located");
             }
             
@@ -291,9 +307,10 @@ function commCollegeDataFill(json){
 }
 
 //add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
-function countySupsDataFill(json){
+function countySupsDataFill(json, imagesAllowed){
 	if(imagesAllowed == true){//Edit the formatting to allow for images to be downloaded from the server. 
 		var count_sups_items = [];
+		console.log('this right here is true.');
 		$.each(json.countysups, function(i, countData){
 			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
 		}); 
@@ -308,8 +325,8 @@ function countySupsDataFill(json){
 
 		$('#general_info').page('create');
 	}
-	else{//No images are avaliable since you have not connection... sorry :(
-		console.log('this right here is true.');
+	else if(imagesAllowed == false){//No images are avaliable since you have not connection... sorry :(
+		console.log('this right here is false.');
 		var count_sups_items = [];
 		$.each(json.countysups, function(i, countData){
 			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
