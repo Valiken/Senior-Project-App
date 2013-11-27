@@ -11,6 +11,9 @@ var enrollmentUrl = '';
 var failedCalls=[];
 var timeoutTime = 10000;
 
+//checking to see if image downloads are possible. This is used for the County Superintendents & Board page. 
+var imagesAllowed = false; 
+
 //general information ajax call
 $.ajax({
           url: generalUrl, 
@@ -133,7 +136,8 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-             countySchoolInfoDataFill(json);              
+             countySchoolInfoDataFill(json);
+             imagesAllowed = true;               
           },
           error: function(){
             try{
@@ -196,6 +200,7 @@ $.ajax({
           timeout: timeoutTime
       })
 
+//data generation functions. 
 function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
@@ -287,20 +292,39 @@ function commCollegeDataFill(json){
 
 //add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
 function countySupsDataFill(json){
-  var count_sups_items = [];
-  $.each(json.countysups, function(i, countData){
-    count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
-  }); 
+	if(imagesAllowed == true){//Edit the formatting to allow for images to be downloaded from the server. 
+		var count_sups_items = [];
+		$.each(json.countysups, function(i, countData){
+			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+		}); 
 
-  var count_board_items = [];
-  $.each(json.countyboard, function(i, boardData){
-    count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
-  });
+		var count_board_items = [];
+		$.each(json.countyboard, function(i, boardData){
+			count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+		});
 
-  $('#countySupsContent').append(count_sups_items.join(''));
-  $('#countySupsContent').append(count_board_items.join(''));
+		$('#countySupsContent').append(count_sups_items.join(''));
+		$('#countySupsContent').append(count_board_items.join(''));
 
-  $('#general_info').page('create');
+		$('#general_info').page('create');
+	}
+	else{//No images are avaliable since you have not connection... sorry :(
+		console.log('this right here is true.');
+		var count_sups_items = [];
+		$.each(json.countysups, function(i, countData){
+			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+		}); 
+
+		var count_board_items = [];
+		$.each(json.countyboard, function(i, boardData){
+			count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+		});
+
+		$('#countySupsContent').append(count_sups_items.join(''));
+		$('#countySupsContent').append(count_board_items.join(''));
+
+		$('#general_info').page('create');		
+	}
 }
 
 function countySchoolInfoDataFill(json){
