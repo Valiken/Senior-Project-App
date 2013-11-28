@@ -308,20 +308,39 @@ function countySchoolInfoDataFill(json){
 }
 
 function teacherDataFill(json){
-  //more stuffff
+  //array for first bold section
   var total_Teachers_Countywide_Items = [];
 
   $.each(json.totalTeachersCountyWide, function(i, totalTeachers){
-    total_Teachers_Countywide_Items.push(totalTeachers.catTitle + ' ' + 
+    total_Teachers_Countywide_Items.push('<b>' + totalTeachers.catTitle + '</b>' + ' ' + 
                                     totalTeachers.numberTeachers + '<br />' + totalTeachers.source + '<br />' + '<br />')
   });
   
-  var avg_Teachers_Salary_Items = [];
+  //array for second bold section and source
+  var avg_Salary_Title = [];
 
   $.each(json.teacherSalary, function(i, avgSalary){
-    avg_Teachers_Salary_Items.push(avgSalary.catTitle + '<br />' + avgSalary.source + '<br />' + '<br />'+ avgSalary.districtsType + ' ' +
-                               avgSalary.minimum + ' ' + avgSalary.maximum + '<br />' + '<br />')
+    avg_Salary_Title.push('<b>' + avgSalary.catTitle + '</b>' + '<br />' + avgSalary.source)
   });
+
+  //array for school districts
+  var avg_Salary_District = [];
+
+  $.each(json.teacherSalary, function(i, districts){
+    avg_Salary_District.push(districts.districtsType + '<br />')
+  });
+
+  //array for minimum salary
+
+
+  //array for max salary
+
+
+  //array for third bold section and source
+
+
+  //array for ethnicity and percentage
+
 
   var ethnic_Racial_Dist_Items = [];
 
@@ -329,11 +348,14 @@ function teacherDataFill(json){
     ethnic_Racial_Dist_Items.push(teacherEthnicity.catTitle + '<br />' + teacherEthnicity.source + '<br />' + '<br />'+ 
                                   teacherEthnicity.teacher_ethnicity + ' ' + teacherEthnicity.teacher_percent + '<br />' + '<br />')
   });
+  console.log(avg_Salary_Title[0]);
 
-
-  $('#totalNumTeachers').append(total_Teachers_Countywide_Items.join(''));
-  $('#avgTeacherSalary').append(avg_Teachers_Salary_Items.join(''));
-  $('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items.join(''));
+  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+  $('#avgTeacherSalary').append(avg_Salary_Title);
+  $('#districts').append(avg_Salary_District);
+  //$('#minimum').append(avg_Salary_District);
+  //$('#maximum').append(avg_Salary_District);
+  //$('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items.join(''));
 }
 
 function otherEnrollDataFill(json){
