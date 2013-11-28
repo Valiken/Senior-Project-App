@@ -15,9 +15,9 @@ var initSups = 'initData/sups.json';
 var initSchoolDist = 'initData/SchoolDistricts.json';
 var initCCSchoolDist = 'initData/CCDistricts.json';
 var initCountySupsAndBoard = 'initData/countysupsandboard.json';
-var initCountyAndDist = 'initData/.json';
+var initCountyAndDist = '';
 var initTeacher = 'initData/teacherinfo.json';
-var initEnrollment = 'initData/.json';
+var initEnrollment = '';
 
 //error variables
 var failedCalls=[];
