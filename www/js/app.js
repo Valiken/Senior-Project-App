@@ -560,5 +560,5 @@ function searchSupsAndDistricts(searchfield){
 }
 
 function SchoolDistrict(){
-  var name = 
+  var name = '';
 }
