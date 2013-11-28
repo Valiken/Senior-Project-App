@@ -156,7 +156,7 @@ $.ajax({
           success: function(json){ 
             
              window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("teacherinformationjson"));      
+             //console.log(window.localStorage.getItem("teacherinformationjson"));      
              teacherDataFill(json); 
 
           },
@@ -309,10 +309,36 @@ function countySchoolInfoDataFill(json){
 
 function teacherDataFill(json){
   //more stuffff
+  var total_Teachers_Countywide_Items = [];
+
+  $.each(json.totalTeachersCountyWide, function(i, totalTeachers){
+    total_Teachers_Countywide_Items.push(totalTeachers.catTitle + ' ' + 
+                                    totalTeachers.numberTeachers + '<br />' + totalTeachers.source + '<br />' + '<br />')
+  });
+  
+  var avg_Teachers_Salary_Items = [];
+
+  $.each(json.teacherSalary, function(i, avgSalary){
+    avg_Teachers_Salary_Items.push(avgSalary.catTitle + '<br />' + avgSalary.source + '<br />' + '<br />'+ avgSalary.districtsType + ' ' +
+                               avgSalary.minimum + ' ' + avgSalary.maximum + '<br />' + '<br />')
+  });
+
+  var ethnic_Racial_Dist_Items = [];
+
+  $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
+    ethnic_Racial_Dist_Items.push(teacherEthnicity.catTitle + '<br />' + teacherEthnicity.source + '<br />' + '<br />'+ 
+                                  teacherEthnicity.teacher_ethnicity + ' ' + teacherEthnicity.teacher_percent + '<br />' + '<br />')
+  });
+
+
+  $('#totalNumTeachers').append(total_Teachers_Countywide_Items.join(''));
+  $('#avgTeacherSalary').append(avg_Teachers_Salary_Items.join(''));
+  $('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items.join(''));
 }
 
 function otherEnrollDataFill(json){
   //other stuff
+  
 }
 
 function noLocalData(failedajax){
