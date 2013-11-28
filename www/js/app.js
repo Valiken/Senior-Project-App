@@ -34,6 +34,17 @@ $.ajax({
             catch(e){
               noLocalData("generalinformationjson");
               generalInfoFill(JSON.parse(generalinfo.json));
+              $.ajax({
+              	url: ,
+              	contentType: "application/json",
+              	dataType: 'jsonp',
+              	success: function(json){
+
+              	},
+              	error: function(){
+
+              	}
+              })
               console.log("sorry generalUrl data could not be located");
             }
           },
