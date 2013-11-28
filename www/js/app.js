@@ -8,14 +8,8 @@ var countyandschooldistrictUrl = '';
 var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
 
-var initialfillGeneral = ""
-
 var failedCalls=[];
 var timeoutTime = 10000;
-
-//checking to see if image downloads are possible. This is used for the County Superintendents & Board page. 
-var imagesAllowed = false; 
-var ifNotInitialized = false;  
 
 //general information ajax call
 $.ajax({
@@ -33,7 +27,6 @@ $.ajax({
             }
             catch(e){
               noLocalData("generalinformationjson");
-              generalInfoFill(JSON.parse(generalinfo.json));
               console.log("sorry generalUrl data could not be located");
             }
           },
@@ -56,7 +49,6 @@ $.ajax({
       }
       catch(e){
         noLocalData("superintendentjson");
-        supsDataFill(JSON.parse(superintendents.json));
         console.log("sorry supsUrl data could not be located");
       }
     },
@@ -80,7 +72,6 @@ $.ajax({
             }
             catch(e){
               noLocalData("schooldistrictsjson");
-              schoolDistDataFill(JSON.parse(js/SchoolDistricts.json));
               console.log("sorry schooldistrictsUrl data could not be located");
             }
             
@@ -104,7 +95,6 @@ $.ajax({
             }
             catch(e){
               noLocalData("ccschooldistrictsjson");
-              commCollegeDataFill(JSON.parse(js/CCDistricts.json));
               console.log("sorry ccschooldistrictsUrl data could not be located");
             }
             
@@ -120,22 +110,15 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
              //console.log(window.localStorage.getItem("countysuperintendentjson"));       
-             imagesAllowed = true; 
-             countySupsDataFill(json, imagesAllowed);       
-                 
+             countySupsDataFill(json);       
           },
           error: function(){
             try{
-              imagesAllowed = false;
-              countySupsDataFill(JSON.parse(window.localStorage.getItem("countysuperintendentjson")), imagesAllowed);
-              
+              countySupsDataFill(JSON.parse(window.localStorage.getItem("countysuperintendentjson")));
             }
             catch(e){
-              imagesAllowed = false; 	
               noLocalData("countysuperintendentjson");
-              countySupsDataFill(JSON.parse(js/countysupsandboard.json), imagesAllowed);
               console.log("sorry countysuperintendentUrl data could not be located");
-              
             }
             
           },
@@ -150,15 +133,14 @@ $.ajax({
           success: function(json){
              window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
              console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-             countySchoolInfoDataFill(json);      
+             countySchoolInfoDataFill(json);              
           },
           error: function(){
             try{
-              	countySchoolInfoDataFill(JSON.parse(window.localStorage.getItem("countyandschooldistrictjson")));
+              countySchoolInfoDataFill(JSON.parse(window.localStorage.getItem("countyandschooldistrictjson")));
             }
             catch(e){
               noLocalData("countyandschooldistrictjson");
-              countySchoolInfoDataFill(JSON.parse(  ));
               console.log("sorry countyandschooldistrictUrl data could not be located");
             }
             
@@ -174,7 +156,7 @@ $.ajax({
           success: function(json){ 
             
              window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
-             console.log(window.localStorage.getItem("teacherinformationjson"));      
+             //console.log(window.localStorage.getItem("teacherinformationjson"));      
              teacherDataFill(json); 
 
           },
@@ -184,7 +166,6 @@ $.ajax({
             }
             catch(e){
               noLocalData("teacherinformationjson");
-              teacherDataFill(JSON.parse(js/teacherinfo.json));
               console.log("sorry teacherinformationUrl data could not be located");
             }
             
@@ -208,7 +189,6 @@ $.ajax({
             }
             catch(e){
               noLocalData("enrollmentjson");
-              otherEnrollDataFill(JSON.parse(  ));
               console.log("sorry enrollmentUrl data could not be located");
             }
             
@@ -216,7 +196,6 @@ $.ajax({
           timeout: timeoutTime
       })
 
-//data generation functions. 
 function generalInfoFill(json){
   var items = [];
   $.each(json, function(i, generalData) {
@@ -307,41 +286,21 @@ function commCollegeDataFill(json){
 }
 
 //add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
-function countySupsDataFill(json, imagesAllowed){
-	if(imagesAllowed == true){//Edit the formatting to allow for images to be downloaded from the server. 
-		var count_sups_items = [];
-		console.log('this right here is true.');
-		$.each(json.countysups, function(i, countData){
-			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
-		}); 
+function countySupsDataFill(json){
+  var count_sups_items = [];
+  $.each(json.countysups, function(i, countData){
+    count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+  }); 
 
-		var count_board_items = [];
-		$.each(json.countyboard, function(i, boardData){
-			count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
-		});
+  var count_board_items = [];
+  $.each(json.countyboard, function(i, boardData){
+    count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+  });
 
-		$('#countySupsContent').append(count_sups_items.join(''));
-		$('#countySupsContent').append(count_board_items.join(''));
+  $('#countySupsContent').append(count_sups_items.join(''));
+  $('#countySupsContent').append(count_board_items.join(''));
 
-		$('#general_info').page('create');
-	}
-	else if(imagesAllowed == false){//No images are avaliable since you have not connection... sorry :(
-		console.log('this right here is false.');
-		var count_sups_items = [];
-		$.each(json.countysups, function(i, countData){
-			count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
-		}); 
-
-		var count_board_items = [];
-		$.each(json.countyboard, function(i, boardData){
-			count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
-		});
-
-		$('#countySupsContent').append(count_sups_items.join(''));
-		$('#countySupsContent').append(count_board_items.join(''));
-
-		$('#general_info').page('create');		
-	}
+  $('#general_info').page('create');
 }
 
 function countySchoolInfoDataFill(json){
@@ -349,11 +308,59 @@ function countySchoolInfoDataFill(json){
 }
 
 function teacherDataFill(json){
-  //more stuffff
+  //array for first bold section
+  var total_Teachers_Countywide_Items = [];
+
+  $.each(json.totalTeachersCountyWide, function(i, totalTeachers){
+    total_Teachers_Countywide_Items.push('<b>' + totalTeachers.catTitle + '</b>' + ' ' + 
+                                    totalTeachers.numberTeachers + '<br />' + totalTeachers.source + '<br />' + '<br />')
+  });
+  
+  //array for second bold section and source
+  var avg_Salary_Title = [];
+
+  $.each(json.teacherSalary, function(i, avgSalary){
+    avg_Salary_Title.push('<b>' + avgSalary.catTitle + '</b>' + '<br />' + avgSalary.source)
+  });
+
+  //array for school districts
+  var avg_Salary_District = [];
+
+  $.each(json.teacherSalary, function(i, districts){
+    avg_Salary_District.push(districts.districtsType + '<br />')
+  });
+
+  //array for minimum salary
+
+
+  //array for max salary
+
+
+  //array for third bold section and source
+
+
+  //array for ethnicity and percentage
+
+
+  var ethnic_Racial_Dist_Items = [];
+
+  $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
+    ethnic_Racial_Dist_Items.push(teacherEthnicity.catTitle + '<br />' + teacherEthnicity.source + '<br />' + '<br />'+ 
+                                  teacherEthnicity.teacher_ethnicity + ' ' + teacherEthnicity.teacher_percent + '<br />' + '<br />')
+  });
+  console.log(avg_Salary_Title[0]);
+
+  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+  $('#avgTeacherSalary').append(avg_Salary_Title);
+  $('#districts').append(avg_Salary_District);
+  //$('#minimum').append(avg_Salary_District);
+  //$('#maximum').append(avg_Salary_District);
+  //$('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items.join(''));
 }
 
 function otherEnrollDataFill(json){
   //other stuff
+  
 }
 
 function noLocalData(failedajax){
