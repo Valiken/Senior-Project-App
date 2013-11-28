@@ -538,6 +538,27 @@ It will pull data from the json that is either pulled from the website or stored
 If a user submits information that matches a school district or a super intendent for a school district it will output a combined field with the districts information + the superintendents name. 
 If the user input does not match either a superintendent or a school district, the search function will look through the rest of the data and determine if it is in another table, 
 if it is it will direct the user to that page within the application. If it is not the application will inform the user that it was unable to find the item that they were searching for.*/
-function search(){
+function search(String searchfield){
+  var categoryHits = searchCategories(searchfield);
+  var supsdistHits = searchSupsAndDistricts(searchfield);
 
+  $.each(categoryHits, function(i,hit){
+    //append link to search page
+  });
+
+  $.each(supsdistHits, function(i, hit){
+    //append info
+  })
+}
+
+function searchCategories(searchfield){
+
+}
+
+function searchSupsAndDistricts(searchfield){
+
+}
+
+function SchoolDistrict(){
+  var name = 
 }
