@@ -563,6 +563,7 @@ function search(searchfield){
 
 function searchCategories(searchfield){
 
+  return [];
 }
 
 function searchSupsAndDistricts(searchfield){
@@ -581,7 +582,9 @@ function searchSupsAndDistricts(searchfield){
     //console.log(data);
     $.each(data, function(i,insideData){
       isFound = searchregex.test(insideData);
-      return false;
+      if(isFound){
+        return false;
+      }
     });
     if(isFound){
       //add to hit array using another function
@@ -596,7 +599,9 @@ function searchSupsAndDistricts(searchfield){
     var isfound = false;
     $.each(data, function(i,insideData){
       isFound = searchregex.test(insideData);
-      return false;
+      if(isFound){
+        return false;
+      }
     });
     if(isFound){
       //add to hit array using another function
@@ -612,7 +617,9 @@ function searchSupsAndDistricts(searchfield){
     //console.log(data);
     $.each(data, function(i,insideData){
       isFound = searchregex.test(insideData);
-      return false;
+      if(isFound){
+        return false;
+      }
     });
     if(isFound){
       //add to hit array using another function
@@ -706,3 +713,8 @@ function checkForDuplicate(anArray, aSchoolDistrict){
   });
   return hasDuplicate;
 }
+
+$( ".searchbutton" ).bind( "click", function(event, ui) {
+
+  search($(".searchfield").val());
+});
