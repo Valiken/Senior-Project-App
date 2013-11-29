@@ -495,36 +495,46 @@ function teacherDataFill(json){
   	});
 
   	//array for minimum salary
+    var minimum_salary = [];
+    $.each(json.teacherSalary, function(i, districts){
+      avg_Salary_District.push(districts.minimum 
+        + '<br />');
+    });
 
+	  //array for max salary
+    var maximum_salary = [];
+    $.each(json.teacherSalary, function(i, districts){
+      avg_Salary_District.push(districts.maximum 
+        + '<br />');
+    });
 
-	//array for max salary
-
-
-  	//array for third bold section and source
-
-
-  	//array for ethnicity and percentage
- 	var ethnic_Racial_Dist_Items = [];
+  	//array for teacher eth/race title
+ 	  var ethnic_Racial_Dist_Title = [];
   	$.each(json.teacherEthnicDist, function(i, teacherEthnicity){
-    	ethnic_Racial_Dist_Items.push(teacherEthnicity.catTitle 
-    		+ '<br />' + teacherEthnicity.source + '<br />' 
-    		+ '<br />'+ teacherEthnicity.teacher_ethnicity 
-    		+ ' ' + teacherEthnicity.teacher_percent 
-    		+ '<br />' + '<br />');
+    	ethnic_Racial_Dist_Title.push('<b>'
+        + teacherEthnicity.catTitle + '</b>'
+    		+ '<br />' + teacherEthnicity.source + '<br />' + '<br />');
   	});
-  	console.log(avg_Salary_Title[0]);
 
- 	$('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+    //array for ehtnicity/race and percentage
+    var ethnic_Racial_Dist_Items = [];
+    $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
+      ethnic_Racial_Dist_Items.push(teacherEthnicity.teacher_ethnicity 
+        + ' ' + teacherEthnicity.teacher_percent + '<br />');
+    });
+
+ 	  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
   	$('#avgTeacherSalary').append(avg_Salary_Title);
   	$('#districts').append(avg_Salary_District);
-  	//$('#minimum').append(avg_Salary_District);
-  	//$('#maximum').append(avg_Salary_District);
-  	//$('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items.join(''));
+  	$('#minimum').append(minimum_salary);
+  	$('#maximum').append(maximum_salary);
+  	$('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Title[0]);
+    $('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items);
 }
 
 function otherEnrollDataFill(json){
   //other stuff
-  
+ 
 }
 
 function noLocalData(failedajax){
