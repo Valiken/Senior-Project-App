@@ -4,7 +4,7 @@ var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?t
 var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
 var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
 var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
-var countyandschooldistrictUrl = '';
+var countyandschooldistrictUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
 var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
 
@@ -541,7 +541,7 @@ function otherEnrollDataFill(json){
 function noLocalData(failedajax){
   //this function collects all the failed ajax calls to be used to tell user what stuff is locally called
   //this function is called by all ajax calls that timeout
-  failedCalls.push("failedajax");
+  failedCalls.push(failedajax);
 }
 
 /*This will be the search algorithm that powers the entire search function for the application. 
@@ -586,27 +586,55 @@ function searchSupsAndDistricts(searchfield){
     });
     if(isFound){
       //add to hit array using another function
-      console.log(data);
+      var sd = getSchoolDistrict(data, 'school district');
+      if(!checkForDuplicate(hits, sd)){
+        hits.push(sd);
+      }
     }
   });
 
   $.each(supsjson, function(i,data){
     var isfound = false;
-    //console.log(data);
     $.each(data, function(i,insideData){
       isFound = searchregex.test(insideData);
       return false;
     });
     if(isFound){
       //add to hit array using another function
-      console.log(data);
+      var sd = getSchoolDistrict(data, 'superintendent');
+      if(!checkForDuplicate(hits, sd)){
+        hits.push(sd);
+      }
     }
   });
-
-
+  return hits;
 }
 
-
+//function that returns a school district object based on given data
+function getSchoolDistrict(initialdata, datatype){
+  switch (datatype){
+    case 'superintendent':
+      var schooldata;
+      var distjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
+      $.each(distjson, function(i,data){
+          if(data.district_name == initialdata.district_name){
+            schooldata = data;
+            return false;
+          }
+      });
+      return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.fax, schooldata.district_website, schooldata.district_enrollment, schooldata.district_grades, schooldata.district_square_miles, initialdata.sups_name_title);
+    case 'school district':
+      var supsname;
+      var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+      $.each(supsjson, function(i,data){
+          if(data.district_name == initialdata.district_name){
+            supsname = data.sups_name_title;
+            return false;
+          }
+      });
+      return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.fax, initialdata.district_website, initialdata.district_enrollment, initialdata.district_grades, initialdata.district_square_miles, supsname);
+  }
+}
 
 //class definition of a school district object
 function SchoolDistrict(district_name, address, city, state, zipcode, phone, fax, website, enrollment, grades, square_miles, superintendent){
@@ -624,7 +652,19 @@ function SchoolDistrict(district_name, address, city, state, zipcode, phone, fax
   this.superintendent = superintendent;
 
   // checks if 2 school districts are the same based on name and address
-  function equals(aSchoolDistrict){
+  this.equals = function(aSchoolDistrict){
     return (district_name == aSchoolDistrict.district_name) && (address == aSchoolDistrict.address);
-  }
+  };
+}
+
+//helper function to check if a school district object is already in the array
+function checkForDuplicate(anArray, aSchoolDistrict){
+  var hasDuplicate = false;
+  $.each(anArray, function(i, element){
+    if(element.equals(aSchoolDistrict)){
+      hasDuplicate = true;
+      return false;
+    }
+  });
+  return hasDuplicate;
 }
