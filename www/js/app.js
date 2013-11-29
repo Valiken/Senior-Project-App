@@ -7,6 +7,7 @@ var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/sup
 var countyandschooldistrictUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
 var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
+var ropUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
 
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
@@ -18,6 +19,7 @@ var initCountySupsAndBoard = 'js/initData/countysupsandboard.json';
 var initCountyAndDist = '';
 var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = '';
+var initROP = '';
 
 //error variables
 var failedCalls=[];
@@ -170,6 +172,44 @@ $.ajax({
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
           	    	$('#communityCollegeError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
           	    }
+            })
+
+            console.log("sorry ccschooldistrictsUrl data could not be located");
+        }    
+    },
+    timeout: timeoutTime
+})
+
+//rop ajax call
+$.ajax({
+    url: ropUrl, 
+    contentType: "application/json",
+    dataType: 'jsonp',
+    success: function(json){
+        window.localStorage.setItem("ropjson",JSON.stringify(json));
+        //console.log(window.localStorage.getItem("ropjson"));
+        ropDataFill(json);
+    },
+    error: function(){
+        try{
+          ropDataFill(JSON.parse(window.localStorage.getItem("ropjson")));
+        }
+        catch(e){
+            noLocalData("ropjson");
+
+            //Ajax call for no localdata && no connectivity. 
+            $.ajax({
+                url: initROP,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(json){
+                  //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+                  ropDataFill(json);
+                },
+                error: function(){
+                  //If all else fails print message to page stating that something has gone wrong and please try again later.
+                  $('#ropError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+                }
             })
 
             console.log("sorry ccschooldistrictsUrl data could not be located");
@@ -422,6 +462,29 @@ function commCollegeDataFill(json){
   	$('#communCollegeUl').listview('refresh'); 
 }
 
+function ropDataFill(json){
+  var items = [];
+  $.each(json, function(i, ropData){
+      items.push('<li data-role="list-divider">'
+          + ropData.district_name 
+          + '</li><li>'
+          + ropData.district_address + ' '
+          + ropData.district_city + ' '
+          + ropData.district_state + ' '
+          + ropData.district_zip_code 
+          + '</li><li>'
+          + '<a href="tel:1'+ ropData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + ropData.district_phone + '</a>'
+          + '</li><li>Fax: '
+          + ropData.district_fax 
+          + '</li><li>'
+          + '<a href="' + ropData.district_website + '" data-rel="external">' + 'Website: ' + ropData.district_website + '</a>'
+          + '</li>'
+      );
+    });
+  $('#ropUl').append( items.join('') );
+  $('#ropUl').listview('refresh'); 
+}
+
 //add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
 function countySupsDataFill(json){
   	if(imagesAvaliable != false){
@@ -549,22 +612,50 @@ If a user submits information that matches a school district or a super intenden
 If the user input does not match either a superintendent or a school district, the search function will look through the rest of the data and determine if it is in another table, 
 if it is it will direct the user to that page within the application. If it is not the application will inform the user that it was unable to find the item that they were searching for.*/
 function search(searchfield){
-  var categoryHits = searchCategories(searchfield);
-  var supsdistHits = searchSupsAndDistricts(searchfield);
+  
 
   //clear search content
+  $('#searchSchoolDistUl').empty();
 
+  //if blank, just clear screen and exit
+  if(!searchfield) return;
 
-
-
+  var categoryHits = searchCategories(searchfield);
+  var supsdistHits = searchSupsAndDistricts(searchfield);
   //add search content to page
   $.each(categoryHits, function(i,hit){
     //append link to search page
   });
-
-  $.each(supsdistHits, function(i, hit){
-    //append info
-  })
+  //append info
+  var items = [];
+  $.each(supsdistHits, function(i, schoolDistData){
+    items.push('<li data-role="list-divider">'
+        + schoolDistData.district_name 
+        + '</li><li>'
+        + schoolDistData.address + ' '
+        + schoolDistData.city + ' '
+        + schoolDistData.state + ' '
+        + schoolDistData.zipcode 
+        + '</li><li>'
+        + '<a href="tel:1'+ schoolDistData.phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + schoolDistData.phone + '</a>'
+        + '</li><li>Fax: '
+      + schoolDistData.fax 
+        + '</li><li>'
+        + '<a href="' + schoolDistData.website + '" data-rel="external">' + 'Website: ' + schoolDistData.website + '</a>'
+        + '</li><li>Enrollment: '
+      + schoolDistData.enrollment
+        + '</li><li>Grades: '
+        + schoolDistData.grades
+        + '</li><li>Squre Miles: '
+        + schoolDistData.square_miles
+        +'</li><li>Superintendent: '
+        + schoolDistData.superintendent
+        +'</li>'
+    );
+  });
+  $('#searchSchoolDistUl').append( items.join('') );
+  $('#searchSchoolDistUl').listview('refresh'); 
+  console.log(items);
 }
 
 function searchCategories(searchfield){
@@ -605,6 +696,7 @@ function searchSupsAndDistricts(searchfield){
   var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
   var distjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
   var ccjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
+  var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
   //create regex containing search term pattern
   var searchregex = new RegExp('(?:'+searchfield+')','i');
   //look through all district data for a hit using foreach loop
@@ -626,6 +718,7 @@ function searchSupsAndDistricts(searchfield){
     }
   });
 
+  //search through supers data
   $.each(supsjson, function(i,data){
     var isfound = false;
     $.each(data, function(i,insideData){
@@ -643,6 +736,7 @@ function searchSupsAndDistricts(searchfield){
     }
   });
 
+  // search through community college data
   $.each(ccjson, function(i,data){
     var isfound = false;
     //console.log(data);
@@ -660,6 +754,26 @@ function searchSupsAndDistricts(searchfield){
       }
     }
   });
+
+  //search through rop data
+  $.each(ropjson, function(i,data){
+    var isfound = false;
+    //console.log(data);
+    $.each(data, function(i,insideData){
+      isFound = searchregex.test(insideData);
+      if(isFound){
+        return false;
+      }
+    });
+    if(isFound){
+      //add to hit array using another function
+      var sd = getSchoolDistrict(data, 'rop');
+      if(!checkForDuplicate(hits, sd)){
+        hits.push(sd);
+      }
+    }
+  });
+
   console.log(hits);
   return hits;
 }
@@ -684,9 +798,23 @@ function getSchoolDistrict(initialdata, datatype){
             schooldata = data;
             return false;
           }
-      });
+        });
+        console.log(initialdata);
+        //in case of rop
+        if(!schooldata){
+          var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
+          $.each(ropjson, function(i,data){
+            if(data.district_name == initialdata.district_name){
+              schooldata = data;
+              return false;
+            }
+          });
+          console.log(initialdata);
+          return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, 0, "ROP", 0, initialdata.sups_name_title);
+        }
         return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, "CC", 0, initialdata.sups_name_title);
       }
+      
 
       return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, schooldata.district_grades, schooldata.district_square_miles, initialdata.sups_name_title);
     case 'school district':
@@ -709,6 +837,16 @@ function getSchoolDistrict(initialdata, datatype){
           }
       });
       return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, 'CC', 0, supsname);
+    case 'rop':
+      var supsname;
+      var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
+      $.each(ropjson, function(i,data){
+          if(data.district_name == initialdata.district_name){
+            supsname = data.sups_name_title;
+            return false;
+          }
+      });
+      return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, 0, 'ROP', 0, supsname);
   }
 }
 
