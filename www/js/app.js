@@ -148,6 +148,7 @@ $.ajax({
     success: function(json){
         window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
         //console.log(window.localStorage.getItem("ccschooldistrictsjson"));
+        searchSupsAndDistricts('bars');
         commCollegeDataFill(json);
     },
     error: function(){
@@ -562,7 +563,7 @@ function searchSupsAndDistricts(searchfield){
   //get parsed jsons to search through
   var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
   var distjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
-
+  var ccjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
   //create regex containing search term pattern
   var searchregex = new RegExp('(?:'+searchfield+')','i');
   //look through all district data for a hit using foreach loop
@@ -596,6 +597,23 @@ function searchSupsAndDistricts(searchfield){
       }
     }
   });
+
+  $.each(ccjson, function(i,data){
+    var isfound = false;
+    //console.log(data);
+    $.each(data, function(i,insideData){
+      isFound = searchregex.test(insideData);
+      return false;
+    });
+    if(isFound){
+      //add to hit array using another function
+      var sd = getSchoolDistrict(data, 'community college district');
+      if(!checkForDuplicate(hits, sd)){
+        hits.push(sd);
+      }
+    }
+  });
+  console.log(hits);
   return hits;
 }
 
@@ -611,7 +629,19 @@ function getSchoolDistrict(initialdata, datatype){
             return false;
           }
       });
-      return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.fax, schooldata.district_website, schooldata.district_enrollment, schooldata.district_grades, schooldata.district_square_miles, initialdata.sups_name_title);
+      //in case of cc district
+      if(!schooldata){
+        var ccjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
+        $.each(ccjson, function(i,data){
+          if(data.district_name == initialdata.district_name){
+            schooldata = data;
+            return false;
+          }
+      });
+        return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, "CC", 0, initialdata.sups_name_title);
+      }
+
+      return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, schooldata.district_grades, schooldata.district_square_miles, initialdata.sups_name_title);
     case 'school district':
       var supsname;
       var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
@@ -621,7 +651,17 @@ function getSchoolDistrict(initialdata, datatype){
             return false;
           }
       });
-      return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.fax, initialdata.district_website, initialdata.district_enrollment, initialdata.district_grades, initialdata.district_square_miles, supsname);
+      return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, initialdata.district_grades, initialdata.district_square_miles, supsname);
+    case 'community college district':
+      var supsname;
+      var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+      $.each(supsjson, function(i,data){
+          if(data.district_name == initialdata.district_name){
+            supsname = data.sups_name_title;
+            return false;
+          }
+      });
+      return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, 'CC', 0, supsname);
   }
 }
 
