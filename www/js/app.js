@@ -571,13 +571,11 @@ function searchSupsAndDistricts(searchfield){
   var hits = [];
 
   //get parsed jsons to search through
-  //var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+  var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
   var distjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
 
   //create regex containing search term pattern
   var searchregex = new RegExp('(?:'+searchfield+')','i');
-  console.log(distjson[0]);
-  console.log(searchregex.test(distjson[0].district_fax));
   //look through all district data for a hit using foreach loop
   $.each(distjson, function(i,data){
     var isfound = false;
@@ -592,11 +590,41 @@ function searchSupsAndDistricts(searchfield){
     }
   });
 
-
+  $.each(supsjson, function(i,data){
+    var isfound = false;
+    //console.log(data);
+    $.each(data, function(i,insideData){
+      isFound = searchregex.test(insideData);
+      return false;
+    });
+    if(isFound){
+      //add to hit array using another function
+      console.log(data);
+    }
+  });
 
 
 }
 
-function SchoolDistrict(){
-  var name = '';
+
+
+//class definition of a school district object
+function SchoolDistrict(district_name, address, city, state, zipcode, phone, fax, website, enrollment, grades, square_miles, superintendent){
+  this.district_name = district_name;
+  this.address = address;
+  this.city = city;
+  this.state = state;
+  this.zipcode = zipcode;
+  this.phone = phone;
+  this.fax = fax;
+  this.website = website;
+  this.enrollment = enrollment;
+  this.grades = grades;
+  this.square_miles = square_miles;
+  this.superintendent = superintendent;
+
+  // checks if 2 school districts are the same based on name and address
+  function equals(aSchoolDistrict){
+    return (district_name == aSchoolDistrict.district_name) && (address == aSchoolDistrict.address);
+  }
 }
