@@ -542,6 +542,12 @@ function search(searchfield){
   var categoryHits = searchCategories(searchfield);
   var supsdistHits = searchSupsAndDistricts(searchfield);
 
+  //clear search content
+
+
+
+
+  //add search content to page
   $.each(categoryHits, function(i,hit){
     //append link to search page
   });
@@ -552,8 +558,33 @@ function search(searchfield){
 }
 
 function searchCategories(searchfield){
+  //array to hold all hits
+  var hits = [];
 
-  return [];
+  //2d array containing category name and link
+  var categories = [['General Information','#bookletPageOne'],
+                    ['County Superintendents','#bookletPageTwo'],
+                    ['County School District Information','#bookletPageThree'],
+                    ['Superintendents','#bookletPageFour'],
+                    ['Teacher Information','#bookletPageFive'],
+                    ['Enrollment Other Programs','#bookletPageSix'],
+                    ['School District','#bookletPageSeven'],
+                    ['About','#about'],
+                    ['Homepage','#index']];
+
+  //create regex from search term
+  var searchregex = new RegExp('(?:'+searchfield+')','i');
+
+  //look through each category for hits
+  $.each(categories, function(i,data){
+    if(searchregex.test(data[0])){
+      //add to hit array
+      hits.push(data);
+    }
+  });
+  //return hits array
+  console.log(hits);
+  return hits;
 }
 
 function searchSupsAndDistricts(searchfield){
