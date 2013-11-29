@@ -148,7 +148,6 @@ $.ajax({
     success: function(json){
         window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
         //console.log(window.localStorage.getItem("ccschooldistrictsjson"));
-        searchSupsAndDistricts('bars');
         commCollegeDataFill(json);
     },
     error: function(){
