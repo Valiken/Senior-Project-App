@@ -616,46 +616,53 @@ function search(searchfield){
 
   //clear search content
   $('#searchSchoolDistUl').empty();
-
+  $('#searchAppUl').empty();
   //if blank, just clear screen and exit
   if(!searchfield) return;
 
   var categoryHits = searchCategories(searchfield);
   var supsdistHits = searchSupsAndDistricts(searchfield);
+
   //add search content to page
-  $.each(categoryHits, function(i,hit){
-    //append link to search page
-  });
-  //append info
   var items = [];
-  $.each(supsdistHits, function(i, schoolDistData){
+  $.each(supsdistHits, function(i,schoolDistData){
     items.push('<li data-role="list-divider">'
-        + schoolDistData.district_name 
+        + addHighlight(searchfield, schoolDistData.district_name)
         + '</li><li>'
-        + schoolDistData.address + ' '
-        + schoolDistData.city + ' '
-        + schoolDistData.state + ' '
-        + schoolDistData.zipcode 
+        + addHighlight(searchfield, schoolDistData.address) + ' '
+        + addHighlight(searchfield, schoolDistData.city) + ' '
+        + addHighlight(searchfield, schoolDistData.state) + ' '
+        + addHighlight(searchfield, schoolDistData.zipcode) 
         + '</li><li>'
-        + '<a href="tel:1'+ schoolDistData.phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + schoolDistData.phone + '</a>'
+        + '<a href="tel:1'+ schoolDistData.phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + addHighlight(searchfield, schoolDistData.phone) + '</a>'
         + '</li><li>Fax: '
-      + schoolDistData.fax 
+      + addHighlight(searchfield, schoolDistData.fax) 
         + '</li><li>'
-        + '<a href="' + schoolDistData.website + '" data-rel="external">' + 'Website: ' + schoolDistData.website + '</a>'
+        + '<a href="' + schoolDistData.website + '" data-rel="external">' + 'Website: ' + addHighlight(searchfield, schoolDistData.website) + '</a>'
         + '</li><li>Enrollment: '
-      + schoolDistData.enrollment
+      + addHighlight(searchfield, schoolDistData.enrollment)
         + '</li><li>Grades: '
-        + schoolDistData.grades
+        + addHighlight(searchfield, schoolDistData.grades)
         + '</li><li>Squre Miles: '
-        + schoolDistData.square_miles
+        + addHighlight(searchfield, schoolDistData.square_miles)
         +'</li><li>Superintendent: '
-        + schoolDistData.superintendent
+        + addHighlight(searchfield, schoolDistData.superintendent)
         +'</li>'
     );
   });
+  var cat_items = [];
+  $.each(categoryHits, function(i, catData){
+    cat_items.push('<li><a href=\"'
+      +catData[1]
+      +'\">'
+      +addHighlight(searchfield, catData[0])
+      +'</a></li>'
+    );
+  });
+  $('#searchAppUl').append( cat_items.join('') );
+  $('#searchAppUl').listview('refresh'); 
   $('#searchSchoolDistUl').append( items.join('') );
   $('#searchSchoolDistUl').listview('refresh'); 
-  console.log(items);
 }
 
 function searchCategories(searchfield){
@@ -684,7 +691,7 @@ function searchCategories(searchfield){
     }
   });
   //return hits array
-  console.log(hits);
+  //console.log(hits);
   return hits;
 }
 
@@ -774,7 +781,7 @@ function searchSupsAndDistricts(searchfield){
     }
   });
 
-  console.log(hits);
+  //console.log(hits);
   return hits;
 }
 
@@ -799,7 +806,6 @@ function getSchoolDistrict(initialdata, datatype){
             return false;
           }
         });
-        console.log(initialdata);
         //in case of rop
         if(!schooldata){
           var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
@@ -809,7 +815,6 @@ function getSchoolDistrict(initialdata, datatype){
               return false;
             }
           });
-          console.log(initialdata);
           return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, 0, "ROP", 0, initialdata.sups_name_title);
         }
         return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, "CC", 0, initialdata.sups_name_title);
@@ -887,3 +892,10 @@ $( ".searchbutton" ).bind( "click", function(event, ui) {
 
   search($(".searchfield").val());
 });
+
+function addHighlight(searchfield, aString){
+  var myregex = new RegExp(searchfield,'gi');
+  var results = myregex.exec(aString);
+  if(!(results == null)) return aString.replace(myregex,'<mark>'+results[0]+'</mark>');
+  else return aString;
+}
