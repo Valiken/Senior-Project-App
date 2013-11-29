@@ -110,7 +110,6 @@ $.ajax({
     success: function(json){
         window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
         //console.log(window.localStorage.getItem("schooldistrictsjson"));    
-        searchSupsAndDistricts("ade");
         schoolDistDataFill(json);        
     },
     error: function(){
