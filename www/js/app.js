@@ -1,13 +1,26 @@
+/* Welcome to the app.js that powers the application! 
+	
+	What you will find in this first section is the variables that power the application and provide all of the information that is displayed. 
+	The domain for the ajax calls is split into two parts first the var domain which provides the top level of the URL, this makes it easy to maintain the application in case of a server url change. 
+	The second set of variables is the data init section. That section provides access to the backup json information that is shipped with the application. This is only used in case of an ajax failure. 
+	The imagesAvaliable checks for the possibility of images for the county sups and board section. 
+	Error variables are self explanatory. 
+
+*/
+
+//top domain for where the application information is going to be pulled from.
+var domain = 'http://www.trademains.com';
+
 //Variables used to connect application ajax calls to the json output on the website.
-var generalUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
-var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
-var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
-var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
-var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
-var countyandschooldistrictUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
-var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
+var generalUrl = '/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
+var supsUrl = '/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
+var schooldistrictsUrl = '/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
+var ccschooldistrictsUrl = '/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
+var countysuperintendentUrl = '/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
+var countyandschooldistrictUrl = '/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
+var teacherinformationUrl = '/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
-var ropUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
+var ropUrl = '/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
 
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
@@ -21,16 +34,27 @@ var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = '';
 var initROP = 'js/initData/ROPDist.json';
 
-//error variables
-var failedCalls=[];
-var timeoutTime = 10000;
-
 //Check for images for the county Super and Board
 var imagesAvaliable = false;
 
+//error variables
+var failedCalls=[];
+var timeoutTime = 10000;
+var localInfoAlert = 'It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.';
+var infoLoadFailure = 'It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!';
+
+/* The following section contains all of the ajax calls that are used to grab data from the SBCC server through a set of json dumps that provide us access to the data stored on the backend MySQL server.
+	
+	The ajax calls also have an ajax call inside of them that provide access to a set of stored json data that is shipped with the application. This data is used only in the event that someone downloads 
+	the app and then opens it for the first time without access to the internet. 
+	
+	The ajax call also handles information when the first ajax call fails, it will then check localstorage, if localstorage contains the information then it will display that, otherwise it will restore to 
+	local data, if local data fails, it will print an error message. 
+*/ 
+
 //general information ajax call
 $.ajax({
-	url: generalUrl, 
+	url: domain + generalUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -52,12 +76,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#generalError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#generalError').append(localInfoAlert);
           	    	generalInfoFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#generalError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#generalError').append(infoLoadFailure);
           	    }
             })
 
@@ -69,7 +93,7 @@ $.ajax({
 
 //superintendents ajax call 
 $.ajax({
-	url: supsUrl, 
+	url: domain + supsUrl, 
 	contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -108,7 +132,7 @@ $.ajax({
 
 //school districts ajax call
 $.ajax({
-    url: schooldistrictsUrl, 
+    url: domain + schooldistrictsUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -147,7 +171,7 @@ $.ajax({
 	  
 //community college districts ajax call
 $.ajax({
-    url: ccschooldistrictsUrl, 
+    url: domain + ccschooldistrictsUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -186,7 +210,7 @@ $.ajax({
 
 //rop ajax call
 $.ajax({
-    url: ropUrl, 
+    url: domain + ropUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -225,7 +249,7 @@ $.ajax({
 
 //county superintendents ajax call
 $.ajax({
-    url: countysuperintendentUrl, 
+    url: domain + countysuperintendentUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -266,7 +290,7 @@ $.ajax({
 
 //county and school districts ajax call 
 $.ajax({
-    url: countyandschooldistrictUrl, 
+    url: domain + countyandschooldistrictUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -305,7 +329,7 @@ $.ajax({
 
 //teacher information ajax call
 $.ajax({
-    url: teacherinformationUrl, 
+    url: domain + teacherinformationUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){ 
@@ -344,7 +368,7 @@ $.ajax({
 
 //enrollment ajax call
 $.ajax({
-    url: enrollmentUrl, 
+    url: domain + enrollmentUrl, 
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
@@ -380,6 +404,12 @@ $.ajax({
     },
     timeout: timeoutTime
 })
+
+/* This section contains the population functions for the application. 
+	Each page that requires data from the server has one of these functions. 
+	These functions also dynamically add the HTML formatting as well as refreshing the page to display that information.
+*/
+
 
 function generalInfoFill(json){
   	var items = [];
@@ -630,6 +660,7 @@ It will pull data from the json that is either pulled from the website or stored
 If a user submits information that matches a school district or a super intendent for a school district it will output a combined field with the districts information + the superintendents name. 
 If the user input does not match either a superintendent or a school district, the search function will look through the rest of the data and determine if it is in another table, 
 if it is it will direct the user to that page within the application. If it is not the application will inform the user that it was unable to find the item that they were searching for.*/
+
 function search(searchfield){
   
 
