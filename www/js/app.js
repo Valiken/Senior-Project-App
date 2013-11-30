@@ -116,12 +116,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#supsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#supsError').append(localInfoAlert);
           	    	supsDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#supsError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#supsError').append(infoLoadFailure);
           	    }
             })
 
@@ -155,12 +155,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#schoolDistrictsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#schoolDistrictsError').append(localInfoAlert);
           	    	schoolDistDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#schoolDistrictsError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#schoolDistrictsError').append(infoLoadFailure);
           	    }
             })
 
@@ -194,12 +194,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#communityCollegeError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#communityCollegeError').append(localInfoAlert);
           	    	commCollegeDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#communityCollegeError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#communityCollegeError').append(infoLoadFailure);
           	    }
             })
 
@@ -237,12 +237,12 @@ $.ajax({
                 dataType: 'json',
                 success: function(json){
                   //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-                  $('#ropError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+                  $('#ropError').append(localInfoAlert);
                   ropDataFill(json);
                 },
                 error: function(){
                   //If all else fails print message to page stating that something has gone wrong and please try again later.
-                  $('#ropError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+                  $('#ropError').append(infoLoadFailure);
                 }
             })
 
@@ -278,12 +278,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#countySupsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#countySupsError').append(localInfoAlert);
           	    	countySupsDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#countySupsError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#countySupsError').append(infoLoadFailure);
           	    }
             })
 
@@ -317,12 +317,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#countySchoolError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#countySchoolError').append(localInfoAlert);
           	    	countySchoolInfoDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#countySchoolError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#countySchoolError').append(infoLoadFailure);
           	    }
             })            
 
@@ -356,12 +356,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#teacherError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#teacherError').append(localInfoAlert);
           	    	teacherDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#teacherError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#teacherError').append(infoLoadFailure);
           	    }
             })  
 
@@ -395,12 +395,12 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#enrollmentError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
+          	    	$('#enrollmentError').append(localInfoAlert);
           	    	otherEnrollDataFill(json);
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#enrollmentError').append('It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!');
+          	    	$('#enrollmentError').append(infoLoadFailure);
           	    }
             })  
 
