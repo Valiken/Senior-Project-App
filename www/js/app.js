@@ -12,17 +12,6 @@
 var domain = 'http://www.trademains.com';
 
 //Variables used to connect application ajax calls to the json output on the website.
-<<<<<<< HEAD
-var generalUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
-var supsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
-var schooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
-var ccschooldistrictsUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
-var countysuperintendentUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
-var countyandschooldistrictUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
-var teacherinformationUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
-var enrollmentUrl = '';
-var ropUrl = 'http://www.trademains.com/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
-=======
 var generalUrl = '/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
 var supsUrl = '/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
 var schooldistrictsUrl = '/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
@@ -32,7 +21,6 @@ var countyandschooldistrictUrl = '/index.php/component/supscrm_contacts/?task=co
 var teacherinformationUrl = '/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
 var enrollmentUrl = '';
 var ropUrl = '/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
->>>>>>> origin/brian-branch
 
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
@@ -45,12 +33,9 @@ var initCountyAndDist = 'js/initData/countyAndSchoolDist.json';
 var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = '';
 var initROP = 'js/initData/ROPDist.json';
-<<<<<<< HEAD
-=======
 
 //Check for images for the county Super and Board
 var imagesAvaliable = false;
->>>>>>> origin/brian-branch
 
 //error variables
 var failedCalls=[];
@@ -91,11 +76,8 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-<<<<<<< HEAD
-          	    	$('#generalError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
-=======
+
           	    	$('#generalError').append(localInfoAlert);
->>>>>>> origin/brian-branch
           	    	generalInfoFill(json);
           	    },
           	    error: function(){
@@ -802,7 +784,6 @@ function searchSupsAndDistricts(searchfield){
       }
     }
   });
-<<<<<<< HEAD
 
   //search through supers data
   $.each(supsjson, function(i,data){
@@ -822,27 +803,6 @@ function searchSupsAndDistricts(searchfield){
     }
   });
 
-=======
-
-  //search through supers data
-  $.each(supsjson, function(i,data){
-    var isfound = false;
-    $.each(data, function(i,insideData){
-      isFound = searchregex.test(insideData);
-      if(isFound){
-        return false;
-      }
-    });
-    if(isFound){
-      //add to hit array using another function
-      var sd = getSchoolDistrict(data, 'superintendent');
-      if(!checkForDuplicate(hits, sd)){
-        hits.push(sd);
-      }
-    }
-  });
-
->>>>>>> origin/brian-branch
   // search through community college data
   $.each(ccjson, function(i,data){
     var isfound = false;
