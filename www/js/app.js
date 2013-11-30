@@ -16,10 +16,10 @@ var initSups = 'js/initData/sups.json';
 var initSchoolDist = 'js/initData/SchoolDistricts.json';
 var initCCSchoolDist = 'js/initData/CCDistricts.json';
 var initCountySupsAndBoard = 'js/initData/countysupsandboard.json';
-var initCountyAndDist = '';
+var initCountyAndDist = 'js/initData/countyAndSchoolDist.json';
 var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = '';
-var initROP = '';
+var initROP = 'js/initData/ROPDist.json';
 
 //error variables
 var failedCalls=[];
@@ -52,6 +52,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#generalError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	generalInfoFill(json);
           	    },
           	    error: function(){
@@ -90,6 +91,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#supsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	supsDataFill(json);
           	    },
           	    error: function(){
@@ -128,6 +130,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#schoolDistrictsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	schoolDistDataFill(json);
           	    },
           	    error: function(){
@@ -166,6 +169,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#communityCollegeError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	commCollegeDataFill(json);
           	    },
           	    error: function(){
@@ -204,6 +208,7 @@ $.ajax({
                 dataType: 'json',
                 success: function(json){
                   //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+                  $('#ropError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
                   ropDataFill(json);
                 },
                 error: function(){
@@ -244,6 +249,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#countySupsError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	countySupsDataFill(json);
           	    },
           	    error: function(){
@@ -282,6 +288,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#countySchoolError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	countySchoolInfoDataFill(json);
           	    },
           	    error: function(){
@@ -320,6 +327,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#teacherError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	teacherDataFill(json);
           	    },
           	    error: function(){
@@ -358,6 +366,7 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+          	    	$('#enrollmentError').append('It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.');
           	    	otherEnrollDataFill(json);
           	    },
           	    error: function(){
@@ -388,7 +397,7 @@ function generalInfoFill(json){
       		+ generalData.gen_description 
       		+ '</center>'
       	);
-  	});  // close each()
+  	}); // close each()
   	$('#general_info').append( items.join('') );
   	$('#general_info').page('create');
 }
@@ -402,7 +411,7 @@ function supsDataFill(json){
         	+ supsData.sups_name_title 
         	+ '</li>'
     	);
-	});  // close each()
+	}); // close each()
     
     $('#supsUL').append( items.join('') );
     $('#supsUL').listview('refresh'); 
@@ -432,7 +441,7 @@ function schoolDistDataFill(json){
       		+ schoolDistData.district_square_miles
       		+'</li>'
     	);
-  	});
+  	}); // close each()
   	$('#schoolDistUl').append( items.join('') );
   	$('#schoolDistUl').listview('refresh'); 
 }
@@ -457,35 +466,35 @@ function commCollegeDataFill(json){
       		+ commcollData.district_enrollment
       		+ '</li>'
     	);
-  	});
+  	}); // close each()
   	$('#communCollegeUl').append( items.join('') );
   	$('#communCollegeUl').listview('refresh'); 
 }
 
 function ropDataFill(json){
-  var items = [];
-  $.each(json, function(i, ropData){
-      items.push('<li data-role="list-divider">'
-          + ropData.district_name 
-          + '</li><li>'
-          + ropData.district_address + ' '
-          + ropData.district_city + ' '
-          + ropData.district_state + ' '
-          + ropData.district_zip_code 
-          + '</li><li>'
-          + '<a href="tel:1'+ ropData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + ropData.district_phone + '</a>'
-          + '</li><li>Fax: '
-          + ropData.district_fax 
-          + '</li><li>'
-          + '<a href="' + ropData.district_website + '" data-rel="external">' + 'Website: ' + ropData.district_website + '</a>'
-          + '</li>'
-      );
-    });
+  	var items = [];
+  	$.each(json, function(i, ropData){
+      	items.push('<li data-role="list-divider">'
+          	+ ropData.district_name 
+          	+ '</li><li>'
+          	+ ropData.district_address + ' '
+          	+ ropData.district_city + ' '
+          	+ ropData.district_state + ' '
+          	+ ropData.district_zip_code 
+          	+ '</li><li>'
+          	+ '<a href="tel:1'+ ropData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + ropData.district_phone + '</a>'
+          	+ '</li><li>Fax: '
+          	+ ropData.district_fax 
+          	+ '</li><li>'
+          	+ '<a href="' + ropData.district_website + '" data-rel="external">' + 'Website: ' + ropData.district_website + '</a>'
+          	+ '</li>'
+      	);
+    }); // close each()
   $('#ropUl').append( items.join('') );
   $('#ropUl').listview('refresh'); 
 }
 
-//add parameter in ajax call to check whether or not we have a data connection if not pass false to not pass image field and change formatting.
+//The if else statement is here to determine whether or not it is possible to load images into the application.
 function countySupsDataFill(json){
   	if(imagesAvaliable != false){
   		console.log('this is true');
@@ -493,12 +502,12 @@ function countySupsDataFill(json){
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
 	    	count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
-	  	}); 
+	  	}); // close each()
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
 	    	count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
-	  	});
+	  	}); // close each()
 
 	  	$('#countySupsContent').append(count_sups_items.join(''));
 	  	$('#countySupsContent').append(count_board_items.join(''));
@@ -510,12 +519,12 @@ function countySupsDataFill(json){
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
 	    	count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
-	  	}); 
+	  	}); // close each()
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
 	    	count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
-	  	});
+	  	}); // close each()
 
 	  	$('#countySupsContent').append(count_sups_items.join(''));
 	  	$('#countySupsContent').append(count_board_items.join(''));
@@ -538,8 +547,9 @@ function teacherDataFill(json){
         	totalTeachers.numberTeachers 
         	+ '<br />' 
         	+ totalTeachers.source 
-        	+ '<br />' + '<br />');
-  	});
+        	+ '<br />' + '<br />'
+        );
+  	}); // close each()
   
   	//array for second bold section and source
   	var avg_Salary_Title = [];
@@ -547,46 +557,55 @@ function teacherDataFill(json){
 	  	avg_Salary_Title.push('<b>' 
 	  		+ avgSalary.catTitle 
 	  		+ '</b>' + '<br />' 
-	  		+ avgSalary.source);
-  	});
+	  		+ avgSalary.source
+	  	);
+  	}); // close each()
 
   	//array for school districts
   	var avg_Salary_District = [];
   	$.each(json.teacherSalary, function(i, districts){
     	avg_Salary_District.push(districts.districtsType 
-    		+ '<br />');
-  	});
+    		+ '<br />'
+    	);
+  	}); // close each()
 
   	//array for minimum salary
     var minimum_salary = [];
     $.each(json.teacherSalary, function(i, districts){
       avg_Salary_District.push(districts.minimum 
-        + '<br />');
-    });
+        + '<br />'
+        );
+    }); // close each()
 
-	  //array for max salary
+	//array for max salary
     var maximum_salary = [];
     $.each(json.teacherSalary, function(i, districts){
-      avg_Salary_District.push(districts.maximum 
-        + '<br />');
-    });
+      	avg_Salary_District.push(districts.maximum 
+        	+ '<br />'
+        );
+    }); // close each()
 
   	//array for teacher eth/race title
- 	  var ethnic_Racial_Dist_Title = [];
+ 	var ethnic_Racial_Dist_Title = [];
   	$.each(json.teacherEthnicDist, function(i, teacherEthnicity){
     	ethnic_Racial_Dist_Title.push('<b>'
-        + teacherEthnicity.catTitle + '</b>'
-    		+ '<br />' + teacherEthnicity.source + '<br />' + '<br />');
-  	});
+        	+ teacherEthnicity.catTitle + '</b>'
+    		+ '<br />' + teacherEthnicity.source 
+    		+ '<br />' + '<br />'
+    	);
+  	}); // close each()
 
     //array for ehtnicity/race and percentage
     var ethnic_Racial_Dist_Items = [];
     $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
-      ethnic_Racial_Dist_Items.push(teacherEthnicity.teacher_ethnicity 
-        + ' ' + teacherEthnicity.teacher_percent + '<br />');
-    });
+      	ethnic_Racial_Dist_Items.push(teacherEthnicity.teacher_ethnicity 
+        	+ ' ' 
+        	+ teacherEthnicity.teacher_percent 
+        	+ '<br />'
+        );
+    }); // close each()
 
- 	  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+ 	$('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
   	$('#avgTeacherSalary').append(avg_Salary_Title);
   	$('#districts').append(avg_Salary_District);
   	$('#minimum').append(minimum_salary);
