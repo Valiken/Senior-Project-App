@@ -893,9 +893,15 @@ function checkForDuplicate(anArray, aSchoolDistrict){
   return hasDuplicate;
 }
 
+//adds functionality to search button
 $( ".searchbutton" ).bind( "click", function(event, ui) {
 
   search($(".searchfield").val());
+});
+//add submit event handler to search text input
+$("form").submit(function(event, ui) {
+  search($(".searchfield").val());
+  return false;
 });
 
 function addHighlight(searchfield, aString){
