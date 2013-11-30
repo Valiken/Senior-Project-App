@@ -10,13 +10,13 @@ var enrollmentUrl = '';
 
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
-var initGeneral = 'initData/generalinfo.json';
-var initSups = 'initData/sups.json';
-var initSchoolDist = 'initData/SchoolDistricts.json';
-var initCCSchoolDist = 'initData/CCDistricts.json';
-var initCountySupsAndBoard = 'initData/countysupsandboard.json';
+var initGeneral = 'js/initData/generalinfo.json';
+var initSups = 'js/initData/sups.json';
+var initSchoolDist = 'js/initData/SchoolDistricts.json';
+var initCCSchoolDist = 'js/initData/CCDistricts.json';
+var initCountySupsAndBoard = 'js/initData/countysupsandboard.json';
 var initCountyAndDist = '';
-var initTeacher = 'initData/teacherinfo.json';
+var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = '';
 
 //error variables
