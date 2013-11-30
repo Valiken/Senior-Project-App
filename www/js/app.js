@@ -211,11 +211,7 @@ $.ajax({
 
 //rop ajax call
 $.ajax({
-<<<<<<< HEAD
-    url: ropUrl, 
-=======
-    url: domain + ropUrl, 
->>>>>>> origin/brian-branch
+    url: domain + ropUrl,
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(json){
