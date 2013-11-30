@@ -613,6 +613,11 @@ function search(searchfield){
   var categoryHits = searchCategories(searchfield);
   var supsdistHits = searchSupsAndDistricts(searchfield);
 
+  //message if no hits and escape
+  if((categoryHits.length + supsdistHits.length) == 0){
+    $('#searchAppUl').append('<li>\"We\'re sorry, we were unable to find anything matching your search, please try again.\"</li>');
+    return;
+  }
   //add search content to page
   var items = [];
   $.each(supsdistHits, function(i,schoolDistData){
@@ -834,7 +839,7 @@ function getSchoolDistrict(initialdata, datatype){
       return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, 'CC', 0, supsname);
     case 'rop':
       var supsname;
-      var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
+      var ropjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
       $.each(ropjson, function(i,data){
           if(data.district_name == initialdata.district_name){
             supsname = data.sups_name_title;
