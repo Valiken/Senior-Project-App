@@ -454,10 +454,8 @@ function schoolDistDataFill(json){
     	items.push('<li data-role="list-divider">'
       		+ schoolDistData.district_name 
       		+ '</li><li>'
-      		+ schoolDistData.district_address + ' '
-      		+ schoolDistData.district_city + ' '
-      		+ schoolDistData.district_state + ' '
-      		+ schoolDistData.district_zip_code 
+      		+ '<a href="http://maps.google.com/maps?q=' + schoolDistData.district_address + '+' + schoolDistData.district_city + '+' + schoolDistData.district_state + '+' + schoolDistData.district_zip_code + '">'       		
+      		+ schoolDistData.district_address + ' ' + schoolDistData.district_city + ' ' + schoolDistData.district_state + ' ' + schoolDistData.district_zip_code + '</a>'
       		+ '</li><li>'
       		+ '<a href="tel:1'+ schoolDistData.district_phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + schoolDistData.district_phone + '</a>'
       		+ '</li><li>Fax: '
