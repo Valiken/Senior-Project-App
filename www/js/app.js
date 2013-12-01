@@ -709,11 +709,9 @@ function search(searchfield){
     items.push('<li data-role="list-divider">'
         + addHighlight(searchfield, schoolDistData.district_name)
         + '</li><li>'
-        + addHighlight(searchfield, schoolDistData.address) + ' '
-        + addHighlight(searchfield, schoolDistData.city) + ' '
-        + addHighlight(searchfield, schoolDistData.state) + ' '
-        + addHighlight(searchfield, schoolDistData.zipcode) 
-        + '</li><li>'
+          + '<a href="http://maps.google.com/maps?q=' + schoolDistData.address + '+' + schoolDistData.city + '+' + schoolDistData.state + '+' + schoolDistData.zipcode + '">'          
+          + addHighlight(searchfield, schoolDistData.address) + ' ' + addHighlight(searchfield, schoolDistData.city) + ' ' + addHighlight(searchfield, schoolDistData.state) + ' ' + addHighlight(searchfield, schoolDistData.zipcode) + '</a>'
+          + '</li><li>'
         + '<a href="tel:1'+ schoolDistData.phone.replace(/[^0-9]/g, '') + '">' + 'Phone: ' + addHighlight(searchfield, schoolDistData.phone) + '</a>'
         + '</li><li>Fax: '
       + addHighlight(searchfield, schoolDistData.fax) 
