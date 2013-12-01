@@ -9,18 +9,18 @@
 */
 
 //top domain for where the application information is going to be pulled from.
-var domain = 'http://www.trademains.com';
+var domain = 'http://www.trademains.com/';
 
 //Variables used to connect application ajax calls to the json output on the website.
-var generalUrl = '/index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
-var supsUrl = '/index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
-var schooldistrictsUrl = '/index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
-var ccschooldistrictsUrl = '/index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
-var countysuperintendentUrl = '/index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
-var countyandschooldistrictUrl = '/index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
-var teacherinformationUrl = '/index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
-var enrollmentUrl = '';
-var ropUrl = '/index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
+var generalUrl = 'index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
+var supsUrl = 'index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
+var schooldistrictsUrl = 'index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
+var ccschooldistrictsUrl = 'index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
+var countysuperintendentUrl = 'index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
+var countyandschooldistrictUrl = 'index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
+var teacherinformationUrl = 'index.php/component/supscrm_contacts/?task=teacherinfo&format=ajax&callback=?';
+var enrollmentUrl = 'index.php/component/supscrm_contacts/?task=enrollment&format=ajax&callback=?';
+var ropUrl = 'index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
 
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
@@ -256,7 +256,7 @@ $.ajax({
     success: function(json){
     	imagesAvaliable = true;
         window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("countysuperintendentjson"));       
+        console.log(window.localStorage.getItem("countysuperintendentjson"));       
         countySupsDataFill(json);       
     },
     error: function(){
@@ -532,12 +532,26 @@ function countySupsDataFill(json){
 		
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
-	    	count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+	    	count_sups_items.push('<center><img height="" width="" alt="' + countData.name + '" title="' + countData.name + '" src="' + domain + countData.image_link + '" /></center><br /><br />' 
+	    		+ '<ul id="countySupsUl" data-role="listview">'
+	    		+ '<li data-role="list-divider">'
+	    		+ countData.job_title 
+	    		+ '</li><li>'
+	    		+ countData.name 
+	    		+ '</li></ul><br /><br />'
+	    	);
 	  	}); // close each()
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
-	    	count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+	    	count_board_items.push('<center><img height="" width="" alt="' + boardData.name + '" title="' + boardData.name + '" src="'+ domain + boardData.image_link +'" /></center><br /><br />'
+	    		+ '<ul id="countyBoardUl" data-role="listview">'
+	    		+ '<li data-role="list-divider">'
+	    		+ boardData.area 
+	    		+ '</li><li>'
+	    		+ boardData.name 
+	    		+ '</li></ul><br /><br />'
+	    	);
 	  	}); // close each()
 
 	  	$('#countySupsContent').append(count_sups_items.join(''));
@@ -549,12 +563,24 @@ function countySupsDataFill(json){
 
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
-	    	count_sups_items.push(countData.name + ' ' + countData.job_title + '<br />');
+	    	count_sups_items.push('<ul id="countyBoardUl" data-role="listview">' 
+	    		+ '<li data-role="list-divider">'
+	    		+ countData.job_title 
+	    		+ '</li><li>'
+	    		+ countData.name
+	    		+ '</li></ul>'
+	    	);
 	  	}); // close each()
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
-	    	count_board_items.push(boardData.name + ' ' + boardData.area + '<br />');
+	    	count_board_items.push('<ul id="countyBoardUl" data-role="listview">' 
+	    		+ '<li data-role="list-divider">'
+	    		+ boardData.area 
+	    		+ '</li><li>' 
+	    		+ boardData.name 
+	    		+ '</li></ul><br />'
+	    	);
 	  	}); // close each()
 
 	  	$('#countySupsContent').append(count_sups_items.join(''));
