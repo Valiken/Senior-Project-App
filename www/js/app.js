@@ -40,8 +40,8 @@ var imagesAvaliable = false;
 //error variables
 var failedCalls=[];
 var timeoutTime = 10000;
-var localInfoAlert = 'It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.';
-var infoLoadFailure = 'It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!';
+var localInfoAlert = 'It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.<br /><br />';
+var infoLoadFailure = 'It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!<br /><br />';
 
 /* The following section contains all of the ajax calls that are used to grab data from the SBCC server through a set of json dumps that provide us access to the data stored on the backend MySQL server.
 	
