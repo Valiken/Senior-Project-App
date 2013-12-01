@@ -530,13 +530,13 @@ function countySupsDataFill(json){
 		
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
-	    	count_sups_items.push('<center><img height="" width="" alt="' + countData.name + '" title="' + countData.name + '" src="' + domain + countData.image_link + '" /></center><br /><br />' 
-	    		+ '<ul id="countySupsUl" data-role="listview">'
+	    	count_sups_items.push('<ul id="countySupsUl" data-role="listview">'
 	    		+ '<li data-role="list-divider">'
 	    		+ countData.job_title 
 	    		+ '</li><li>'
 	    		+ countData.name 
 	    		+ '</li></ul><br /><br />'
+	    		+ '<center><img height="" width="" alt="' + countData.name + '" title="' + countData.name + '" src="' + domain + countData.image_link + '" /></center><br /><br />'
 	    	);
 	  	}); // close each()
 
