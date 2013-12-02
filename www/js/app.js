@@ -660,7 +660,7 @@ function teacherDataFill(json){
         );
     }); // close each()
 
- 	$('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+ 	  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
   	$('#avgTeacherSalary').append(avg_Salary_Title);
   	$('#districts').append(avg_Salary_District);
   	$('#minimum').append(minimum_salary);
@@ -671,7 +671,16 @@ function teacherDataFill(json){
 
 function otherEnrollDataFill(json){
   //other stuff
- 
+  var regionalPrograms = [];
+
+    $.each(json.regPrograms, function(i, programs){
+      regionalPrograms.push('<b>'
+        + programs.catTitle 
+        + '</b>'
+        );
+    });
+    $('#enrollment').append(regionalPrograms);
+
 }
 
 function noLocalData(failedajax){
