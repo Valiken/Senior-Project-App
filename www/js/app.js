@@ -588,7 +588,114 @@ function countySupsDataFill(json){
 }
 
 function countySchoolInfoDataFill(json){
-  //fill out
+  //array for "Area covered" to "Countywide Population"
+ var items = [];
+    $.each(json, function(i, total_area_sbc) {
+  		items.push('<li data-role="list-divider">' 
+        	+ total_area_sbc.catTitle
+			+ '</li><li>'
+			+ total_area_sbc
+			+ '</li><li>'
+			+ total_area_school_districts.catTitle
+			+ '</li><li>'
+        	+ total_area_school_districts
+			+ '</li><li>'
+        	+ countywide_population
+			+ '</li><li>'
+    	);
+	}); // close each()
+	
+	//array for Countywide Ethnic/Racial Distribution
+ var items = [];
+    $.each(json, function(i, county_ethnicity) {
+  		items.push('<li data-role="list-divider">'
+			+ county_ethnicity.catTitle
+			+ '</li><li>'
+        	+ county_ethnicity.ethnicity_category
+			+ '</li><li>'
+			+ county_ethnicity.percent
+			+ '</li><li>'
+			+ county_ethnicity.source
+			+ '</li><li>'
+    	);
+	}); // close each()	
+
+	//array for Total student enrollment
+ var items = [];
+    $.each(json, function(i, total_student_enrollment) {
+  		items.push('<li data-role="list-divider">'
+			+ total_student_enrollment.catTitle
+			+ '</li><li>'
+        	+ total_student_enrollment
+			+ '</li><li>'
+			+ student_enrollment_source
+			+ '</li><li>'
+    	);
+	}); // close each()	
+	
+	//array for Student Ethnicity/Racial Distribution
+ var items = [];
+    $.each(json, function(i, student_ethnicity) {
+  		items.push('<li data-role="list-divider">'
+			+ student_ethnicity.catTitle
+			+ '</li><li>'
+        	+ student_ethnicity.ethnicity_category
+			+ '</li><li>'
+			+ student_ethnicity.percent
+			+ '</li><li>'
+			+ student_ethnicity_source
+			+ '</li><li>'
+    	);
+	}); // close each()	
+
+	//array for Total number school districts
+ var items = [];
+    $.each(json, function(i, total_number_school_districts) {
+  		items.push('<li data-role="list-divider">'
+			+ total_number_school_districts.catTitle
+			+ '</li><li>'
+        	+ total_number_school_districts
+			+ '</li><li>'
+			+ school_district_source
+			+ '</li><li>'
+    	);
+	}); // close each()	
+
+	//array for nnumber of school districts
+ var items = [];
+    $.each(json, function(i, number_school_districts) {
+  		items.push('<li data-role="list-divider">'
+		+ number_school_districts.catTitle
+		+ '</li><li>'
+		+ number_school_districts.school_type
+		+ '</li><li>'
+		+ number_school_districts.count
+		+ '</li><li>'
+    	);
+	}); // close each()	
+
+	//array for number public schools
+ var items = [];
+    $.each(json, function(i, number_public_schools) {
+  		items.push('<li data-role="list-divider">'
+		+ number_public_schools.catTitle
+		+ '</li><li>'
+		+ number_public_schools.school_type
+		+ '</li><li>'
+		+ number_public_schools.count
+		+ '</li><li>'
+			
+    	);
+	}); // close each()	
+
+	//expense source
+ var items = [];
+    $.each(json, function(i, expense_source) {
+  		items.push('<li data-role="list-divider">'
+			+ expense_source
+			+ '</li><li>'
+    	);
+	}); // close each()	
 }
 
 function teacherDataFill(json){
