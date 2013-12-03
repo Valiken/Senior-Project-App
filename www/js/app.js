@@ -658,7 +658,7 @@ function countySchoolInfoDataFill(json){
 	var countyEthnicityCat = json.county_ethnicity;
 		 $.each(countyEthnicityCat, function(i, county_ethnicity) {
   		items.push('<li data-role="list-divider">'
-        	+ county_ethnicity.ethnicity_category
+        	+ countyEthnicityCat.push
             + '</li><li>'
 			+ county_ethnicity.percent
             + '</li><li>'
