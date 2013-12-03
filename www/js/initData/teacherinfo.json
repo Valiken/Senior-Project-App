@@ -1,1 +1,58 @@
-{"teacherSalary":[{"catTitle":"Average Teacher Salary Range (2012-13)","source":"Source:2012-13 Teacher salary Survey","districtsType":"Elementary Districts","minimum":"$33,290","maximum":"$90,661"},{"catTitle":"","source":"","districtsType":"High School Districts","minimum":"$39,416","maximum":"$94,719"},{"catTitle":"","source":"","districtsType":"Unified School Districts","minimum":"$32,095","maximum":"$89,709"}],"totalTeachersCountyWide":[{"catTitle":"Total Number of Teachers Countywide:","numberTeachers":"17,688","source":"Source:2012-13 http:\/\/www.ed-data.k12.ca.us (2011-12)"}],"teacherEthnicDist":[{"catTitle":"Teacher Ethnic\/Racial Distribution:","source":"Source: http:\/\/www.ed-data.k12.ca.us (2011-12)","teacher_ethnicity":"White (not Hispanic)","teacher_percent":"69.7%"},{"catTitle":"","source":"","teacher_ethnicity":"Hispanic","teacher_percent":"18.4%"},{"catTitle":"","source":"","teacher_ethnicity":"African American","teacher_percent":"5.3%"},{"catTitle":"","source":"","teacher_ethnicity":"Other","teacher_percent":"6.6%"}]
+{
+    "teacherSalary": [
+        {
+            "catTitle": "Average Teacher Salary Range (2012-13)",
+            "source": "Source:2012-13 Teacher salary Survey",
+            "districtsType": "Elementary Districts",
+            "minimum": "$33,290",
+            "maximum": "$90,661"
+        },
+        {
+            "catTitle": "",
+            "source": "",
+            "districtsType": "High School Districts",
+            "minimum": "$39,416",
+            "maximum": "$94,719"
+        },
+        {
+            "catTitle": "",
+            "source": "",
+            "districtsType": "Unified School Districts",
+            "minimum": "$32,095",
+            "maximum": "$89,709"
+        }
+    ],
+    "totalTeachersCountyWide": [
+        {
+            "catTitle": "Total Number of Teachers Countywide:",
+            "numberTeachers": "17,688",
+            "source": "Source:2012-13 http://www.ed-data.k12.ca.us (2011-12)"
+        }
+    ],
+    "teacherEthnicDist": [
+        {
+            "catTitle": "Teacher Ethnic/Racial Distribution:",
+            "source": "Source: http://www.ed-data.k12.ca.us (2011-12)",
+            "teacher_ethnicity": "White (not Hispanic)",
+            "teacher_percent": "69.7%"
+        },
+        {
+            "catTitle": "",
+            "source": "",
+            "teacher_ethnicity": "Hispanic",
+            "teacher_percent": "18.4%"
+        },
+        {
+            "catTitle": "",
+            "source": "",
+            "teacher_ethnicity": "African American",
+            "teacher_percent": "5.3%"
+        },
+        {
+            "catTitle": "",
+            "source": "",
+            "teacher_ethnicity": "Other",
+            "teacher_percent": "6.6%"
+        }
+    ]
+}
