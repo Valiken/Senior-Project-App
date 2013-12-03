@@ -63,8 +63,9 @@ $.ajax({
         generalInfoFill(json);
     },
     error: function(){
+      var tempjson;
     	try{
-        	generalInfoFill(JSON.parse(window.localStorage.getItem("generalinformationjson")));
+        	tempjson = JSON.parse(window.localStorage.getItem("generalinformationjson"));
         }
         catch(e){
             noLocalData("generalinformationjson");
@@ -77,8 +78,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+                  window.localStorage.setItem("generalinformationjson",JSON.stringify(json));
           	    	$('#generalError').append(localInfoAlert);
-          	    	generalInfoFill(json);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -87,6 +89,9 @@ $.ajax({
             })
 
             console.log("sorry generalUrl data could not be located");
+        }
+        finally{
+          generalInfoFill(tempjson);
         }
     },
     timeout: timeoutTime
@@ -103,8 +108,9 @@ $.ajax({
         supsDataFill(json);
     },
     error: function(){
+        var tempjson;
     	try{
-        	supsDataFill(JSON.parse(window.localStorage.getItem("superintendentjson")));
+        	tempjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
     	}
       	catch(e){
         	noLocalData("superintendentjson");
@@ -117,8 +123,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#supsError').append(localInfoAlert);
-          	    	supsDataFill(json);
+          	    	window.localStorage.setItem("superintendentjson",JSON.stringify(json));
+                  $('#supsError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -128,6 +135,9 @@ $.ajax({
 
         	console.log("sorry supsUrl data could not be located");
       	}
+        finally{
+          supsDataFill(tempjson);
+        }
     },
     timeout: timeoutTime
 })
@@ -143,8 +153,9 @@ $.ajax({
         schoolDistDataFill(json);        
     },
     error: function(){
+        var tempjson;
         try{
-            schoolDistDataFill(JSON.parse(window.localStorage.getItem("schooldistrictsjson")));
+            tempjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
         }
         catch(e){
             noLocalData("schooldistrictsjson");
@@ -157,8 +168,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#schoolDistrictsError').append(localInfoAlert);
-          	    	schoolDistDataFill(json);
+          	    	window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
+                  $('#schoolDistrictsError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -167,6 +179,9 @@ $.ajax({
             })
 
             console.log("sorry schooldistrictsUrl data could not be located");
+        }
+        finally{
+          schoolDistDataFill(tempjson);
         }
     },
     timeout: timeoutTime
@@ -183,8 +198,9 @@ $.ajax({
         commCollegeDataFill(json);
     },
     error: function(){
+        var tempjson;
         try{
-    	    commCollegeDataFill(JSON.parse(window.localStorage.getItem("ccschooldistrictsjson")));
+    	    tempjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
         }
         catch(e){
             noLocalData("ccschooldistrictsjson");
@@ -197,8 +213,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#communityCollegeError').append(localInfoAlert);
-          	    	commCollegeDataFill(json);
+          	    	window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
+                  $('#communityCollegeError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -208,6 +225,9 @@ $.ajax({
 
             console.log("sorry ccschooldistrictsUrl data could not be located");
         }    
+        finally{
+          commCollegeDataFill(tempjson);
+        }
     },
     timeout: timeoutTime
 })
@@ -223,8 +243,9 @@ $.ajax({
         ropDataFill(json);
     },
     error: function(){
+        var tempjson;
         try{
-          ropDataFill(JSON.parse(window.localStorage.getItem("ropjson")));
+          tempjson = JSON.parse(window.localStorage.getItem("ropjson"));
         }
         catch(e){
             noLocalData("ropjson");
@@ -237,8 +258,9 @@ $.ajax({
                 dataType: 'json',
                 success: function(json){
                   //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+                  window.localStorage.setItem("ropjson",JSON.stringify(json));
                   $('#ropError').append(localInfoAlert);
-                  ropDataFill(json);
+                  tempjson = json;
                 },
                 error: function(){
                   //If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -248,6 +270,9 @@ $.ajax({
 
             console.log("sorry ccschooldistrictsUrl data could not be located");
         }    
+        finally{
+          ropDataFill(tempjson);
+        }
     },
     timeout: timeoutTime
 })
@@ -264,9 +289,10 @@ $.ajax({
         countySupsDataFill(json);       
     },
     error: function(){
+        var tempjson;
         try{
         	imagesAvaliable = false;
-        	countySupsDataFill(JSON.parse(window.localStorage.getItem("countysuperintendentjson")));
+        	tempjson = JSON.parse(window.localStorage.getItem("countysuperintendentjson"));
         }
         catch(e){
             noLocalData("countysuperintendentjson");
@@ -279,8 +305,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#countySupsError').append(localInfoAlert);
-          	    	countySupsDataFill(json);
+          	    	window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
+                  $('#countySupsError').append(localInfoAlert);
+          	    	tempjson - json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -289,6 +316,10 @@ $.ajax({
             })
 
             console.log("sorry countysuperintendentUrl data could not be located");
+            
+        }
+        finally{
+          countySupsDataFill(tempjson);
         }            
     },
     timeout: timeoutTime
@@ -305,8 +336,9 @@ $.ajax({
         countySchoolInfoDataFill(json);              
     },
     error: function(){
+        var tempjson;
         try{
-            countySchoolInfoDataFill(JSON.parse(window.localStorage.getItem("countyandschooldistrictjson")));
+            tempjson = JSON.parse(window.localStorage.getItem("countyandschooldistrictjson"));
         }
         catch(e){
             noLocalData("countyandschooldistrictjson");
@@ -319,8 +351,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#countySchoolError').append(localInfoAlert);
-          	    	countySchoolInfoDataFill(json);
+          	    	window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
+                  $('#countySchoolError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -329,6 +362,9 @@ $.ajax({
             })            
 
             console.log("sorry countyandschooldistrictUrl data could not be located");
+        }
+        finally{
+          countySchoolInfoDataFill(tempjson);
         }
     },
     timeout: timeoutTime
@@ -345,8 +381,9 @@ $.ajax({
         teacherDataFill(json); 
     },
     error: function(){
+        var tempjson;
         try{
-            teacherDataFill(JSON.parse(window.localStorage.getItem("teacherinformationjson")));
+            tempjson = JSON.parse(window.localStorage.getItem("teacherinformationjson"));
         }
         catch(e){
             noLocalData("teacherinformationjson");
@@ -359,8 +396,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#teacherError').append(localInfoAlert);
-          	    	teacherDataFill(json);
+          	    	window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
+                  $('#teacherError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -370,6 +408,9 @@ $.ajax({
 
             console.log("sorry teacherinformationUrl data could not be located");
         }  
+        finally{
+          teacherDataFill(tempjson);
+        }
     },
     timeout: timeoutTime
 })
@@ -385,8 +426,9 @@ $.ajax({
         otherEnrollDataFill(json);
     },
     error: function(){
+        var tempjson;
         try{
-        	otherEnrollDataFill(JSON.parse(window.localStorage.getItem("enrollmentjson")));
+        	tempjson = JSON.parse(window.localStorage.getItem("enrollmentjson"));
         }
         catch(e){
             noLocalData("enrollmentjson");
@@ -399,8 +441,9 @@ $.ajax({
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	$('#enrollmentError').append(localInfoAlert);
-          	    	otherEnrollDataFill(json);
+          	    	window.localStorage.setItem("enrollmentjson",JSON.stringify(json));
+                  $('#enrollmentError').append(localInfoAlert);
+          	    	tempjson = json;
           	    },
           	    error: function(){
           	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -410,6 +453,9 @@ $.ajax({
 
             console.log("sorry enrollmentUrl data could not be located");
         }  
+        finally{
+          otherEnrollDataFill(tempjson);
+        }
     },
     timeout: timeoutTime
 })
