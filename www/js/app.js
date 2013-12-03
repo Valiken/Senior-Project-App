@@ -643,39 +643,29 @@ function countySupsDataFill(json){
 
 function countySchoolInfoDataFill(json){
     //call for Total Area
-	var totalArea = json.total_area_sbc;
-	$('#totalArea').append(totalArea);
+    var totalArea = json.total_area_sbc;
     var totalAreaSchoolDis = json.total_area_school_districts;
-	$('#totalAreaSchoolDis').append(totalAreaSchoolDis);
-    var countywidePop = json.countywide_population;
-	$('#countywidePop').append(countywidePop);
-	
+	var countywidePop = json.countywide_population;
+		
     //County Ethnicity
 	var countyEthnicSrc = json.county_ethnicity_source;
-	$('#countyEthnicSrc').append(countyEthnicSrc);
-
+	
     //insert student ethnicity category and percentage
-	var countyEthnicityCat = json.county_ethnicity;
+	var countyEthnicityCat = [];
 		 $.each(countyEthnicityCat, function(i, county_ethnicity) {
   		items.push('<li data-role="list-divider">'
-        	+ countyEthnicityCat.push
-            + '</li><li>'
-			+ county_ethnicity.percent
-            + '</li><li>'
+        	+ county_ethnicity.ethnicity_category
+            + '</li><li>'			
             );
 	}); 
     // close each()
 
     //Total Student Enrollment
     var totalStudentEn = json.total_student_enrollment;
-	$('#totalStudentEn').append(totalStudentEn);
 	var studentEnrollmentSrc = json.student_enrollment_source;
-	$('#studentEnrollmentSrc').append(studentEnrollmentSrc);
-
-    //Student Ethnicity
-	var studentEthSrc = json.student_ethnicity_source;
-	$('#studentEthSrc').append(studentEthSrc);
 	
+   /* //Student Ethnicity
+	var studentEthSrc = json.student_ethnicity_source;
 	var studentEthnicityCat = json.student_ethnicity;
 	$.each(studentEthnicityCat, function (i, student_ethnicity) {
 	    items.push('<li data-role="list-divider">'
@@ -684,15 +674,13 @@ function countySchoolInfoDataFill(json){
 			+ student_ethnicity.percent
             + '</li><li>'
             );
-	}); 
+	}); */
 
     //Number of school districts
 	var totalNumSchoolDis = json.total_number_school_districts;
-	$('#totalNumSchoolDis').append(totalNumSchoolDis)
 	var schoolDisSrc = json.school_district_source;
-	$('#schoolDisSrc').append(schoolDisSrc);
-
-	//insert number_school_districts type and count
+	
+   /* //insert number_school_districts type and count
 	var numberSchoolDis = json.number_school_districts;
 	$.each(numberSchoolDis, function (i, numberSchoolDis) {
 	    items.push('<li data-role="list-divider">'
@@ -701,12 +689,10 @@ function countySchoolInfoDataFill(json){
 			+ number_school_districts.count
             + '</li><li>'
             );
-	}); 
-
-	var totalNumSchool = json.total_number_schools;
-	$('#totalNumSchool').append(totalNumSchool);
-
-	//insert number_public_schools
+	}); */
+    var totalNumSchool = json.total_number_schools;
+	
+   /* //insert number_public_schools
 	var numPublicSrc = json.number_public_schools;
 	$.each(numPublicSrc, function (i, numPublicSrc) {
 	    items.push('<li data-role="list-divider">'
@@ -715,14 +701,22 @@ function countySchoolInfoDataFill(json){
 			+ number_public_schools.count
             + '</li><li>'
             );
-	}); 
-
+	}); */
 	var avgExpense = json.avg_expense;
-	$('#avgExpense').append(avgExpense);
-
 	var expSrc = json.expense_source;
+
+	$('#totalArea').append(totalArea);
+	$('#totalAreaSchoolDis').append(totalAreaSchoolDis);
+	$('#countywidePop').append(countywidePop);
+	$('#countyEthnicSrc').append(countyEthnicSrc);
+	$('#totalStudentEn').append(totalStudentEn);
+	$('#studentEnrollmentSrc').append(studentEnrollmentSrc);
+	$('#studentEthSrc').append(studentEthSrc);
+	$('#totalNumSchoolDis').append(totalNumSchoolDis);
+	$('#schoolDisSrc').append(schoolDisSrc);
+	$('#totalNumSchool').append(totalNumSchool);
+	$('#avgExpense').append(avgExpense);
 	$('#expSrc').append(expSrc);
-    
 
     		
 }
