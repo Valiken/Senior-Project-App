@@ -31,7 +31,7 @@ var initCCSchoolDist = 'js/initData/CCDistricts.json';
 var initCountySupsAndBoard = 'js/initData/countysupsandboard.json';
 var initCountyAndDist = 'js/initData/countyAndSchoolDist.json';
 var initTeacher = 'js/initData/teacherinfo.json';
-var initEnrollment = '';
+var initEnrollment = 'js/initData/enrollment.json';
 var initROP = 'js/initData/ROPDist.json';
 
 //Check for images for the county Super and Board

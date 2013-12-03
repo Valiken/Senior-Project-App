@@ -1,0 +1,76 @@
+{
+    "regPrograms": [
+        {
+            "catTitle": "Regional Occupational Programs:",
+            "program": "Baldy View ROP",
+            "students": "5,690"
+        },
+        {
+            "catTitle": "",
+            "program": "Colton, Redlands, Yucaipa ROP",
+            "students": "5,288"
+        },
+        {
+            "catTitle": "",
+            "program": "San Bernardino County Schools ROP",
+            "students": "16,596"
+        }
+    ],
+    "altEdu": [
+        {
+            "catTitle": "SBCSS Alternative Education (Average Daily Attendance):",
+            "program": "Community Day Schools",
+            "students": "435"
+        },
+        {
+            "catTitle": "",
+            "program": "Independent Study",
+            "students": "48"
+        },
+        {
+            "catTitle": "",
+            "program": "Juvenile Hall",
+            "students": "356"
+        }
+    ],
+    "specialEdu": [
+        {
+            "catTitle": "Special Education:",
+            "program": "Desert/Mountain SELPA",
+            "students": "11,599"
+        },
+        {
+            "catTitle": "",
+            "program": "East Valley SELPA",
+            "students": "9,593"
+        },
+        {
+            "catTitle": "",
+            "program": "Fontana Unified SELPA",
+            "students": "4,976"
+        },
+        {
+            "catTitle": "",
+            "program": "Morongo Unified SELPA",
+            "students": "1,262"
+        },
+        {
+            "catTitle": "",
+            "program": "San Bernardino City Unified SELPA",
+            "students": "5,324"
+        },
+        {
+            "catTitle": "",
+            "program": "West End SELPA",
+            "students": "14,847"
+        }
+    ],
+    "statePreschool": [
+        {
+            "catTitle": "State Preschool:",
+            "program": "SBCSS State Preschool Programs",
+            "students": "2,300",
+            "source": "San Bernardino County Superintendent of Schools"
+        }
+    ]
+}
