@@ -1258,13 +1258,13 @@ function addHighlight(searchfield, aString){
 $("body").on("swipeleft", function(e){
   var myURL = document.URL;
   var myLocation = myURL.substring(myURL.indexOf('#'));
-  gotoLastPage(myLocation);
+  gotoNextPage(myLocation);
 });
 
 $("body").on("swiperight", function(e){
   var myURL = document.URL;
   var myLocation = myURL.substring(myURL.indexOf('#'));
-  gotoNextPage(myLocation);
+  gotoLastPage(myLocation);
 });
 
 var pageArray = ['#index','#bookletPageOne',"#bookletPageTwo", "#bookletPageThree", "#bookletPageFour","#bookletPageFive","#bookletPageSix","#bookletPageSeven","#search","#about"];
