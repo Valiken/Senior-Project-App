@@ -14,7 +14,7 @@ var domain = 'http://www.trademains.com/';
 //Variables used to connect application ajax calls to the json output on the website.
 var generalUrl = 'index.php/component/supscrm_contacts/?task=generalinfo&format=ajax&callback=?';
 var supsUrl = 'index.php/component/supscrm_contacts/?task=superintendents&format=ajax&callback=?';
-var schooldistrictsUrl = 'index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
+var schooldistrictsUrl =  'index.php/component/supscrm_contacts/?task=schooldistricts&format=ajax&callback=?';
 var ccschooldistrictsUrl = 'index.php/component/supscrm_contacts/?task=ccdistricts&format=ajax&callback=?';
 var countysuperintendentUrl = 'index.php/component/supscrm_contacts/?task=countysupsandboard&format=ajax&callback=?';
 var countyandschooldistrictUrl = 'index.php/component/supscrm_contacts/?task=countyandschooldistrict&format=ajax&callback=?';
@@ -73,10 +73,10 @@ $.ajax({
             $.ajax({
               	url: initGeneral,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-
           	    	$('#generalError').append(localInfoAlert);
           	    	generalInfoFill(json);
           	    },
@@ -113,6 +113,7 @@ $.ajax({
             $.ajax({
               	url: initSups,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -152,6 +153,7 @@ $.ajax({
             $.ajax({
               	url: initSchoolDist,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -191,6 +193,7 @@ $.ajax({
             $.ajax({
               	url: initCCSchoolDist,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -230,6 +233,7 @@ $.ajax({
             $.ajax({
                 url: initROP,
                 contentType: "application/json",
+                mimeType: "application/json",
                 dataType: 'json',
                 success: function(json){
                   //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -271,6 +275,7 @@ $.ajax({
             $.ajax({
               	url: initCountySupsAndBoard,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -310,6 +315,7 @@ $.ajax({
             $.ajax({
               	url: initCountyAndDist,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -349,6 +355,7 @@ $.ajax({
             $.ajax({
               	url: initTeacher,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -388,6 +395,7 @@ $.ajax({
             $.ajax({
               	url: initEnrollment,
               	contentType: "application/json",
+              	mimeType: "application/json",
           	    dataType: 'json',
           	    success: function(json){
           	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
@@ -561,18 +569,18 @@ function countySupsDataFill(json){
 
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
-	    	count_sups_items.push('<ul id="countyBoardUl" data-role="listview">' 
+	    	count_sups_items.push('<br /><ul id="countyBoardUl" data-role="listview">' 
 	    		+ '<li data-role="list-divider">'
 	    		+ countData.job_title 
 	    		+ '</li><li>'
 	    		+ countData.name
-	    		+ '</li></ul>'
+	    		+ '</li></ul><br />'
 	    	);
 	  	}); // close each()
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
-	    	count_board_items.push('<ul id="countyBoardUl" data-role="listview">' 
+	    	count_board_items.push('<br /><ul id="countyBoardUl" data-role="listview">' 
 	    		+ '<li data-role="list-divider">'
 	    		+ boardData.area 
 	    		+ '</li><li>' 
