@@ -22,6 +22,10 @@ var teacherinformationUrl = 'index.php/component/supscrm_contacts/?task=teacheri
 var enrollmentUrl = 'index.php/component/supscrm_contacts/?task=enrollment&format=ajax&callback=?';
 var ropUrl = 'index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
 
+//server data array
+var urlArray = [generalUrl, supsUrl, schooldistrictsUrl, ccschooldistrictsUrl, countysuperintendentUrl, countyandschooldistrictUrl, teacherinformationUrl, enrollmentUrl, ropUrl]; 
+	console.log(urlArray);
+
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
 var initGeneral = 'js/initData/generalinfo.json';
@@ -33,6 +37,19 @@ var initCountyAndDist = 'js/initData/countyAndSchoolDist.json';
 var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = 'js/initData/enrollment.json';
 var initROP = 'js/initData/ROPDist.json';
+
+//local data link array 
+var initialDataArray = [initGeneral, initSups, initSchoolDist, initCCSchoolDist, initCountySupsAndBoard, initCountyAndDist, initTeacher, initEnrollment, initROP];
+
+//json local storage names. 
+var localStorageNameArray = ["generalinformationjson", "supsjson", "schooldistrictsjson", "ccschooldistrictsjson", "countysuperintendentjson", "countyandschooldistrictjson", "teacherinformationjson", "enrollmentjson", "ropjson"];
+
+//Datafill names
+var dataFillNameArray = [generalInfoFill, supsDataFill, schoolDistDataFill, commCollegeDataFill, countySupsDataFill, countySchoolInfoDataFill, teacherDataFill, otherEnrollDataFill, ropDataFill];
+
+//Full url && data information array. 
+var informationData = [urlArray, initialDataArray, localStorageNameArray, dataFillNameArray];
+
 
 //Check for images for the county Super and Board
 var imagesAvaliable = false;
@@ -53,50 +70,54 @@ var infoLoadFailure = 'It appears as though something has gone horribly wrong. P
 */ 
 
 //general information ajax call
-$.ajax({
-	url: domain + generalUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-    	window.localStorage.setItem("generalinformationjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("generalinformationjson")); 
-        generalInfoFill(json);
-    },
-    error: function(){
-      var tempjson;
-    	try{
-        	tempjson = JSON.parse(window.localStorage.getItem("generalinformationjson"));
-        }
-        catch(e){
-            noLocalData("generalinformationjson");
+$.each(informationData, function(data){
+	$.ajax({
+		url: domain + data.urlArray, 
+	    contentType: "application/json",
+	    dataType: 'jsonp',
+	    success: function(json){
+	    	window.localStorage.setItem(data.localStorageNameArray,JSON.stringify(json));
+	        console.log(window.localStorage.getItem(data.localStorageNameArray)); 
+	        data.dataFillNameArray(json);
+	    },
+	    error: function(){
+	      var tempjson;
+	    	try{
+	        	tempjson = JSON.parse(window.localStorage.getItem(data.localStorageNameArray));
+	        }
+	        catch(e){
+	            noLocalData(data.localStorageNameArray);
 
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initGeneral,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-                  window.localStorage.setItem("generalinformationjson",JSON.stringify(json));
-          	    	$('#generalError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#generalError').append(infoLoadFailure);
-          	    }
-            })
+	            //Ajax call for no localdata && no connectivity. 
+	            $.ajax({
+	              	url: data.initialDataArray,
+	              	contentType: "application/json",
+	              	mimeType: "application/json",
+	          	    dataType: 'json',
+	          	    success: function(json){
+	          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
+	                  window.localStorage.setItem(data.localStorageNameArray,JSON.stringify(json));
+	          	    	//$('#generalError').append(localInfoAlert);
+	          	    	tempjson = json;
+	          	    },
+	          	    error: function(){
+	          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
+	          	    	//$('#generalError').append(infoLoadFailure);
+	          	    }
+	            })
 
-            console.log("sorry generalUrl data could not be located");
-        }
-        finally{
-          generalInfoFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
+	            //console.log("sorry generalUrl data could not be located");
+	        }
+	        finally{
+	          data.dataFillNameArray(tempjson);
+	        }
+	    },
+	    timeout: timeoutTime
+	})
 })
 
+
+/*
 //superintendents ajax call 
 $.ajax({
 	url: domain + supsUrl, 
@@ -458,7 +479,7 @@ $.ajax({
         }
     },
     timeout: timeoutTime
-})
+}) */
 
 /* This section contains the population functions for the application. 
 	Each page that requires data from the server has one of these functions. 
