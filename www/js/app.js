@@ -1254,3 +1254,45 @@ function addHighlight(searchfield, aString){
   if(!(results == null)) return aString.replace(myregex,'<mark>'+results[0]+'</mark>');
   else return aString;
 }
+
+$("body").on("swipeleft", function(e){
+  var myURL = document.URL;
+  var myLocation = myURL.substring(myURL.indexOf('#'));
+  gotoLastPage(myLocation);
+});
+
+$("body").on("swiperight", function(e){
+  var myURL = document.URL;
+  var myLocation = myURL.substring(myURL.indexOf('#'));
+  gotoNextPage(myLocation);
+});
+
+var pageArray = ['#index','#bookletPageOne',"#bookletPageTwo", "#bookletPageThree", "#bookletPageFour","#bookletPageFive","#bookletPageSix","#bookletPageSeven","#search","#about"];
+
+function gotoNextPage(currentLocation){
+  var index = 0;
+  $.each(pageArray, function(i, element){
+    if(element == currentLocation){
+      index = i;
+      return false;
+    }
+  });
+  if(index>=0 && index<pageArray.length - 1){
+      $.mobile.changePage(pageArray[index+1],{transition:"flip"});
+    }
+    console.log(index);
+}
+
+function gotoLastPage(currentLocation){
+  var index = 0;
+  $.each(pageArray, function(i, element){
+    if(element == currentLocation){
+      index = i;
+      return false;
+    }
+  });
+  if(index>=1 && index<pageArray.length){
+      $.mobile.changePage(pageArray[index-1],{transition:"flip"});
+    }
+    console.log(index);
+}
