@@ -736,9 +736,10 @@ function teacherDataFill(json){
     		+ totalTeachers.catTitle 
     		+ '</b>' + ' ' + 
         	totalTeachers.numberTeachers 
-        	+ '<br />' 
-        	+ totalTeachers.source 
-        	+ '<br />' + '<br />'
+        	+ '<br />'
+          + '<a href="http://www.ed-data.k12.ca.us">' + totalTeachers.source 
+        	+ '</a>'
+          +'<br />' + '<br />'
         );
   	}); // close each()
   
@@ -763,7 +764,7 @@ function teacherDataFill(json){
   	//array for minimum salary
     var minimum_salary = [];
     $.each(json.teacherSalary, function(i, districts){
-      avg_Salary_District.push(districts.minimum 
+      minimum_salary.push(districts.minimum 
         + '<br />'
         );
     }); // close each()
@@ -771,7 +772,7 @@ function teacherDataFill(json){
 	//array for max salary
     var maximum_salary = [];
     $.each(json.teacherSalary, function(i, districts){
-      	avg_Salary_District.push(districts.maximum 
+      	maximum_salary.push(districts.maximum 
         	+ '<br />'
         );
     }); // close each()
@@ -781,8 +782,10 @@ function teacherDataFill(json){
   	$.each(json.teacherEthnicDist, function(i, teacherEthnicity){
     	ethnic_Racial_Dist_Title.push('<b>'
         	+ teacherEthnicity.catTitle + '</b>'
-    		+ '<br />' + teacherEthnicity.source 
-    		+ '<br />' + '<br />'
+    		  + '<br />' 
+          + '<a href="http://www.ed-data.k12.ca.us">' + teacherEthnicity.source 
+          + '</a>' 
+    		  + '<br />' + '<br />'
     	);
   	}); // close each()
 
@@ -790,33 +793,156 @@ function teacherDataFill(json){
     var ethnic_Racial_Dist_Items = [];
     $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
       	ethnic_Racial_Dist_Items.push(teacherEthnicity.teacher_ethnicity 
-        	+ ' ' 
-        	+ teacherEthnicity.teacher_percent 
         	+ '<br />'
         );
     }); // close each()
 
+    var ethnic_Racial_Percentage = [];
+    $.each(json.teacherEthnicDist, function(i, teacherEthnicity){
+        ethnic_Racial_Percentage.push(teacherEthnicity.teacher_percent 
+          + '<br />'
+        );
+    }); // close each()
+
  	  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
-  	$('#avgTeacherSalary').append(avg_Salary_Title);
+  	$('#teachersCountywide').append(avg_Salary_Title);
   	$('#districts').append(avg_Salary_District);
   	$('#minimum').append(minimum_salary);
   	$('#maximum').append(maximum_salary);
-  	$('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Title[0]);
-    $('#teacherEthnicRacialDist').append(ethnic_Racial_Dist_Items);
+  	$('#ethnicRacialDistTitle').append(ethnic_Racial_Dist_Title[0]);
+    $('#ethnicity').append(ethnic_Racial_Dist_Items);
+    $('#percentage').append(ethnic_Racial_Percentage);
 }
 
 function otherEnrollDataFill(json){
-  //other stuff
-  var regionalPrograms = [];
+  //array for first title
+  var regionalProgramsTitle = [];
 
     $.each(json.regPrograms, function(i, programs){
-      regionalPrograms.push('<b>'
+      regionalProgramsTitle.push('<b>'
         + programs.catTitle 
         + '</b>'
         );
     });
-    $('#enrollment').append(regionalPrograms);
 
+  //array for regional occupational programs
+  var regionalPrograms = [];
+
+    $.each(json.regPrograms, function(i, programs){
+      regionalPrograms.push(programs.program
+        + '<br />'
+        );
+    });
+
+    //array for student numbers
+    var regionalProgramsStudents = [];
+
+    $.each(json.regPrograms, function(i, programs){
+      regionalProgramsStudents.push(programs.students
+        + '<br />'
+        );
+    });
+    
+  //array for second title
+  var altEduTitle = [];
+
+    $.each(json.altEdu, function(i, programs){
+      altEduTitle.push('<b>'
+        + programs.catTitle
+        + '</b>' 
+        + '<br />'
+        );
+    });
+
+  var altEduProgram = [];
+
+    $.each(json.altEdu, function(i, programs){
+      altEduProgram.push(programs.program
+        + '<br />'
+        );
+    });
+
+    var altEduStudents = [];
+
+    $.each(json.altEdu, function(i, programs){
+      altEduStudents.push(programs.students
+        + '<br />'
+        );
+    });
+
+  //array for third title
+  var specialEduTitle = [];
+
+    $.each(json.specialEdu, function(i, programs){
+      specialEduTitle.push('<b>'
+        + programs.catTitle 
+        + '</b>'
+        + '<br />'
+        );
+    });
+
+    var specialEduPrograms = [];
+
+    $.each(json.specialEdu, function(i, programs){
+      specialEduPrograms.push(programs.program
+        + '<br />'
+        );
+    });
+
+    var specialEduStudents = [];
+
+    $.each(json.specialEdu, function(i, programs){
+      specialEduStudents.push(programs.students
+        + '<br />'
+        );
+    });
+
+  //array for fourth title
+  var statePreTitle = [];
+
+    $.each(json.statePreschool, function(i, programs){
+      statePreTitle.push('<b>'
+        + programs.catTitle
+        + '</b>'
+        + '<br />'
+        );
+    });
+
+    var statePrePrograms = [];
+
+    $.each(json.statePreschool, function(i, programs){
+      statePrePrograms.push(programs.program
+        + '<br />'
+        );
+    });
+
+    var statePreStudents = [];
+
+    $.each(json.statePreschool, function(i, programs){
+      statePreStudents.push(programs.students
+        + '<br />'
+        );
+    });
+
+    var holdStatePreschool = json.statePreschool;
+    var statePreSource = 'Source: ' + holdStatePreschool[0].source;
+
+    $('#title1').append(regionalProgramsTitle[0]);
+    $('#program1').append(regionalPrograms);
+    $('#students1').append(regionalProgramsStudents);
+
+    $('#title2').append(altEduTitle[0]);
+    $('#program2').append(altEduProgram);
+    $('#students2').append(altEduStudents);
+
+    $('#title3').append(specialEduTitle[0]);
+    $('#program3').append(specialEduPrograms);
+    $('#students3').append(specialEduStudents);
+
+    $('#title4').append(statePreTitle[0]);
+    $('#program4').append(statePrePrograms);
+    $('#students4').append(statePreStudents);
+    $('#source4').append(statePreSource);
 }
 
 function noLocalData(failedajax){
