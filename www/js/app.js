@@ -259,8 +259,8 @@ function ropDataFill(json){
 }
 
 //The if else statement is here to determine whether or not it is possible to load images into the application.
-function countySupsDataFill(json){
-  	if(imagesAvaliable != false){
+function countySupsDataFill(json, images){
+  	if(images != false){
   		console.log('this is true');
 		
 		var count_sups_items = [];
