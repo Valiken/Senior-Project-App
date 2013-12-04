@@ -435,20 +435,24 @@ function countySchoolInfoDataFill(json){
 
 function teacherDataFill(json){
   	//array for first bold section
-	var total_Teachers_Countywide_Items = [];
+	var total_Teachers_Countywide_Title = [];
 
   	$.each(json.totalTeachersCountyWide, function(i, totalTeachers){
-  		total_Teachers_Countywide_Items.push('<b>' 
+  		total_Teachers_Countywide_Title.push('<b>' 
     		+ totalTeachers.catTitle 
-    		+ '</b>' + ' ' + 
-        	totalTeachers.numberTeachers 
-        	+ '<br />'
-          + '<a href="http://www.ed-data.k12.ca.us">' + totalTeachers.source 
-        	+ '</a>'
-          +'<br />' + '<br />'
+    		+ '</b>'
         );
   	}); // close each()
-  
+
+    var holdTeacherNum = json.totalTeachersCountyWide;
+    var totalTeachersNum = holdTeacherNum[0].numberTeachers;
+    var totalTeachersSource = '<a href="http://www.ed-data.k12.ca.us">' 
+        + holdTeacherNum[0].source 
+        + '</a>' 
+        + '<br />'
+        + '<br />';
+
+
   	//array for second bold section and source
   	var avg_Salary_Title = [];
   	$.each(json.teacherSalary, function(i, avgSalary){
@@ -486,14 +490,21 @@ function teacherDataFill(json){
   	//array for teacher eth/race title
  	var ethnic_Racial_Dist_Title = [];
   	$.each(json.teacherEthnicDist, function(i, teacherEthnicity){
-    	ethnic_Racial_Dist_Title.push('<b>'
-        	+ teacherEthnicity.catTitle + '</b>'
-    		  + '<br />' 
-          + '<a href="http://www.ed-data.k12.ca.us">' + teacherEthnicity.source 
-          + '</a>' 
-    		  + '<br />' + '<br />'
+    	ethnic_Racial_Dist_Title.push('<br />'
+        + '<br />'
+        + '<b>'
+      	+ teacherEthnicity.catTitle 
+        + '</b>'
     	);
   	}); // close each()
+
+    var holdEthnicSource = json.teacherEthnicDist;
+    var ethnicRacialSource = '<a href="http://www.ed-data.k12.ca.us">' 
+        + holdEthnicSource[0].source 
+        + '</a>' 
+        + '<br />'
+        + '<br />';
+
 
     //array for ehtnicity/race and percentage
     var ethnic_Racial_Dist_Items = [];
@@ -510,12 +521,15 @@ function teacherDataFill(json){
         );
     }); // close each()
 
- 	  $('#teachersCountywide').append(total_Teachers_Countywide_Items.join(''));
+ 	  $('#teachersCountywideTitle').append(total_Teachers_Countywide_Title);
+    $('#teachersCountywideNum').append(totalTeachersNum);
+    $('#teachersCountywideSource').append(totalTeachersSource);
   	$('#teachersCountywide').append(avg_Salary_Title);
   	$('#districts').append(avg_Salary_District);
   	$('#minimum').append(minimum_salary);
   	$('#maximum').append(maximum_salary);
   	$('#ethnicRacialDistTitle').append(ethnic_Racial_Dist_Title[0]);
+    $('#ethnicRacialDistSource').append(ethnicRacialSource);
     $('#ethnicity').append(ethnic_Racial_Dist_Items);
     $('#percentage').append(ethnic_Racial_Percentage);
 }
