@@ -720,7 +720,7 @@ function countySchoolInfoDataFill(json){
 	$('#numPubSchoolDis').append(numPubSchoolDis.join(''));
 	$('#schoolDisSrc').append(schoolDisSrc);
 	$('#totalNumSchool').append(totalNumSchool);
-	$('numPubSchools').append(numPubSchools.join(''));
+	$('#numPubSchools').append(numPubSchools.join(''));
 	$('#avgExpense').append(avgExpense);
 	$('#expSrc').append(expSrc);
 
