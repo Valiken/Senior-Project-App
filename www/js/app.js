@@ -45,11 +45,21 @@ var initialDataArray = [initGeneral, initSups, initSchoolDist, initCCSchoolDist,
 var localStorageNameArray = ["generalinformationjson", "supsjson", "schooldistrictsjson", "ccschooldistrictsjson", "countysuperintendentjson", "countyandschooldistrictjson", "teacherinformationjson", "enrollmentjson", "ropjson"];
 
 //Datafill names
-var dataFillNameArray = [generalInfoFill, supsDataFill, schoolDistDataFill, commCollegeDataFill, countySupsDataFill, countySchoolInfoDataFill, teacherDataFill, otherEnrollDataFill, ropDataFill];
+var dataFillNameArray = ['generalInfoFill', 'supsDataFill', 'schoolDistDataFill', 'commCollegeDataFill', 'countySupsDataFill', 'countySchoolInfoDataFill', 'teacherDataFill', 'otherEnrollDataFill', 'ropDataFill'];
 
 //Full url && data information array. 
 var informationData = [urlArray, initialDataArray, localStorageNameArray, dataFillNameArray];
 
+
+var ajaxArray = [[generalUrl, initGeneral, "generalinformationjson", 'generalInfoFill'],
+                    [supsUrl, initSups, "supsjson", 'supsDataFill'],
+                    [schooldistrictsUrl,initSchoolDist,"schooldistrictsjson",'schoolDistDataFill'],
+                    [ccschooldistrictsUrl,initCCSchoolDist,"ccschooldistrictsjson",'commCollegeDataFill'],
+                    [countysuperintendentUrl,initCountySupsAndBoard,"countysuperintendentjson",'countySupsDataFill'],
+                    [countyandschooldistrictUrl,initCountyAndDist,"countyandschooldistrictjson",'countySchoolInfoDataFill'],
+                    [teacherinformationUrl,initTeacher,"teacherinformationjson",'teacherDataFill'],
+                    [enrollmentUrl,initEnrollment,"enrollmentjson",'otherEnrollDataFill'],
+                    [ropUrl,initROP,"ropjson",'ropDataFill']];
 
 //Check for images for the county Super and Board
 var imagesAvaliable = false;
@@ -70,33 +80,35 @@ var infoLoadFailure = 'It appears as though something has gone horribly wrong. P
 */ 
 
 //general information ajax call
-$.each(informationData, function(data){
+$.each(ajaxArray, function(i,data){
+  console.log(data);
 	$.ajax({
-		url: domain + data.urlArray, 
+		url: domain + data[0], 
 	    contentType: "application/json",
 	    dataType: 'jsonp',
 	    success: function(json){
-	    	window.localStorage.setItem(data.localStorageNameArray,JSON.stringify(json));
-	        console.log(window.localStorage.getItem(data.localStorageNameArray)); 
-	        data.dataFillNameArray(json);
+	    	window.localStorage.setItem(data[2],JSON.stringify(json));
+	        console.log(window.localStorage.getItem(data[2])); 
+	        doDataFill(data[3], json);
+          imagesAvaliable = true;
 	    },
 	    error: function(){
 	      var tempjson;
 	    	try{
-	        	tempjson = JSON.parse(window.localStorage.getItem(data.localStorageNameArray));
+	        	tempjson = JSON.parse(window.localStorage.getItem(data[2]));
 	        }
 	        catch(e){
-	            noLocalData(data.localStorageNameArray);
+	            noLocalData(data[2]);
 
 	            //Ajax call for no localdata && no connectivity. 
 	            $.ajax({
-	              	url: data.initialDataArray,
+	              	url: data[1],
 	              	contentType: "application/json",
 	              	mimeType: "application/json",
 	          	    dataType: 'json',
 	          	    success: function(json){
 	          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-	                  window.localStorage.setItem(data.localStorageNameArray,JSON.stringify(json));
+	                  window.localStorage.setItem(data[2],JSON.stringify(json));
 	          	    	//$('#generalError').append(localInfoAlert);
 	          	    	tempjson = json;
 	          	    },
@@ -109,13 +121,41 @@ $.each(informationData, function(data){
 	            //console.log("sorry generalUrl data could not be located");
 	        }
 	        finally{
-	          data.dataFillNameArray(tempjson);
+	          doDataFill(data[3],tempjson);
 	        }
 	    },
 	    timeout: timeoutTime
 	})
 })
 
+function doDataFill(datafillname, json){
+  switch(datafillname){
+    case 'generalInfoFill':
+      generalInfoFill(json);
+      break;
+    case 'supsDataFill':
+      supsDataFill(json);
+      break;
+    case 'schoolDistDataFill':
+      schoolDistDataFill(json);
+      break;
+    case 'commCollegeDataFill':
+      commCollegeDataFill(json);
+      break;
+    case 'countySupsDataFill':
+      countySupsDataFill(json);
+      break;
+    case 'countySchoolInfoDataFill':
+      countySchoolInfoDataFill(json);
+      break;
+    case 'teacherDataFill':
+      teacherDataFill(json);
+      break;
+    case 'otherEnrollDataFill':
+      otherEnrollDataFill(json);
+      break;
+  }
+}
 
 /*
 //superintendents ajax call 
