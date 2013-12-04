@@ -652,10 +652,11 @@ function countySchoolInfoDataFill(json){
 	
     //insert student ethnicity category and percentage
 	var countyEthnicityCat = [];
-		 $.each(countyEthnicityCat, function(i, county_ethnicity) {
-  		items.push('<li data-role="list-divider">'
+		 $.each(json.county_ethnicity, function(i, county_ethnicity) {
+  		countyEthnicityCat.push('<li data-role="list-divider">'
         	+ county_ethnicity.ethnicity_category
-            + '</li><li>'			
+          +": " + (parseFloat(county_ethnicity.percent) * 100)
+            + '</li>'			
             );
 	}); 
     // close each()
@@ -709,6 +710,7 @@ function countySchoolInfoDataFill(json){
 	$('#totalAreaSchoolDis').append(totalAreaSchoolDis);
 	$('#countywidePop').append(countywidePop);
 	$('#countyEthnicSrc').append(countyEthnicSrc);
+  $('#countyEthnicityCat').append(countyEthnicityCat.join(''));
 	$('#totalStudentEn').append(totalStudentEn);
 	$('#studentEnrollmentSrc').append(studentEnrollmentSrc);
 	$('#studentEthSrc').append(studentEthSrc);
