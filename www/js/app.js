@@ -64,7 +64,7 @@ var infoLoadFailure = 'It appears as though something has gone horribly wrong. P
 
 //ajax call
 $.each(ajaxArray, function(i,data){
-  console.log(data);
+  //console.log(data);
 	$.ajax({
 		url: domain + data[0], 
 	    contentType: "application/json",
@@ -72,9 +72,10 @@ $.each(ajaxArray, function(i,data){
 	    dataType: 'jsonp',
 	    success: function(json){
 	    	window.localStorage.setItem(data[2],JSON.stringify(json));
-	        console.log(window.localStorage.getItem(data[2])); 
-	        doDataFill(data[3], json);
-          	imagesAvaliable = true;
+	        //console.log(window.localStorage.getItem(data[2])); 
+          imagesAvaliable = true;
+	        doDataFill(data[3], json, imagesAvaliable);
+          	
 	    },
 	    error: function(){
 	      var tempjson;
@@ -104,14 +105,14 @@ $.each(ajaxArray, function(i,data){
 	            //console.log("sorry generalUrl data could not be located");
 	        }
 	        finally{
-	          doDataFill(data[3],tempjson);
+	          doDataFill(data[3], tempjson, imagesAvaliable);
 	        }
 	    },
 	    timeout: timeoutTime
 	})
 })
 
-function doDataFill(datafillname, json){
+function doDataFill(datafillname, json, imagesAvaliable){
   switch(datafillname){
     case 'generalInfoFill':
       generalInfoFill(json);
@@ -126,7 +127,7 @@ function doDataFill(datafillname, json){
       commCollegeDataFill(json);
       break;
     case 'countySupsDataFill':
-      countySupsDataFill(json,imagesAvaliable);
+      countySupsDataFill(json, imagesAvaliable);
       break;
     case 'countySchoolInfoDataFill':
       countySchoolInfoDataFill(json);
@@ -292,8 +293,7 @@ function countySupsDataFill(json, images){
 	  	$('#general_info').page('create');  	
   	}
   	else{
-  		console.log('this is false');
-
+  	console.log('this is false');
 		var count_sups_items = [];
 	  	$.each(json.countysups, function(i, countData){
 	    	count_sups_items.push('<br /><ul id="countyBoardUl" data-role="listview">' 
