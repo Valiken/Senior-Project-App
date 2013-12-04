@@ -79,10 +79,10 @@ $.each(ajaxArray, function(i,data){
 	    },
 	    error: function(){
 	      var tempjson;
-	    	try{
+
 	        	tempjson = JSON.parse(window.localStorage.getItem(data[2]));
-	        }
-	        catch(e){
+
+	        if(tempjson == null){
 	            noLocalData(data[2]);
 
 	            //Ajax call for no localdata && no connectivity. 
@@ -104,9 +104,9 @@ $.each(ajaxArray, function(i,data){
 
 	            //console.log("sorry generalUrl data could not be located");
 	        }
-	        finally{
+
 	          doDataFill(data[3], tempjson, imagesAvaliable);
-	        }
+
 	    },
 	    timeout: timeoutTime
 	})
@@ -940,7 +940,7 @@ function getSchoolDistrict(initialdata, datatype){
       return new SchoolDistrict(schooldata.district_name, schooldata.district_address, schooldata.district_city, schooldata.district_state, schooldata.district_zip_code, schooldata.district_phone, schooldata.district_fax, schooldata.district_website, schooldata.district_enrollment, schooldata.district_grades, schooldata.district_square_miles, initialdata.sups_name_title);
     case 'school district':
       var supsname;
-      var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+      var supsjson = JSON.parse(window.localStorage.getItem("supsjson"));
       $.each(supsjson, function(i,data){
           if(data.district_name == initialdata.district_name){
             supsname = data.sups_name_title;
@@ -950,7 +950,7 @@ function getSchoolDistrict(initialdata, datatype){
       return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, initialdata.district_grades, initialdata.district_square_miles, supsname);
     case 'community college district':
       var supsname;
-      var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+      var supsjson = JSON.parse(window.localStorage.getItem("supsjson"));
       $.each(supsjson, function(i,data){
           if(data.district_name == initialdata.district_name){
             supsname = data.sups_name_title;
@@ -960,7 +960,7 @@ function getSchoolDistrict(initialdata, datatype){
       return new SchoolDistrict(initialdata.district_name, initialdata.district_address, initialdata.district_city, initialdata.district_state, initialdata.district_zip_code, initialdata.district_phone, initialdata.district_fax, initialdata.district_website, initialdata.district_enrollment, 'CC', 0, supsname);
     case 'rop':
       var supsname;
-      var ropjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+      var ropjson = JSON.parse(window.localStorage.getItem("supsjson"));
       $.each(ropjson, function(i,data){
           if(data.district_name == initialdata.district_name){
             supsname = data.sups_name_title;
