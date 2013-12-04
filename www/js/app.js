@@ -655,7 +655,7 @@ function countySchoolInfoDataFill(json){
 		 $.each(json.county_ethnicity, function(i, county_ethnicity) {
   		countyEthnicityCat.push('<li data-role="list-divider">'
         	+ county_ethnicity.ethnicity_category
-            + ": " + (parseFloat(county_ethnicity.percent) * 100) + "%"
+            + ": " + (parseFloat(county_ethnicity.percent) * 100).toFixed(2) + "%"
             + '</li>'			
             );
 	});
@@ -673,7 +673,7 @@ function countySchoolInfoDataFill(json){
 	$.each(json.student_ethnicity, function (i, student_ethnicity) {
 	    studentEthnicityCat.push('<li data-role="list-divider">'
         	+ student_ethnicity.ethnicity_category
-            + ": " + (parseFloat(student_ethnicity.percent)* 100) + "%"
+            + ": " + (parseFloat(student_ethnicity.percent)* 100).toFixed(2) + "%"
             + '</li>'
             );
 	}); 
