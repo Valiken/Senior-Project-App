@@ -277,13 +277,13 @@ function countySupsDataFill(json, images){
 
 	  	var count_board_items = [];
 	  	$.each(json.countyboard, function(i, boardData){
-	    	count_board_items.push('<center><img height="" width="" alt="' + boardData.name + '" title="' + boardData.name + '" src="'+ domain + boardData.image_link +'" /></center><br /><br />'
-	    		+ '<ul id="countyBoardUl" data-role="listview">'
+	    	count_board_items.push('<ul id="countyBoardUl" data-role="listview">'
 	    		+ '<li data-role="list-divider">'
 	    		+ boardData.area 
 	    		+ '</li><li>'
 	    		+ boardData.name 
 	    		+ '</li></ul><br /><br />'
+          + '<center><img height="" width="" alt="' + boardData.name + '" title="' + boardData.name + '" src="'+ domain + boardData.image_link +'" /></center><br /><br />'
 	    	);
 	  	}); // close each()
 
