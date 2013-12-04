@@ -143,7 +143,7 @@ function doDataFill(datafillname, json){
       commCollegeDataFill(json);
       break;
     case 'countySupsDataFill':
-      countySupsDataFill(json);
+      countySupsDataFill(json,imagesAvaliable);
       break;
     case 'countySchoolInfoDataFill':
       countySchoolInfoDataFill(json);
