@@ -458,10 +458,15 @@ function teacherDataFill(json){
   	$.each(json.teacherSalary, function(i, avgSalary){
 	  	avg_Salary_Title.push('<b>' 
 	  		+ avgSalary.catTitle 
-	  		+ '</b>' + '<br />' 
-	  		+ avgSalary.source
+	  		+ '</b>'
 	  	);
   	}); // close each()
+
+    var avg_Salary_Source = [];
+    $.each(json.teacherSalary, function(i, avgSalary){
+      avg_Salary_Source.push(avgSalary.source
+      );
+    }); // close each()
 
   	//array for school districts
   	var avg_Salary_District = [];
@@ -524,7 +529,8 @@ function teacherDataFill(json){
  	  $('#teachersCountywideTitle').append(total_Teachers_Countywide_Title);
     $('#teachersCountywideNum').append(totalTeachersNum);
     $('#teachersCountywideSource').append(totalTeachersSource);
-  	$('#teachersCountywide').append(avg_Salary_Title);
+  	$('#teachersAvgSalaryTitle').append(avg_Salary_Title);
+    $('#teachersAvgSalarySource').append(avg_Salary_Source);
   	$('#districts').append(avg_Salary_District);
   	$('#minimum').append(minimum_salary);
   	$('#maximum').append(maximum_salary);
