@@ -93,7 +93,7 @@ $.each(ajaxArray, function(i,data){
 	          	    dataType: 'json',
 	          	    success: function(json){
 	                  window.localStorage.setItem(data[2],JSON.stringify(json));
-	          	    	tempjson = json;
+	          	    	doDataFill(data[3], json, imagesAvaliable);
 	          	    },
 	          	    error: function(){
 	          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
@@ -102,9 +102,11 @@ $.each(ajaxArray, function(i,data){
 	            })
 
 	            //console.log("sorry generalUrl data could not be located");
-	        }
+	        }else{
+            doDataFill(data[3], tempjson, imagesAvaliable);
+          }
 
-	          doDataFill(data[3], tempjson, imagesAvaliable);
+	          
 
 	    },
 	    timeout: timeoutTime
