@@ -90,7 +90,6 @@ $.each(ajaxArray, function(i,data){
 	              	url: data[1],
 	              	contentType: "application/json",
 	              	mimeType: "application/json",
-	              	isLocal: 'true',
 	          	    dataType: 'json',
 	          	    success: function(json){
 	                  window.localStorage.setItem(data[2],JSON.stringify(json));
