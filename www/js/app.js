@@ -816,7 +816,7 @@ function searchSupsAndDistricts(searchfield){
   var hits = [];
 
   //get parsed jsons to search through
-  var supsjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
+  var supsjson = JSON.parse(window.localStorage.getItem("supsjson"));
   var distjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
   var ccjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
   var ropjson = JSON.parse(window.localStorage.getItem("ropjson"));
