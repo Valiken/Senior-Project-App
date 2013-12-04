@@ -650,6 +650,7 @@ function noLocalData(failedajax){
 	    case 'ropjson':
 		  $('#ropError').append(localInfoAlert);
 	      break;
+    }
   failedCalls.push(failedajax);
 }
 
@@ -683,6 +684,7 @@ function allHasFailed(failedajax){
 	    case 'ropjson':
 		  $('#ropError').append(infoLoadFailure);
 	      break;
+    }
   failedCalls.push(failedajax);	
 }
 
