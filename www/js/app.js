@@ -22,10 +22,6 @@ var teacherinformationUrl = 'index.php/component/supscrm_contacts/?task=teacheri
 var enrollmentUrl = 'index.php/component/supscrm_contacts/?task=enrollment&format=ajax&callback=?';
 var ropUrl = 'index.php/component/supscrm_contacts/?task=rop&format=ajax&callback=?';
 
-//server data array
-var urlArray = [generalUrl, supsUrl, schooldistrictsUrl, ccschooldistrictsUrl, countysuperintendentUrl, countyandschooldistrictUrl, teacherinformationUrl, enrollmentUrl, ropUrl]; 
-	console.log(urlArray);
-
 //initial data to be called if ajax fails, or something catastrophic happens to the json calls that are on the server.
 //json files will be stored locally with the rest of the javascript.
 var initGeneral = 'js/initData/generalinfo.json';
@@ -37,19 +33,6 @@ var initCountyAndDist = 'js/initData/countyAndSchoolDist.json';
 var initTeacher = 'js/initData/teacherinfo.json';
 var initEnrollment = 'js/initData/enrollment.json';
 var initROP = 'js/initData/ROPDist.json';
-
-//local data link array 
-var initialDataArray = [initGeneral, initSups, initSchoolDist, initCCSchoolDist, initCountySupsAndBoard, initCountyAndDist, initTeacher, initEnrollment, initROP];
-
-//json local storage names. 
-var localStorageNameArray = ["generalinformationjson", "supsjson", "schooldistrictsjson", "ccschooldistrictsjson", "countysuperintendentjson", "countyandschooldistrictjson", "teacherinformationjson", "enrollmentjson", "ropjson"];
-
-//Datafill names
-var dataFillNameArray = ['generalInfoFill', 'supsDataFill', 'schoolDistDataFill', 'commCollegeDataFill', 'countySupsDataFill', 'countySchoolInfoDataFill', 'teacherDataFill', 'otherEnrollDataFill', 'ropDataFill'];
-
-//Full url && data information array. 
-var informationData = [urlArray, initialDataArray, localStorageNameArray, dataFillNameArray];
-
 
 var ajaxArray = [[generalUrl, initGeneral, "generalinformationjson", 'generalInfoFill'],
                     [supsUrl, initSups, "supsjson", 'supsDataFill'],
@@ -67,7 +50,7 @@ var imagesAvaliable = false;
 //error variables
 var failedCalls=[];
 var timeoutTime = 10000;
-var localInfoAlert = 'It appears as though you have opened the application for the first time without an internet connection! For the most up to date information, please connect to the internet and reopen the application.<br /><br />';
+var localInfoAlert = 'It appears as though you have opened the application without an internet connection! For the most up to date information, please connect to the internet and reopen the application.<br /><br />';
 var infoLoadFailure = 'It appears as though something has gone horribly wrong. Please connect to a network and try to access this application again. If this problem continues please contact an administrator!<br /><br />';
 
 /* The following section contains all of the ajax calls that are used to grab data from the SBCC server through a set of json dumps that provide us access to the data stored on the backend MySQL server.
@@ -79,18 +62,19 @@ var infoLoadFailure = 'It appears as though something has gone horribly wrong. P
 	local data, if local data fails, it will print an error message. 
 */ 
 
-//general information ajax call
+//ajax call
 $.each(ajaxArray, function(i,data){
   console.log(data);
 	$.ajax({
 		url: domain + data[0], 
 	    contentType: "application/json",
+	    mimeType: "application/json",
 	    dataType: 'jsonp',
 	    success: function(json){
 	    	window.localStorage.setItem(data[2],JSON.stringify(json));
 	        console.log(window.localStorage.getItem(data[2])); 
 	        doDataFill(data[3], json);
-          imagesAvaliable = true;
+          	imagesAvaliable = true;
 	    },
 	    error: function(){
 	      var tempjson;
@@ -105,16 +89,15 @@ $.each(ajaxArray, function(i,data){
 	              	url: data[1],
 	              	contentType: "application/json",
 	              	mimeType: "application/json",
+	              	isLocal: 'true',
 	          	    dataType: 'json',
 	          	    success: function(json){
-	          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
 	                  window.localStorage.setItem(data[2],JSON.stringify(json));
-	          	    	//$('#generalError').append(localInfoAlert);
 	          	    	tempjson = json;
 	          	    },
 	          	    error: function(){
 	          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-	          	    	//$('#generalError').append(infoLoadFailure);
+	          	    	allHasFailed(data[2]);
 	          	    }
 	            })
 
@@ -154,379 +137,16 @@ function doDataFill(datafillname, json){
     case 'otherEnrollDataFill':
       otherEnrollDataFill(json);
       break;
+    case 'ropDataFill':
+      ropDataFill(json);
+      break;
   }
 }
-
-/*
-//superintendents ajax call 
-$.ajax({
-	url: domain + supsUrl, 
-	contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("superintendentjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("superintendentjson")); 
-        supsDataFill(json);
-    },
-    error: function(){
-        var tempjson;
-    	try{
-        	tempjson = JSON.parse(window.localStorage.getItem("superintendentjson"));
-    	}
-      	catch(e){
-        	noLocalData("superintendentjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initSups,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("superintendentjson",JSON.stringify(json));
-                  $('#supsError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#supsError').append(infoLoadFailure);
-          	    }
-            })
-
-        	console.log("sorry supsUrl data could not be located");
-      	}
-        finally{
-          supsDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-
-//school districts ajax call
-$.ajax({
-    url: domain + schooldistrictsUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("schooldistrictsjson"));    
-        schoolDistDataFill(json);        
-    },
-    error: function(){
-        var tempjson;
-        try{
-            tempjson = JSON.parse(window.localStorage.getItem("schooldistrictsjson"));
-        }
-        catch(e){
-            noLocalData("schooldistrictsjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initSchoolDist,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("schooldistrictsjson",JSON.stringify(json));
-                  $('#schoolDistrictsError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#schoolDistrictsError').append(infoLoadFailure);
-          	    }
-            })
-
-            console.log("sorry schooldistrictsUrl data could not be located");
-        }
-        finally{
-          schoolDistDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-	  
-//community college districts ajax call
-$.ajax({
-    url: domain + ccschooldistrictsUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("ccschooldistrictsjson"));
-        commCollegeDataFill(json);
-    },
-    error: function(){
-        var tempjson;
-        try{
-    	    tempjson = JSON.parse(window.localStorage.getItem("ccschooldistrictsjson"));
-        }
-        catch(e){
-            noLocalData("ccschooldistrictsjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initCCSchoolDist,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("ccschooldistrictsjson",JSON.stringify(json));
-                  $('#communityCollegeError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#communityCollegeError').append(infoLoadFailure);
-          	    }
-            })
-
-            console.log("sorry ccschooldistrictsUrl data could not be located");
-        }    
-        finally{
-          commCollegeDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-
-//rop ajax call
-$.ajax({
-    url: domain + ropUrl,
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("ropjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("ropjson"));
-        ropDataFill(json);
-    },
-    error: function(){
-        var tempjson;
-        try{
-          tempjson = JSON.parse(window.localStorage.getItem("ropjson"));
-        }
-        catch(e){
-            noLocalData("ropjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-                url: initROP,
-                contentType: "application/json",
-                mimeType: "application/json",
-                dataType: 'json',
-                success: function(json){
-                  //do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-                  window.localStorage.setItem("ropjson",JSON.stringify(json));
-                  $('#ropError').append(localInfoAlert);
-                  tempjson = json;
-                },
-                error: function(){
-                  //If all else fails print message to page stating that something has gone wrong and please try again later.
-                  $('#ropError').append(infoLoadFailure);
-                }
-            })
-
-            console.log("sorry ccschooldistrictsUrl data could not be located");
-        }    
-        finally{
-          ropDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-
-//county superintendents ajax call
-$.ajax({
-    url: domain + countysuperintendentUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-    	imagesAvaliable = true;
-        window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
-        console.log(window.localStorage.getItem("countysuperintendentjson"));       
-        countySupsDataFill(json);       
-    },
-    error: function(){
-        var tempjson;
-        try{
-        	imagesAvaliable = false;
-        	tempjson = JSON.parse(window.localStorage.getItem("countysuperintendentjson"));
-        }
-        catch(e){
-            noLocalData("countysuperintendentjson");
-            imagesAvaliable = false;
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initCountySupsAndBoard,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("countysuperintendentjson",JSON.stringify(json));
-                  $('#countySupsError').append(localInfoAlert);
-          	    	tempjson - json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#countySupsError').append(infoLoadFailure);
-          	    }
-            })
-
-            console.log("sorry countysuperintendentUrl data could not be located");
-            
-        }
-        finally{
-          countySupsDataFill(tempjson);
-        }            
-    },
-    timeout: timeoutTime
-})
-
-//county and school districts ajax call 
-$.ajax({
-    url: domain + countyandschooldistrictUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
-        console.log(window.localStorage.getItem("countyandschooldistrictjson"));
-        countySchoolInfoDataFill(json);              
-    },
-    error: function(){
-        var tempjson;
-        try{
-            tempjson = JSON.parse(window.localStorage.getItem("countyandschooldistrictjson"));
-        }
-        catch(e){
-            noLocalData("countyandschooldistrictjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initCountyAndDist,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("countyandschooldistrictjson",JSON.stringify(json));
-                  $('#countySchoolError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#countySchoolError').append(infoLoadFailure);
-          	    }
-            })            
-
-            console.log("sorry countyandschooldistrictUrl data could not be located");
-        }
-        finally{
-          countySchoolInfoDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-
-//teacher information ajax call
-$.ajax({
-    url: domain + teacherinformationUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){ 
-        window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
-        //console.log(window.localStorage.getItem("teacherinformationjson"));      
-        teacherDataFill(json); 
-    },
-    error: function(){
-        var tempjson;
-        try{
-            tempjson = JSON.parse(window.localStorage.getItem("teacherinformationjson"));
-        }
-        catch(e){
-            noLocalData("teacherinformationjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initTeacher,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("teacherinformationjson",JSON.stringify(json));
-                  $('#teacherError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#teacherError').append(infoLoadFailure);
-          	    }
-            })  
-
-            console.log("sorry teacherinformationUrl data could not be located");
-        }  
-        finally{
-          teacherDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-})
-
-//enrollment ajax call
-$.ajax({
-    url: domain + enrollmentUrl, 
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json){
-        window.localStorage.setItem("enrollmentjson",JSON.stringify(json));
-        console.log(window.localStorage.getItem("enrollmentjson"));
-        otherEnrollDataFill(json);
-    },
-    error: function(){
-        var tempjson;
-        try{
-        	tempjson = JSON.parse(window.localStorage.getItem("enrollmentjson"));
-        }
-        catch(e){
-            noLocalData("enrollmentjson");
-
-            //Ajax call for no localdata && no connectivity. 
-            $.ajax({
-              	url: initEnrollment,
-              	contentType: "application/json",
-              	mimeType: "application/json",
-          	    dataType: 'json',
-          	    success: function(json){
-          	    	//do NOT store this information in local storage!!!!!!!!!!! Emergency situations only! 
-          	    	window.localStorage.setItem("enrollmentjson",JSON.stringify(json));
-                  $('#enrollmentError').append(localInfoAlert);
-          	    	tempjson = json;
-          	    },
-          	    error: function(){
-          	    	//If all else fails print message to page stating that something has gone wrong and please try again later.
-          	    	$('#enrollmentError').append(infoLoadFailure);
-          	    }
-            })  
-
-            console.log("sorry enrollmentUrl data could not be located");
-        }  
-        finally{
-          otherEnrollDataFill(tempjson);
-        }
-    },
-    timeout: timeoutTime
-}) */
 
 /* This section contains the population functions for the application. 
 	Each page that requires data from the server has one of these functions. 
 	These functions also dynamically add the HTML formatting as well as refreshing the page to display that information.
 */
-
-
 function generalInfoFill(json){
   	var items = [];
   	$.each(json, function(i, generalData) {
@@ -1000,10 +620,70 @@ function otherEnrollDataFill(json){
     $('#source4').append(statePreSource);
 }
 
+//posts message to pages where the information is being loaded from local data. 
 function noLocalData(failedajax){
-  //this function collects all the failed ajax calls to be used to tell user what stuff is locally called
-  //this function is called by all ajax calls that timeout
+	switch(failedajax){
+	    case 'generalinformationjson':
+	      $('#generalError').append(localInfoAlert);
+	      break;
+	    case 'supsjson':
+	      $('#supsError').append(localInfoAlert);
+	      break;
+	    case 'schooldistrictsjson':
+	      $('#schoolDistrictsError').append(localInfoAlert);
+	      break;
+	    case 'ccschooldistrictsjson':
+	      $('#communityCollegeError').append(localInfoAlert);
+	      break;
+	    case 'countysuperintendentjson':
+	      $('#countySupsError').append(localInfoAlert);
+	      break;
+	    case 'countyandschooldistrictjson':
+	      $('#countySchoolError').append(localInfoAlert);
+	      break;
+	    case 'teacherinformationjson':
+	      $('#teacherError').append(localInfoAlert);
+	      break;
+	    case 'enrollmentjson':
+	      $('#enrollError').append(localInfoAlert);
+	      break;
+	    case 'ropjson':
+		  $('#ropError').append(localInfoAlert);
+	      break;
   failedCalls.push(failedajax);
+}
+
+//post messages to pages where data has completely failed to load. 
+function allHasFailed(failedajax){
+	switch(failedajax){
+	    case 'generalinformationjson':
+	      $('#generalError').append(infoLoadFailure);
+	      break;
+	    case 'supsjson':
+	      $('#supsError').append(infoLoadFailure);
+	      break;
+	    case 'schooldistrictsjson':
+	      $('#schoolDistrictsError').append(infoLoadFailure);
+	      break;
+	    case 'ccschooldistrictsjson':
+	      $('#communityCollegeError').append(infoLoadFailure);
+	      break;
+	    case 'countysuperintendentjson':
+	      $('#countySupsError').append(infoLoadFailure);
+	      break;
+	    case 'countyandschooldistrictjson':
+	      $('#countySchoolError').append(infoLoadFailure);
+	      break;
+	    case 'teacherinformationjson':
+	      $('#teacherError').append(infoLoadFailure);
+	      break;
+	    case 'enrollmentjson':
+	      $('#enrollError').append(infoLoadFailure);
+	      break;
+	    case 'ropjson':
+		  $('#ropError').append(infoLoadFailure);
+	      break;
+  failedCalls.push(failedajax);	
 }
 
 /*This will be the search algorithm that powers the entire search function for the application. 
