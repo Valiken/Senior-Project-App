@@ -542,6 +542,7 @@ function otherEnrollDataFill(json){
       regionalProgramsTitle.push('<b>'
         + programs.catTitle 
         + '</b>'
+        + '<br />'
         );
     });
 
