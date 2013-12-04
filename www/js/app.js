@@ -655,11 +655,13 @@ function countySchoolInfoDataFill(json){
 		 $.each(json.county_ethnicity, function(i, county_ethnicity) {
   		countyEthnicityCat.push('<li data-role="list-divider">'
         	+ county_ethnicity.ethnicity_category
-          +": " + (parseFloat(county_ethnicity.percent) * 100) + "%"
+            + ": " + (parseFloat(county_ethnicity.percent) * 100) + "%"
             + '</li>'			
             );
-	}); 
-    // close each()
+	});
+// close each()
+   
+        
 
     //Total Student Enrollment
     var totalStudentEn = json.total_student_enrollment;
