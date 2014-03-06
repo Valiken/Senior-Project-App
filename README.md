@@ -3,6 +3,12 @@ Senior-Project-App
 
 Senior Project Mobile Application
 
+Check it out here: 
+![alt tag](https://chart.googleapis.com/chart?chs=116x116&cht=qr&chl=http://build.phonegap.com/apps/630401/install/?qr_key=kGb8kTZqBPZxQg2Xbp1p&chld=L|1&choe=UTF-8)
+
+Or alternatively: 
+https://build.phonegap.com/apps/630401/share
+
 ==================
 
 OVERVIEW: 
